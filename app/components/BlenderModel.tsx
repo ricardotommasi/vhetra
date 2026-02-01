@@ -32,8 +32,6 @@ export function RotatingModel({ path, scale = 1 }: { path: string, scale?: numbe
             setLastPos(null)
         }
 
-
-
         if (dragging) {
             window.addEventListener('pointermove', handlePointerMove)
             window.addEventListener('pointerup', handlePointerUp)
@@ -73,8 +71,14 @@ export function RotatingModel({ path, scale = 1 }: { path: string, scale?: numbe
 
     const { actions } = useAnimations(animations, scene)
 
+
     useEffect(() => {
-        Object.values(actions).forEach(action => action?.play())
+        Object.values(actions).forEach(action => {
+            if (action) {
+                action.timeScale = 0.2;
+                action.play()
+            }
+        })
     }, [actions])
 
 
@@ -91,11 +95,6 @@ export function RotatingModel({ path, scale = 1 }: { path: string, scale?: numbe
         </group>
     )
 }
-
-
-
-
-
 
 export default function BlenderModel({ path, type = 'simple', scale }: { path: string, type: 'autoRotate' | 'simple' | 'animated', scale?: number }) {
     useGLTF.preload(path);
