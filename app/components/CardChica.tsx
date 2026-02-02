@@ -16,13 +16,14 @@ const CardChica = ({ servicio, onClick }: CardChicaProps) => {
             relative 
             w-36 h-32 
             bg-blanco
-            rounded-lg 
+            rounded-lg
+            z-20
             shadow-[5px_5px_5px_0px_rgba(16,17,17,0.55)]
             overflow-visible
             transform
             hover:scale-105 
             hover:shadow-[10px_10px_20px_rgba(16,17,17,0.4)]
-            hover:z-10
+            hover:z-30
             transition-transform 
             duration-500 
             ease-[cubic-bezier(0.19,1,0.22,1)]

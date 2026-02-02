@@ -3,6 +3,7 @@ import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import AnimatedLink from "./AnimatedLink";
 
 const pageSections = [
     { displayName: "Inicio", location: "/" },
@@ -15,7 +16,9 @@ const pageSections = [
 const menuClassNames = "text-lg font-ligth opacity-80 transition-all duration-300 ease-out hover:scale-150 hover:font-medium hover:opacity-100"
 const menuClassNamesSelected = "text-lg scale-150 font-medium opacity-100"
 
-export const NavBar = () => {
+export const NavBar = (props: { specialAction?: () => Promise<void> }) => {
+
+    const { specialAction } = props;
 
     const pathname = usePathname();
     const home = pathname === "/";
@@ -39,12 +42,13 @@ export const NavBar = () => {
             <ul className={twMerge(home ? 'mt-18' : '', "flex justify-center gap-6 items-center")}>
                 {pageSections.map((section) => (
                     <li key={section.location} className="flex items-center">
-                        <Link
+                        <AnimatedLink
                             href={section.location}
                             className={twMerge(pathname === `/${section.location}` ? menuClassNamesSelected : menuClassNames)}
+                            specialAction={specialAction}
                         >
                             {section.displayName}
-                        </Link>
+                        </AnimatedLink>
                     </li>
                 ))}
             </ul>

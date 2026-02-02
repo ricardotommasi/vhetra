@@ -16,7 +16,7 @@ export const CardGrande = ({ servicio, onClose }: { servicio: Servicio, onClose:
             className="fixed inset-0 z-10 bg-slate-900/60"
             onClick={onClose}
         />
-        <div id={`detalle-${servicio.name}`} className="w-80 h-96 absolute rounded-lg z-20">
+        <div id={`detalle-${servicio.name}`} className="w-80 h-96 absolute rounded-lg z-40">
             <div className="w-80 h-96 flex flex-col bg-blanco rounded-lg shadow-[5px_5px_5px_0px_rgba(0,0,0,0.55)] overflow-hidden p-4">
                 <button className="ml-auto" onClick={onClose}>
                     <Image

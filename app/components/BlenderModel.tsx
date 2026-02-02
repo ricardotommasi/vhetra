@@ -12,7 +12,7 @@ function Model({ path, scale = 1 }: { path: string, scale?: number }) {
     return <primitive object={scene} scale={scale} receiveShadow />;
 }
 
-export function RotatingModel({ path, scale = 1 }: { path: string, scale?: number }) {
+export function RotatingModel({ path, scale = 1, canInteract }: { path: string, scale?: number, canInteract: boolean }) {
     const { scene, animations } = useGLTF(path)
     const ref = useRef<Group>(null!)
 
@@ -86,7 +86,7 @@ export function RotatingModel({ path, scale = 1 }: { path: string, scale?: numbe
         <group
             ref={ref}
             scale={scale}
-            onPointerDown={() => setDragging(true)}
+            onPointerDown={() => { if (canInteract) setDragging(true) }}
             receiveShadow
             castShadow
         >
@@ -96,7 +96,7 @@ export function RotatingModel({ path, scale = 1 }: { path: string, scale?: numbe
     )
 }
 
-export default function BlenderModel({ path, type = 'simple', scale }: { path: string, type: 'autoRotate' | 'simple' | 'animated', scale?: number }) {
+export default function BlenderModel({ path, type = 'simple', scale, canInteract = false }: { path: string, type: 'autoRotate' | 'simple' | 'animated', scale?: number, canInteract?: boolean }) {
     useGLTF.preload(path);
 
     const renderModel = () => {
@@ -104,7 +104,7 @@ export default function BlenderModel({ path, type = 'simple', scale }: { path: s
             case 'simple':
                 return <Model path={path} scale={scale} />;
             case 'animated':
-                return <RotatingModel path={path} scale={scale} />;
+                return <RotatingModel path={path} scale={scale} canInteract={canInteract} />;
             default:
                 break;
         }
