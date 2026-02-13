@@ -7,7 +7,7 @@ export default function Filosofia() {
         className="svg-breathe w-full max-w-2xl mb-12 "
       />
 
-      <section className="text-[var(--color-blanco)] max-w-xl text-center space-y-4">
+      <section className="text-azulo max-w-xl text-center space-y-4">
         <h5 className="text-lg font-medium">
           No vemos pantallas: vemos experiencias que se sienten.
         </h5>
