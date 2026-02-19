@@ -1,11 +1,9 @@
 export default function Filosofia() {
   return (
     <div className="flex items-center justify-center flex-col mx-5">
-      <img
-        src="/img/respira.svg"
-        alt="En VHETRA lo digital respira"
-        className="svg-breathe w-full max-w-2xl mb-12 "
-      />
+      <h4 className="text-azulo text-xl font-medium">
+        En VHETRA lo digital respira
+      </h4>
 
       <section className="text-azulo max-w-xl text-center space-y-4">
         <h5 className="text-lg font-medium">
