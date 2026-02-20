@@ -28,10 +28,13 @@ export default function Home() {
 
           </div>
         </div>
-        <div className={'w-[90%] h-[25%] mx-[5%] relative'}>
-          <div className={twMerge("w-full h-full absolute transition-all duration-1000 ease-in-out", exiting ? '-translate-y-[270%]' : 'top-0 left-0')}>
-            <BlenderModel path={'/vhetra-texto.glb'} type="simple" scale={1.8} />
-          </div>
+        <div className={'flex flex-col w-[90%] h-[25%] mx-[5%] '}>
+          <h1 className={twMerge("text-center text-7xl sm:text-8xl text-shadow-title transition-all duration-1000 ease-in-out text-azulo", exiting ? '-translate-y-[450%]' : 'top-0 left-0')}>
+            VHETRA
+          </h1>
+          <h2 className="text-azulo text-center text-3xl sm:text-4xl text-shadow-title">
+            Diseñamos ecosistemas de marca
+          </h2>
         </div>
       </div>
     </>

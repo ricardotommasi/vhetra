@@ -27,11 +27,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="flex h-screen items-center justify-center bg-gray-900">
-          <main className="flex flex-col bg-[url(/bg.svg)] bg-cover bg-no-repeat md:w-100.5 h-dvh px-6 overflow-x-hidden overflow-y-scroll">
-            {children}
-          </main>
-        </div>
+        <main className="h-screen w-screen flex flex-col bg-[url(/img/bg.svg)] sm:bg-[url(/img/bg-xl.svg)] bg-cover bg-no-repeat h-dvh px-6 overflow-hidden">
+          {children}
+        </main>
       </body>
     </html>
   );

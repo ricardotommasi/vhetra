@@ -6,6 +6,7 @@
   --color-tiza: #dedede;
   --color-azulc: #415060;
   --color-azulo: #142d4b;
+  --text-shadow-title: 0px 4px 4px rgb(0 0 0 / 0.25);
 }
 
 body {

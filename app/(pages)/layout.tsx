@@ -11,7 +11,7 @@ export default function Layout({
       <NavBar />
       <div className="flex flex-col h-[calc(100vh-200px)] w-full relative">
         {children}
-        <div className="absolute bottom-[2%] -right-[50%] h-[40%]">
+        <div className="absolute bottom-[2%] -right-50 h-[40%]">
           <BlenderModel path={'/vhetra-logo.glb'} type="animated" scale={2.5} />
         </div>
       </div>

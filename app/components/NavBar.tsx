@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -14,8 +13,8 @@ const pageSections = [
 ];
 
 const menuClassNames =
-  "text-lg font-ligth opacity-80 transition-all duration-300 ease-out hover:scale-150 hover:font-medium hover:opacity-100";
-const menuClassNamesSelected = "text-lg scale-150 font-medium opacity-100";
+  "text-md xs:text-xl sm:text-3xl font-ligth sm:mx-4 opacity-80 transition-all duration-300 ease-out hover:scale-150 hover:font-medium hover:opacity-100";
+const menuClassNamesSelected = "text-lg xs:text-xl sm:text-3xl sm:mx-4 scale-150 font-medium opacity-100";
 
 export const NavBar = (props: { specialAction?: () => Promise<void> }) => {
   const { specialAction } = props;
@@ -31,9 +30,9 @@ export const NavBar = (props: { specialAction?: () => Promise<void> }) => {
           className="block text-center my-6 h-16"
           aria-label="Ir al inicio"
         >
-          <div className="w-full mx-10">
-            <Image src="/img/vhetra.png" alt="VHETRA" width={300} height={50} />
-          </div>
+          <h1 className={"text-center text-7xl sm:text-8xl text-shadow-title"}>
+            VHETRA
+          </h1>
         </Link>
       )}
       <ul
