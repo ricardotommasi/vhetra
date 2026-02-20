@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "projects": "Projects",
+    "philosophy": "Philosophy",
+    "contact": "Contact",
+    "goHome": "Go to home"
+  },
+  "home": {
+    "tagline": "We design brand ecosystems"
+  },
+  "philosophy": {
+    "title": "At VHETRA, digital breathes",
+    "subtitle": "We don't see screens: we see experiences that are felt.",
+    "paragraph1": "Each project is a conscious process where the technical finds aesthetic form and the aesthetic gains structure. Fewer templates, more craft.",
+    "paragraph2": "We are the point where code precision and design sensibility converge."
+  },
+  "services": {
+    "landingPage": "LANDING PAGE",
+    "ecommerce": "E-COMMERCE",
+    "specificWeb": "SPECIALIZED WEB",
+    "ecoWeb": "ECONOMIC WEB",
+    "digitalDesign": "DIGITAL DESIGN",
+    "landingPageDesc": "Brief description, cost range, etc",
+    "ecommerceDesc": "Brief description, cost range, etc",
+    "specificWebDesc": "Brief description, cost range, etc",
+    "ecoWebDesc": "Brief description, cost range, etc",
+    "digitalDesignDesc": "Brief description, cost range, etc"
+  },
+  "common": {
+    "contact": "CONTACT",
+    "close": "Close"
+  },
+  "whatsapp": {
+    "message": "Hi! I'm contacting you about the {service} service I saw on your website."
+  },
+  "metadata": {
+    "title": "VHETRA - We design brand ecosystems",
+    "description": "We design brand ecosystems. Digital experiences that are felt."
+  }
+}

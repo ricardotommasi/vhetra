@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "projects": "Proyectos",
+    "philosophy": "Filosofía",
+    "contact": "Contacto",
+    "goHome": "Ir al inicio"
+  },
+  "home": {
+    "tagline": "Diseñamos ecosistemas de marca"
+  },
+  "philosophy": {
+    "title": "En VHETRA lo digital respira",
+    "subtitle": "No vemos pantallas: vemos experiencias que se sienten.",
+    "paragraph1": "Cada proyecto es un proceso consciente donde lo técnico encuentra forma estética y lo estético obtiene estructura. Menos plantillas, más artesanía.",
+    "paragraph2": "Somos el punto donde convergen la precisión del código y la sensibilidad del diseño."
+  },
+  "services": {
+    "landingPage": "LANDING PAGE",
+    "ecommerce": "E-COMMERCE",
+    "specificWeb": "WEB ESPECIALIZADA",
+    "ecoWeb": "WEB ECONÓMICA",
+    "digitalDesign": "DISEÑO DIGITAL",
+    "landingPageDesc": "Descripción breve, rango de costos, bla bla",
+    "ecommerceDesc": "Descripción breve, rango de costos, bla bla",
+    "specificWebDesc": "Descripción breve, rango de costos, bla bla",
+    "ecoWebDesc": "Descripción breve, rango de costos, bla bla",
+    "digitalDesignDesc": "Descripción breve, rango de costos, bla bla"
+  },
+  "common": {
+    "contact": "CONTACTAR",
+    "close": "Cerrar"
+  },
+  "whatsapp": {
+    "message": "Hola! Te contacto por el servicio de {service} que vi en tu pagina web."
+  },
+  "metadata": {
+    "title": "VHETRA - Diseñamos ecosistemas de marca",
+    "description": "Diseñamos ecosistemas de marca. Experiencias digitales que se sienten."
+  }
+}
