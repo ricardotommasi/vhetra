@@ -13,8 +13,8 @@ const PAGE_SECTIONS = [
 ];
 
 const menuClassNames =
-  "text-md xs:text-xl sm:text-3xl font-ligth sm:mx-4 opacity-80 transition-all duration-300 ease-out hover:scale-150 hover:font-medium hover:opacity-100";
-const menuClassNamesSelected = "text-lg xs:text-xl sm:text-3xl sm:mx-4 scale-150 font-medium opacity-100";
+  "text-sm xs:text-md sm:text-2xl font-ligth opacity-80 transition-all duration-300 ease-out hover:scale-125 hover:xs:scale-150 hover:font-medium hover:opacity-100";
+const menuClassNamesSelected = "scale-125 xs:scale-150 font-medium opacity-100";
 
 export const NavBar = (props: { specialAction?: () => Promise<void> }) => {
   const { specialAction } = props;
@@ -25,22 +25,11 @@ export const NavBar = (props: { specialAction?: () => Promise<void> }) => {
   const home = pathname === "/";
 
   return (
-    <nav className="relative w-full h-50 py-6 text-azulo">
-      {!home && (
-        <Link
-          href="/"
-          className="block text-center my-6 h-16"
-          aria-label={t("goHome")}
-        >
-          <h1 className={"text-center text-7xl sm:text-8xl text-shadow-title"}>
-            VHETRA
-          </h1>
-        </Link>
-      )}
+    <nav className="relative w-full h-40 sm:h-50 py-6 text-azulo">
       <ul
         className={twMerge(
-          home ? "mt-18" : "",
-          "flex justify-center gap-6 items-center",
+          "mt-10 xs:mt-16 sm:mt-24",
+          "flex justify-evenly",
         )}
       >
         {PAGE_SECTIONS.map((section) => {
@@ -50,10 +39,10 @@ export const NavBar = (props: { specialAction?: () => Promise<void> }) => {
             <li key={section.location} className="flex items-center">
               <AnimatedLink
                 href={section.location}
-                className={twMerge(
-                  isSelected ? menuClassNamesSelected : menuClassNames,
+                className={twMerge(menuClassNames,
+                  isSelected ? menuClassNamesSelected : '',
                 )}
-                specialAction={specialAction}
+                specialAction={section.location !== "/" ? specialAction : undefined}
               >
                 {t(section.key)}
               </AnimatedLink>

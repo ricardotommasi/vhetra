@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { getLocale } from "next-intl/server";
+import Image from "next/image";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -35,8 +36,9 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <main className="h-screen w-screen flex flex-col bg-[url(/img/bg.svg)] sm:bg-[url(/img/bg-xl.svg)] bg-cover bg-no-repeat h-dvh px-6 overflow-hidden">
+        <main className="h-screen w-screen flex flex-col bg-[url(/img/bg.svg)] bg-center sm:bg-cover bg-no-repeat h-dvh overflow-hidden">
           {children}
+          <Image src="/accents/flechaIzquierda.svg" alt="BackgroundDetail" width={49} height={308} className="absolute bottom-[5%] -left-1 w-[40px] z-10" />
         </main>
       </body>
     </html>

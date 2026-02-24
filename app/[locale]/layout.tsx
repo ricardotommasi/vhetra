@@ -2,6 +2,8 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { SharedHero } from "../components/SharedHero";
+import { div } from "three/tsl";
 
 export const dynamic = "force-dynamic";
 
@@ -25,8 +27,10 @@ export default async function LocaleLayout({ children, params }: Props) {
   const messages = await getMessages();
 
   return (
-    <NextIntlClientProvider messages={messages}>
-      {children}
-    </NextIntlClientProvider>
+    <div className="relative z-20">
+      <NextIntlClientProvider messages={messages}>
+        <SharedHero>{children}</SharedHero>
+      </NextIntlClientProvider>
+    </div>
   );
 }
