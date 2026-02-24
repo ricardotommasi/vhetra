@@ -25,7 +25,7 @@ export const NavBar = (props: { specialAction?: () => Promise<void> }) => {
   const home = pathname === "/";
 
   return (
-    <nav className="relative w-full h-40 sm:h-50 py-6 text-azulo">
+    <nav className="z-20 relative w-full py-6 text-azulo text-khand">
       <ul
         className={twMerge(
           "mt-10 xs:mt-16 sm:mt-24",
@@ -42,7 +42,7 @@ export const NavBar = (props: { specialAction?: () => Promise<void> }) => {
                 className={twMerge(menuClassNames,
                   isSelected ? menuClassNamesSelected : '',
                 )}
-                specialAction={section.location !== "/" ? specialAction : undefined}
+                specialAction={section.location === "/" ? specialAction : undefined}
               >
                 {t(section.key)}
               </AnimatedLink>

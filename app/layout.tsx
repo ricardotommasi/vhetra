@@ -4,16 +4,6 @@ import { getLocale } from "next-intl/server";
 import Image from "next/image";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
   const messages = (await import(`@/messages/${locale}.json`)).default;
@@ -34,7 +24,7 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`antialiased`}
       >
         <main className="h-screen w-screen flex flex-col bg-[url(/img/bg.svg)] bg-center sm:bg-cover bg-no-repeat h-dvh overflow-hidden">
           {children}

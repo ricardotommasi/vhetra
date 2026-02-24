@@ -27,9 +27,13 @@ export default async function LocaleLayout({ children, params }: Props) {
   const messages = await getMessages();
 
   return (
-    <div className="relative z-20">
+    <div className="relative z-20 h-full">
       <NextIntlClientProvider messages={messages}>
-        <SharedHero>{children}</SharedHero>
+        <SharedHero>
+          <div className="h-full overflow-y-auto">
+            {children}
+          </div>
+        </SharedHero>
       </NextIntlClientProvider>
     </div>
   );

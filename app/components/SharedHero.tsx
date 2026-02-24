@@ -37,7 +37,7 @@ function SharedHeroInner({ children }: { children: React.ReactNode }) {
           showLayoutPosition && (e.key === "Enter" || e.key === " ") && handleTitleClick()
         }
         className={twMerge(
-          "absolute text-4xl xs:text-6xl sm:text-8xl text-shadow-title text-azulo transition-all duration-1000 ease-in-out",
+          "z-10 absolute text-4xl xs:text-6xl sm:text-8xl text-shadow-title text-azulo transition-all duration-1000 ease-in-out",
           "left-1/2 -translate-x-1/2",
           showLayoutPosition
             ? "top-[24px]"

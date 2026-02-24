@@ -3,4 +3,5 @@ export type Servicio = {
     name: string;
     displayName: string;
     miniDescripcion: string;
+    destacado: boolean;
 }
