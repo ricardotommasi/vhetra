@@ -1,8 +1,8 @@
 "use client";
 import { twMerge } from "tailwind-merge";
-import { Link, usePathname } from "@/i18n/navigation";
+import { usePathname } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import AnimatedLink from "./AnimatedLink";
+import Link from "next/link";
 
 const PAGE_SECTIONS = [
   { key: "home" as const, location: "/" },
@@ -16,8 +16,7 @@ const menuClassNames =
   "text-sm xs:text-md sm:text-2xl font-ligth opacity-80 transition-all duration-300 ease-out hover:scale-125 hover:xs:scale-150 hover:font-medium hover:opacity-100";
 const menuClassNamesSelected = "scale-125 xs:scale-150 font-medium opacity-100";
 
-export const NavBar = (props: { specialAction?: () => Promise<void> }) => {
-  const { specialAction } = props;
+export const NavBar = () => {
   const pathname = usePathname();
   const locale = useLocale();
   const t = useTranslations("nav");
@@ -37,15 +36,14 @@ export const NavBar = (props: { specialAction?: () => Promise<void> }) => {
             section.location === "/" ? home : pathname === `/${section.location}`;
           return (
             <li key={section.location} className="flex items-center">
-              <AnimatedLink
+              <Link
                 href={section.location}
                 className={twMerge(menuClassNames,
                   isSelected ? menuClassNamesSelected : '',
                 )}
-                specialAction={section.location === "/" ? specialAction : undefined}
               >
                 {t(section.key)}
-              </AnimatedLink>
+              </Link>
             </li>
           );
         })}
