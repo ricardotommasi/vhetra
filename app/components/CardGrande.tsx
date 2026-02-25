@@ -1,5 +1,7 @@
+"use client";
 import { Servicio } from "@/app/model/servicio.type";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export const CardGrande = ({
   servicio,
@@ -8,9 +10,12 @@ export const CardGrande = ({
   servicio: Servicio;
   onClose: () => void;
 }) => {
+  const t = useTranslations("common");
+  const tWhatsapp = useTranslations("whatsapp");
+
   const handleWhatsApp = () => {
     const phoneNumber = "5493876836037";
-    const message = `Hola! Te contacto por el servicio de ${servicio.displayName} que vi en tu pagina web.`;
+    const message = tWhatsapp("message", { service: servicio.displayName });
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     window.open(whatsappUrl, "_blank");
@@ -28,7 +33,7 @@ export const CardGrande = ({
             <Image
               className="w-3.5 h-3.5"
               src="/img/cerrar.svg"
-              alt="Cerrar"
+              alt={t("close")}
               height={14}
               width={14}
             />
@@ -43,7 +48,7 @@ export const CardGrande = ({
             className="mx-auto mb-10 p-4 w-36 h-7 bg-tiza rounded-lg shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] text-center  text-azulo text-xl font-normal"
             onClick={handleWhatsApp}
           >
-            CONTACTAR
+            {t("contact")}
           </button>
         </div>
         <div className="w-24 h-32 -right-4 -bottom-18 absolute text-center justify-start text-tiza text-8xl font-normal  [text-shadow:5px_5px_5px_rgb(53_59_66/0.55)]">
