@@ -22,39 +22,30 @@ export const CardGrande = ({
   };
 
   return (
-    <>
-      <div className="fixed inset-0 z-10 bg-[#FCC47D]/50" onClick={onClose} />
-      <div
-        id={`detalle-${servicio.name}`}
-        className="w-80 h-96 absolute rounded-lg z-40"
-      >
-        <div className="w-80 h-96 flex flex-col bg-azulc rounded-lg shadow-[5px_5px_5px_0px_rgba(0,0,0,0.55)] overflow-hidden p-4">
-          <button className="ml-auto" onClick={onClose}>
-            <Image
-              className="w-3.5 h-3.5"
-              src="/img/cerrar.svg"
-              alt={t("close")}
-              height={14}
-              width={14}
-            />
-          </button>
-          <h2 className="text-center text-tiza text-xl font-normal">
-            {servicio.displayName}
-          </h2>
-          <p className="flex-2 text-tiza text-xl font-normal mt-4 mb-auto">
-            {servicio.miniDescripcion}
-          </p>
-          <button
-            className="mx-auto mb-10 p-4 w-36 h-7 bg-tiza rounded-lg shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] text-center  text-azulo text-xl font-normal"
-            onClick={handleWhatsApp}
-          >
-            {t("contact")}
-          </button>
-        </div>
-        <div className="w-24 h-32 -right-4 -bottom-18 absolute text-center justify-start text-tiza text-8xl font-normal  [text-shadow:5px_5px_5px_rgb(53_59_66/0.55)]">
-          {servicio.id}
-        </div>
+    <div className="fixed inset-0 z-30 flex justify-center items-center" onClick={onClose} >
+      <div id={`detalle-${servicio.name}`} className="mx-auto z-40 w-[80%] h-[60%] sm:h-[40%] flex flex-col bg-card-grande rounded-lg shadow-[5px_5px_5px_0px_rgba(0,0,0,0.55)] overflow-hidden p-4">
+        <button className="ml-auto" onClick={onClose}>
+          <Image
+            className="w-3.5 h-3.5"
+            src="/icons/cerrar.svg"
+            alt={t("close")}
+            height={14}
+            width={14}
+          />
+        </button>
+        <h2 className="text-center text-tiza text-xl font-normal">
+          {servicio.displayName}
+        </h2>
+        <p className="flex-2 text-tiza text-xl font-normal mt-4 mb-auto">
+          {servicio.miniDescripcion}
+        </p>
+        <button
+          className="ml-auto w-40 p-2 bg-tiza rounded-lg shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] text-center text-azulo text-xl font-normal"
+          onClick={handleWhatsApp}
+        >
+          {t("contact")}
+        </button>
       </div>
-    </>
+    </div>
   );
 };

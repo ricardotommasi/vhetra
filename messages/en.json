@@ -17,6 +17,12 @@
     "paragraph2": "We are the point where code precision and design sensibility converge."
   },
   "services": {
+    "presencia": "PRESENCE PACKAGE",
+    "presenciaDesc": "Brief description, cost range, etc",
+    "marcaArtistica": "ARTISTIC BRAND PACKAGE",
+    "marcaArtisticaDesc": "Brief description, cost range, etc",
+    "ecosistema": "ECOSYSTEM PACKAGE",
+    "ecosistemaDesc": "Brief description, cost range, etc",
     "landingPage": "LANDING PAGE",
     "ecommerce": "E-COMMERCE",
     "specificWeb": "SPECIALIZED WEB",
@@ -26,7 +32,13 @@
     "ecommerceDesc": "Brief description, cost range, etc",
     "specificWebDesc": "Brief description, cost range, etc",
     "ecoWebDesc": "Brief description, cost range, etc",
-    "digitalDesignDesc": "Brief description, cost range, etc"
+    "digitalDesignDesc": "Brief description, cost range, etc",
+    "brandingDigital": "DIGITAL BRANDING",
+    "brandingDigitalDesc": "Brief description, cost range, etc",
+    "gestionRedes": "SOCIAL MEDIA MANAGEMENT",
+    "gestionRedesDesc": "Brief description, cost range, etc",
+    "soporteTecnico": "TECHNICAL SUPPORT",
+    "soporteTecnicoDesc": "Brief description, cost range, etc"
   },
   "common": {
     "contact": "CONTACT",

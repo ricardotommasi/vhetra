@@ -17,6 +17,12 @@
     "paragraph2": "Somos el punto donde convergen la precisión del código y la sensibilidad del diseño."
   },
   "services": {
+    "presencia": "PAQUETE PRESENCIA",
+    "presenciaDesc": "Descripción breve, rango de costos, bla bla",
+    "marcaArtistica": "PAQUETE MARCA ARTÍSTICA",
+    "marcaArtisticaDesc": "Descripción breve, rango de costos, bla bla",
+    "ecosistema": "PAQUETE ECOSISTEMA",
+    "ecosistemaDesc": "Descripción breve, rango de costos, bla bla",
     "landingPage": "LANDING PAGE",
     "ecommerce": "E-COMMERCE",
     "specificWeb": "WEB ESPECIALIZADA",
@@ -26,7 +32,13 @@
     "ecommerceDesc": "Descripción breve, rango de costos, bla bla",
     "specificWebDesc": "Descripción breve, rango de costos, bla bla",
     "ecoWebDesc": "Descripción breve, rango de costos, bla bla",
-    "digitalDesignDesc": "Descripción breve, rango de costos, bla bla"
+    "digitalDesignDesc": "Descripción breve, rango de costos, bla bla",
+    "brandingDigital": "BRANDING DIGITAL",
+    "brandingDigitalDesc": "Descripción breve, rango de costos, bla bla",
+    "gestionRedes": "GESTIÓN DE REDES",
+    "gestionRedesDesc": "Descripción breve, rango de costos, bla bla",
+    "soporteTecnico": "SOPORTE TÉCNICO",
+    "soporteTecnicoDesc": "Descripción breve, rango de costos, bla bla"
   },
   "common": {
     "contact": "CONTACTAR",
