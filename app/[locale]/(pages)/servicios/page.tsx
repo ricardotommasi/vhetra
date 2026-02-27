@@ -41,12 +41,12 @@ export default function Servicios() {
   const gridsClassNames = "grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-10 items-center mx-auto relative";
 
   return (
-    <div className="flex flex-col relative mx-6 gap-10 mt-4">
+    <div className="flex flex-col relative mx-6 gap-10">
       <div className={gridsClassNames}>
         {servicios.filter((s) => s.destacado).map((servicio) => (
           <CardChica key={servicio.id} servicio={servicio} onClick={() => setSelectedCard(servicio)} />
         ))}
-        <Image src="/accents/flechaDerecha.svg" alt="flechaDeco" width={180} height={200} className="-rotate-15" />
+        <Image src="/accents/flechaDerecha.svg" alt="flechaDeco" width={180} height={200} className="hidden xs:flex sm:hidden md:hidden lg:flex -rotate-15" />
       </div>
       <div className={gridsClassNames}>
         {servicios.filter((s) => !s.destacado).map((servicio) => (
