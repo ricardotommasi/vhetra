@@ -15,7 +15,7 @@ const CardChica = ({ servicio, onClick }: CardChicaProps) => {
         id={`card-${name}`}
         className={twMerge(`relative flex flex-col w-36 sm:w-52 h-32 sm:h-44 rounded-lg z-20 shadow-[5px_5px_5px_0px_rgba(16,17,17,0.55)] overflow-visible p-4
           transform hover:scale-105 hover:shadow-[10px_10px_20px_rgba(16,17,17,0.4)] hover:z-30 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]`,
-          destacado ? "bg-card-destacada" : "bg-azulc")
+          destacado ? "bg-card-destacada" : "bg-card")
         }
       >
         <h3 className="text-left text-tiza text-lg sm:text-xl font-normal">

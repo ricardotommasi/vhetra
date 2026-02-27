@@ -14,12 +14,12 @@ const CardChica = ({ proyecto, onClick }: CardChicaProps) => {
     <button onClick={onClick} className="z-20">
       <div
         id={`card-${name}`}
-        className={twMerge(`w-[384px] h-[180px] p-4 flex flex-row items-center relative bg-black/80 rounded-lg shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] overflow-visible gap-6
+        className={twMerge(`sm:w-[250px] sm:w-[280px] h-[160px] p-4 flex flex-row items-center relative bg-card rounded-lg shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] overflow-visible gap-6
           transform hover:scale-105 hover:shadow-[10px_10px_20px_rgba(16,17,17,0.4)] hover:z-30 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]`,
         )
         }
       >
-        <div className="w-36 -mx-4 overflow-visible">
+        <div className="w-28 -mx-4 overflow-visible">
           <Image src={imagen} alt={displayName} width={144} height={288} className="object-cover object-center" />
         </div>
         <div className="flex-1 flex flex-col">

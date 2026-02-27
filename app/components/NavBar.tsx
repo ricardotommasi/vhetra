@@ -29,6 +29,7 @@ export const NavBar = () => {
         className={twMerge(
           "mt-10 xs:mt-16 sm:mt-24",
           "flex justify-evenly",
+          'xl:mx-[120px]'
         )}
       >
         {PAGE_SECTIONS.map((section) => {
