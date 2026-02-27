@@ -23,8 +23,8 @@ export const CardGrande = ({
 
   return (
     <div className="fixed inset-0 z-30 flex justify-center items-center" onClick={onClose} >
-      <div id={`detalle-${servicio.name}`} className="mx-auto z-40 w-[80%] h-[60%] sm:h-[40%] flex flex-col bg-card-grande rounded-lg shadow-[5px_5px_5px_0px_rgba(0,0,0,0.55)] overflow-hidden p-4">
-        <button className="ml-auto" onClick={onClose}>
+      <div id={`detalle-${servicio.name}`} className="mx-auto z-40 w-[80%] max-h-[80vh] flex flex-col bg-card-grande rounded-lg shadow-[5px_5px_5px_0px_rgba(0,0,0,0.55)] overflow-hidden p-4">
+        <button className="ml-auto shrink-0" onClick={onClose}>
           <Image
             className="w-3.5 h-3.5"
             src="/icons/cerrar.svg"
@@ -33,14 +33,17 @@ export const CardGrande = ({
             width={14}
           />
         </button>
-        <h2 className="text-center text-tiza text-xl font-normal">
+        <h2 className="text-center text-tiza text-xl font-normal shrink-0">
           {servicio.displayName}
         </h2>
-        <p className="flex-2 text-tiza text-xl font-normal mt-4 mb-auto">
+        <p className="text-tiza text-sm sm:text-base mt-2 opacity-90 shrink-0">
           {servicio.miniDescripcion}
         </p>
+        <div className="flex-1 min-h-0 overflow-y-auto mt-2 text-tiza text-sm sm:text-base pr-2">
+          {servicio.descripcionCompleta}
+        </div>
         <button
-          className="ml-auto w-40 p-2 bg-tiza rounded-lg shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] text-center text-azulo text-xl font-normal"
+          className="ml-auto mt-4 w-40 p-2 bg-tiza rounded-lg shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] text-center text-azulo text-xl font-normal shrink-0"
           onClick={handleWhatsApp}
         >
           {t("contact")}

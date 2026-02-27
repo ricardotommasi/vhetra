@@ -5,19 +5,20 @@ import { CardGrande } from "@/app/components/CardGrande";
 import { Servicio } from "@/app/model/servicio.type";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 const SERVICE_KEYS = [
-  { id: 1, name: "paquete-presencia", displayKey: "presencia", descKey: "presenciaDesc", destacado: true },
-  { id: 2, name: "paquete-marca-artistica", displayKey: "marcaArtistica", descKey: "marcaArtisticaDesc", destacado: true },
-  { id: 3, name: "paquete-ecosistema", displayKey: "ecosistema", descKey: "ecosistemaDesc", destacado: true },
-  { id: 4, name: "eco-web", displayKey: "ecoWeb", descKey: "ecoWebDesc", destacado: false },
-  { id: 5, name: "landing-page", displayKey: "landingPage", descKey: "landingPageDesc", destacado: false },
-  { id: 6, name: "ecommerce", displayKey: "ecommerce", descKey: "ecommerceDesc", destacado: false },
-  { id: 7, name: "specific-web", displayKey: "specificWeb", descKey: "specificWebDesc", destacado: false },
-  { id: 8, name: "branding-digital", displayKey: "brandingDigital", descKey: "brandingDigitalDesc", destacado: false },
-  { id: 9, name: "digital-design", displayKey: "digitalDesign", descKey: "digitalDesignDesc", destacado: false },
-  { id: 10, name: "gestion-redes", displayKey: "gestionRedes", descKey: "gestionRedesDesc", destacado: false },
-  { id: 11, name: "soporte-tecnico", displayKey: "soporteTecnico", descKey: "soporteTecnicoDesc", destacado: false },
+  { id: 1, name: "sitio-esencial", displayKey: "sitioEsencial", miniKey: "sitioEsencialMini", fullKey: "sitioEsencialFull", destacado: true },
+  { id: 2, name: "presencia-digital", displayKey: "presenciaDigital", miniKey: "presenciaDigitalMini", fullKey: "presenciaDigitalFull", destacado: true },
+  { id: 3, name: "marca-digital", displayKey: "marcaDigital", miniKey: "marcaDigitalMini", fullKey: "marcaDigitalFull", destacado: true },
+  { id: 4, name: "landing-page", displayKey: "landingPage", miniKey: "landingPageMini", fullKey: "landingPageFull", destacado: false },
+  { id: 5, name: "ecommerce", displayKey: "ecommerce", miniKey: "ecommerceMini", fullKey: "ecommerceFull", destacado: false },
+  { id: 6, name: "paginas-personalizadas", displayKey: "paginasPersonalizadas", miniKey: "paginasPersonalizadasMini", fullKey: "paginasPersonalizadasFull", destacado: false },
+  { id: 7, name: "manejo-redes", displayKey: "manejoRedes", miniKey: "manejoRedesMini", fullKey: "manejoRedesFull", destacado: false },
+  { id: 8, name: "branding-logotipo", displayKey: "brandingLogotipo", miniKey: "brandingLogotipoMini", fullKey: "brandingLogotipoFull", destacado: false },
+  { id: 9, name: "mantenimiento-web", displayKey: "mantenimientoWeb", miniKey: "mantenimientoWebMini", fullKey: "mantenimientoWebFull", destacado: false },
+  { id: 10, name: "hosting-dominio", displayKey: "hostingDominio", miniKey: "hostingDominioMini", fullKey: "hostingDominioFull", destacado: false },
+  { id: 11, name: "automatizaciones", displayKey: "automatizaciones", miniKey: "automatizacionesMini", fullKey: "automatizacionesFull", destacado: false },
 ] as const;
 
 export default function Servicios() {
@@ -28,33 +29,31 @@ export default function Servicios() {
     id: s.id,
     name: s.name,
     displayName: t(s.displayKey),
-    miniDescripcion: t(s.descKey),
+    miniDescripcion: t(s.miniKey),
+    descripcionCompleta: t.rich(s.fullKey, {
+      br: () => <br />,
+      ul: (chunks) => <ul className="list-disc list-inside my-2 space-y-1">{chunks}</ul>,
+      li: (chunks) => <li>{chunks}</li>,
+    }),
     destacado: s.destacado,
   }));
 
   const gridsClassNames = "grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-10 items-center mx-auto relative";
 
-  return (<div className="flex flex-col relative mx-6 gap-10 mt-4">
-    <div className={gridsClassNames}>
-      {servicios.filter((servicio) => servicio.destacado).map((servicio) => (
-        <CardChica
-          key={servicio.id}
-          servicio={servicio}
-          onClick={() => setSelectedCard(servicio)}
-        />
-      ))}
+  return (
+    <div className="flex flex-col relative mx-6 gap-10 mt-4">
+      <div className={gridsClassNames}>
+        {servicios.filter((s) => s.destacado).map((servicio) => (
+          <CardChica key={servicio.id} servicio={servicio} onClick={() => setSelectedCard(servicio)} />
+        ))}
+        <Image src="/accents/flechaDerecha.svg" alt="flechaDeco" width={180} height={200} className="-rotate-15" />
+      </div>
+      <div className={gridsClassNames}>
+        {servicios.filter((s) => !s.destacado).map((servicio) => (
+          <CardChica key={servicio.id} servicio={servicio} onClick={() => setSelectedCard(servicio)} />
+        ))}
+      </div>
+      {selectedCard && <CardGrande servicio={selectedCard} onClose={() => setSelectedCard(null)} />}
     </div>
-    <div className={gridsClassNames}>
-      {servicios.filter((servicio) => !servicio.destacado).map((servicio) => (
-        <CardChica
-          key={servicio.id}
-          servicio={servicio}
-          onClick={() => setSelectedCard(servicio)}
-        />
-      ))}
-    </div>
-    {selectedCard && (
-      <CardGrande servicio={selectedCard} onClose={() => setSelectedCard(null)} />
-    )}
-  </div>);
+  );
 }
