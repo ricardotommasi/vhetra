@@ -22,7 +22,7 @@ export const CardGrande = ({
   };
 
   return (
-    <div className="fixed inset-0 z-30 flex justify-center items-center" onClick={onClose} >
+    <div className="fixed inset-0 z-30 flex justify-center items-center mt-10" onClick={onClose} >
       <div id={`detalle-${servicio.name}`} className="mx-auto z-40 w-[80%] max-h-[80vh] flex flex-col bg-card-grande rounded-lg shadow-[5px_5px_5px_0px_rgba(0,0,0,0.55)] overflow-hidden p-4">
         <button className="ml-auto shrink-0" onClick={onClose}>
           <Image

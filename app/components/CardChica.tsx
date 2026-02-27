@@ -18,10 +18,10 @@ const CardChica = ({ servicio, onClick }: CardChicaProps) => {
           destacado ? "bg-card-destacada" : "bg-azulc")
         }
       >
-        <h3 className="text-tiza text-lg sm:text-xl font-normal">
+        <h3 className="text-left text-tiza text-lg sm:text-xl font-normal">
           {displayName}
         </h3>
-        <p className="mt-2 ml-2 text-tiza text-xs sm:text-sm font-normal opacity-90 line-clamp-2 flex-1 min-h-0">
+        <p className="text-left mt-2 ml-2 text-tiza text-xs sm:text-sm font-normal opacity-90 line-clamp-2 flex-1 min-h-0">
           {servicio.miniDescripcion}
         </p>
         <p className="absolute right-2 -bottom-3.5 sm:-bottom-8 md:-bottom-10 text-center text-tiza text-lg sm:text-6xl md:text-8xl font-normal [text-shadow:5px_5px_5px_rgb(53_59_66/0.55)]">
