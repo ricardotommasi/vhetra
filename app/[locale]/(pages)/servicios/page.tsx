@@ -46,7 +46,7 @@ export default function Servicios() {
         {servicios.filter((s) => s.destacado).map((servicio) => (
           <CardChica key={servicio.id} servicio={servicio} onClick={() => setSelectedCard(servicio)} />
         ))}
-        <Image src="/accents/flechaDerecha.svg" alt="flechaDeco" width={180} height={200} className="hidden xs:flex sm:hidden md:hidden lg:flex -rotate-15" />
+        <Image src="/accent/flechaDerecha.svg" alt="flechaDeco" width={180} height={200} className="hidden xs:flex sm:hidden md:hidden lg:flex -rotate-15" />
       </div>
       <div className={gridsClassNames}>
         {servicios.filter((s) => !s.destacado).map((servicio) => (

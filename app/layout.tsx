@@ -28,7 +28,7 @@ export default async function RootLayout({
       >
         <main className="h-screen w-screen flex flex-col bg-[url(/img/bg.svg)] bg-center sm:bg-cover bg-no-repeat h-dvh overflow-hidden">
           {children}
-          <Image src="/accents/flechaIzquierda.svg" alt="BackgroundDetail" width={49} height={308} className="absolute bottom-[5%] -left-1 w-[40px] z-10" />
+          <Image src="/accent/flechaIzquierda.svg" alt="BackgroundDetail" width={49} height={308} className="absolute bottom-[5%] -left-1 w-[40px] z-10" />
         </main>
       </body>
     </html>

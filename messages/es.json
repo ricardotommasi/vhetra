@@ -12,9 +12,15 @@
   },
   "philosophy": {
     "title": "En VHETRA lo digital respira",
+    "titlePrefix": "En VHETRA lo digital",
+    "titleSuffix": "respira",
     "subtitle": "No vemos pantallas: vemos experiencias que se sienten.",
     "paragraph1": "Cada proyecto es un proceso consciente donde lo técnico encuentra forma estética y lo estético obtiene estructura. Menos plantillas, más artesanía.",
-    "paragraph2": "Somos el punto donde convergen la precisión del código y la sensibilidad del diseño."
+    "paragraph2": "Somos el punto donde convergen la precisión del código y la sensibilidad del diseño.",
+    "intro": "No creamos piezas aisladas; construimos marcas como sistemas coherentes.",
+    "body1": "En Vhetra integramos tecnología, diseño y estrategia para transformar ideas en identidades vivas. Entendemos que una marca no se define por un solo elemento, sino por la relación entre todos: su arquitectura digital, su identidad visual y su presencia en el mundo físico.",
+    "body2": "Trabajamos desde la intención y el análisis, combinando precisión técnica con sensibilidad estética. No seguimos tendencias pasajeras; diseñamos estructuras con identidad, pensadas para funcionar y perdurar.",
+    "body3": "Somos estructura y sensibilidad al mismo tiempo: código que respira marca."
   },
   "services": {
     "sitioEsencial": "SITIO ESENCIAL",

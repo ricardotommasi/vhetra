@@ -12,9 +12,15 @@
   },
   "philosophy": {
     "title": "At VHETRA, digital breathes",
+    "titlePrefix": "At VHETRA, digital",
+    "titleSuffix": "breathes",
     "subtitle": "We don't see screens: we see experiences that are felt.",
     "paragraph1": "Each project is a conscious process where the technical finds aesthetic form and the aesthetic gains structure. Fewer templates, more craft.",
-    "paragraph2": "We are the point where code precision and design sensibility converge."
+    "paragraph2": "We are the point where code precision and design sensibility converge.",
+    "intro": "We don't create isolated pieces; we build brands as coherent systems.",
+    "body1": "At Vhetra we integrate technology, design and strategy to transform ideas into living identities. We understand that a brand is not defined by a single element, but by the relationship between all of them: its digital architecture, its visual identity and its presence in the physical world.",
+    "body2": "We work from intention and analysis, combining technical precision with aesthetic sensibility. We don't follow passing trends; we design structures with identity, built to function and endure.",
+    "body3": "We are structure and sensibility at the same time: code that breathes brand."
   },
   "services": {
     "sitioEsencial": "ESSENTIAL SITE",

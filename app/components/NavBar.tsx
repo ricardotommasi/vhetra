@@ -1,8 +1,7 @@
 "use client";
 import { twMerge } from "tailwind-merge";
-import { usePathname } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import Link from "next/link";
 
 const PAGE_SECTIONS = [
   { key: "home" as const, location: "/" },
