@@ -12,8 +12,8 @@ const PAGE_SECTIONS = [
 ];
 
 const menuClassNames =
-  "text-sm xs:text-md sm:text-2xl font-ligth opacity-80 transition-all duration-300 ease-out hover:scale-125 hover:xs:scale-150 hover:font-medium hover:opacity-100";
-const menuClassNamesSelected = "scale-125 xs:scale-150 font-medium opacity-100";
+  "text-lg font-medium sm:text-2xl font-ligth opacity-80 transition-all duration-300 ease-out hover:scale-125 hover:xs:scale-150 hover:font-medium hover:opacity-100";
+const menuClassNamesSelected = "scale-125 xs:scale-150 font-semibold opacity-100";
 
 export const NavBar = () => {
   const pathname = usePathname();
@@ -23,7 +23,7 @@ export const NavBar = () => {
   const home = pathname === "/";
 
   return (
-    <nav className="z-20 relative w-full py-6 text-azulo text-khand">
+    <nav className="z-20 relative w-full mt-10 sm:mt-0 py-6 text-azulo text-khand">
       <ul
         className={twMerge(
           "mt-10 xs:mt-16 sm:mt-24",

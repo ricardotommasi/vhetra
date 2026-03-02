@@ -30,7 +30,7 @@ function SharedHeroInner({ children }: { children: React.ReactNode }) {
           showLayoutPosition && (e.key === "Enter" || e.key === " ") && handleTitleClick()
         }
         className={twMerge(
-          "z-10 absolute text-4xl xs:text-6xl sm:text-8xl text-shadow-title text-azulo transition-all duration-1000 ease-in-out",
+          "z-10 absolute text-6xl sm:text-8xl text-shadow-title text-azulo transition-all duration-1000 ease-in-out",
           "left-1/2 -translate-x-1/2",
           showLayoutPosition
             ? "top-[24px]"
@@ -41,10 +41,10 @@ function SharedHeroInner({ children }: { children: React.ReactNode }) {
       >
         VHETRA
       </h1>
-      <h2 className={twMerge("absolute text-azulo text-center xs:text-2xl sm:text-4xl text-shadow-title",
+      <h2 className={twMerge("absolute text-azulo text-center text-lg xs:text-3xl sm:text-4xl text-shadow-title w-full",
         showLayoutPosition
           ? "hidden"
-          : "top-[calc(200px+150px+70px)] xs:top-[calc(200px+250px+130px)] left-1/2 -translate-x-1/2"
+          : "top-[calc(200px+150px+90px)] xs:top-[calc(200px+250px+130px)] left-1/2 -translate-x-1/2"
       )}>
         {tHome("tagline")}
       </h2>
@@ -55,7 +55,7 @@ function SharedHeroInner({ children }: { children: React.ReactNode }) {
             "absolute transition-all duration-1000 ease-in-out w-[150px] h-[150px] xs:w-[200px] xs:h-[200px] sm:w-[250px] sm:h-[250px]",
             showLayoutPosition
               ? "hidden sm:flex bottom-[2%] -right-[125px]"
-              : "left-1/2 -translate-x-1/2"
+              : "mt-10 sm:mt-0 left-1/2 -translate-x-1/2"
           )}
         >
           <BlenderModel

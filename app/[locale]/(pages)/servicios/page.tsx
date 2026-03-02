@@ -38,7 +38,7 @@ export default function Servicios() {
     destacado: s.destacado,
   }));
 
-  const gridsClassNames = "grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-10 items-center mx-auto relative";
+  const gridsClassNames = "grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-10 sm:mx-auto items-center relative";
 
   return (
     <div className="flex flex-col relative mx-6 gap-10">

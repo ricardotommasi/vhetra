@@ -13,7 +13,7 @@ const CardChica = ({ servicio, onClick }: CardChicaProps) => {
     <button onClick={onClick} className="z-20">
       <div
         id={`card-${name}`}
-        className={twMerge(`relative flex flex-col w-36 sm:w-52 h-32 sm:h-44 rounded-lg z-20 shadow-[5px_5px_5px_0px_rgba(16,17,17,0.55)] overflow-visible p-4
+        className={twMerge(`relative flex flex-col w-full sm:w-52 h-32 sm:h-44 rounded-lg z-20 shadow-[5px_5px_5px_0px_rgba(16,17,17,0.55)] overflow-visible p-4
           transform hover:scale-105 hover:shadow-[10px_10px_20px_rgba(16,17,17,0.4)] hover:z-30 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]`,
           destacado ? "bg-card-destacada" : "bg-card")
         }
@@ -24,7 +24,7 @@ const CardChica = ({ servicio, onClick }: CardChicaProps) => {
         <p className="text-left mt-2 ml-2 text-tiza text-xs sm:text-sm font-normal opacity-90 line-clamp-2 flex-1 min-h-0">
           {servicio.miniDescripcion}
         </p>
-        <p className="absolute right-2 -bottom-3.5 sm:-bottom-8 md:-bottom-10 text-center text-tiza text-lg sm:text-6xl md:text-8xl font-normal [text-shadow:5px_5px_5px_rgb(53_59_66/0.55)]">
+        <p className="absolute right-2 -bottom-8 md:-bottom-10 text-center text-tiza text-6xl md:text-8xl font-normal [text-shadow:5px_5px_5px_rgb(53_59_66/0.55)]">
           {Number(id).toString().padStart(2, '0')}
         </p>
       </div>
