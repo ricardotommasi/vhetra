@@ -57,6 +57,16 @@
     "automatizacionesMini": "Formularios, turnos y conexiones externas",
     "automatizacionesFull": "Integración de formularios, sistemas de turnos, respuestas automáticas o conexiones con plataformas externas. (Varía según la complejidad de la funcionalidad requerida)"
   },
+  "contact": {
+    "title": "Toda identidad comienza con una conversación",
+    "letsTalk": "hablemos",
+    "instagramTitle": "INSTAGRAM",
+    "instagramAction": "Seguinos y escribinos por DM.",
+    "gmailTitle": "GMAIL",
+    "gmailAction": "Cuando tu idea necesita más palabras.<br></br>(Te respondo con detalle.)",
+    "whatsappTitle": "WHATSAPP",
+    "whatsappAction": "Conectemos y demos el primer paso."
+  },
   "common": {
     "contact": "CONTACTAR",
     "close": "Cerrar"

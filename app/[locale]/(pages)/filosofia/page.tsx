@@ -13,7 +13,7 @@ export default async function Filosofia({ params }: Props) {
 
   return (
 
-    <div className="flex px-4 py-8 flex-col w-full mt-[10%] bg-white/50 shadow-[0px_5px_5px_0px_rgba(0,0,0,0.45)]">
+    <div className="flex px-4 sm:px-8 py-8 flex-col w-full max-w-[920px] mt-[10%] bg-white/50 shadow-[0px_5px_5px_0px_rgba(0,0,0,0.45)] rounded-lg mx-auto">
       <div className="flex flex-row gap-5 items-center mb-4">
         <h3 className="text-black text-2xl sm:text-4xl md:text-6xl font-medium shrink-0">{t("titlePrefix")}</h3>
         <div className="text-black text-4xl sm:text-6xl md:text-8xl font-medium mt-10 shrink-0 relative w-fit">

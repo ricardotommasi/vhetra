@@ -57,6 +57,16 @@
     "automatizacionesMini": "Forms, appointments and external connections",
     "automatizacionesFull": "Integration of forms, appointment systems, automatic responses or connections with external platforms. (Varies according to the complexity of the required functionality)"
   },
+  "contact": {
+    "title": "Every identity begins with a conversation",
+    "letsTalk": "let's talk",
+    "instagramTitle": "INSTAGRAM",
+    "instagramAction": "Follow us and message us on DM.",
+    "gmailTitle": "GMAIL",
+    "gmailAction": "When your idea needs more words.<br></br>(I'll reply in detail.)",
+    "whatsappTitle": "WHATSAPP",
+    "whatsappAction": "Let's connect and take the first step."
+  },
   "common": {
     "contact": "CONTACT",
     "close": "Close"

@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { twMerge } from "tailwind-merge";
+import { ReactNode } from "react";
 
-const baseClasses = "w-full sm:w-[65%] h-28 p-4 gap-2 relative flex flex-row items-center text-tiza bg-card rounded-lg shadow-[5px_5px_5px_0px_rgba(16,17,17,0.55)] overflow-hidden";
+const baseClasses = "w-full sm:w-[450px] h-28 p-4 gap-2 relative flex flex-row items-center text-tiza bg-card rounded-lg shadow-[5px_5px_5px_0px_rgba(16,17,17,0.55)] overflow-hidden";
 
-const CardContacto = ({ id, img, title, action, href }: { id: number, img: string, title: string, action: string, href: string }) => {
+const CardContacto = ({ id, img, title, action, href }: { id: number, img: string, title: string, action: ReactNode, href: string }) => {
     return (
         <Link href={href} id={`card-${id}`}
             className={twMerge(baseClasses, id % 2 === 0 && "sm:ml-[40px]")}>
