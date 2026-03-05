@@ -8,7 +8,7 @@ interface CardChicaProps {
 }
 
 const CardChica = ({ proyecto, onClick }: CardChicaProps) => {
-  const { id, name, displayName, miniDescripcion, imagen } = proyecto;
+  const { name, miniTitulo, miniDescripcion, miniatura } = proyecto;
 
   return (
     <button onClick={onClick} className="z-20">
@@ -20,11 +20,11 @@ const CardChica = ({ proyecto, onClick }: CardChicaProps) => {
         }
       >
         <div className="w-28 -mx-4 overflow-visible">
-          <Image src={imagen} alt={displayName} width={144} height={288} className="object-cover object-center" />
+          <Image src={miniatura} alt={miniTitulo} width={144} height={288} className="object-cover object-center" />
         </div>
         <div className="flex-1 flex flex-col">
           <h3 className="text-left text-tiza text-lg sm:text-xl font-normal">
-            {displayName}
+            {miniTitulo}
           </h3>
           <p className="text-left mt-2 ml-2 text-tiza text-xs sm:text-sm font-normal opacity-90 line-clamp-2 flex-1 min-h-0">
             {miniDescripcion}
