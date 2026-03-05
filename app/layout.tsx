@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import { getLocale } from "next-intl/server";
 import Image from "next/image";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next"
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
@@ -31,6 +31,7 @@ export default async function RootLayout({
           <Image src="/accent/flechaIzquierda.svg" alt="BackgroundDetail" width={49} height={308} className="absolute bottom-[5%] -left-1 w-[40px] z-10" />
         </main>
       </body>
+      <Analytics />
     </html>
   );
 }
