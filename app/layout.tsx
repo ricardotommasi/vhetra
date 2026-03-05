@@ -3,6 +3,7 @@ import { getLocale } from "next-intl/server";
 import Image from "next/image";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
@@ -32,6 +33,7 @@ export default async function RootLayout({
         </main>
       </body>
       <Analytics />
+      <SpeedInsights />
     </html>
   );
 }
