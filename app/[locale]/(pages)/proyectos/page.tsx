@@ -45,7 +45,7 @@ export default function Proyectos() {
         <h3 className="text-black text-2xl md:text-3xl font-semibold shrink-0 ">
           {t("heading1")}
         </h3>
-        <h3 className="text-accent stroke-accent text-3xl md:text-6xl font-normal font-licorice shrink-0">
+        <h3 className="text-accent stroke-accent text-3xl md:text-6xl font-semibold font-licorice shrink-0">
           {t("heading2")}
         </h3>
       </div>

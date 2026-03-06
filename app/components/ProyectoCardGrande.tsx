@@ -52,12 +52,12 @@ const ProyectoCardGrande = ({ proyecto, onClose }: ProyectoCardGrandeProps) => {
             alt={titulo}
             width={347}
             height={171}
-            className="w-80 h-44 object-cover object-center rounded shadow-[0px_4px_4px_0px_rgba(0,0,0,0.35)]"
+            className="w-80 h-44 object-cover object-center"
           />
         </div>
 
         {/* Description */}
-        <div className="flex-1 min-h-0 overflow-y-auto text-center text-zinc-300 text-xl font-normal mb-6">
+        <div className="font-manrope flex-1 min-h-0 text-center text-zinc-300 text-xl font-normal mb-6">
           {descripcionCompleta}
         </div>
 

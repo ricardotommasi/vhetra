@@ -29,10 +29,12 @@ export default async function Contacto({ params }: Props) {
 
   return (
     <div className="flex flex-col relative px-4 sm:max-w-[920px] mx-auto">
-      <h3 className="ml-4 text-xl sm:text-3xl md:text-4xl shrink-0">{t("title")}</h3>
+      <h3 className="ml-4 text-xl sm:text-3xl md:text-4xl shrink-0 my-4">{t("title")}</h3>
       <div className="flex flex-row justify-end relative max-w-[820px]">
-        <h2 className="text-right text-4xl sm:text-5xl md:text-7xl font-licorice text-accent shrink-0">{t("letsTalk")}</h2>
-        <Image className="items-left scale-50 sm:scale-60 md:scale-100 flex -mt-10" src="/accent/exclamacion.svg" alt="" aria-hidden width={100} height={40} />
+        <h2 className="text-right text-4xl sm:text-5xl md:text-7xl font-semibold font-licorice text-accent shrink-0">{t("letsTalk")}</h2>
+        <div className="flex justify-start">
+          <Image className="ml-4 items-left scale-50 sm:scale-60 md:scale-100 flex -mt-10" src="/accent/exclamacion.svg" alt="" aria-hidden width={75} height={30} />
+        </div>
       </div>
       <div className="flex flex-col gap-10 mx-auto">
         {contactos.map((contacto) => (

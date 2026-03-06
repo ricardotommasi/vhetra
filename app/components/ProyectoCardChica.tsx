@@ -26,7 +26,7 @@ const CardChica = ({ proyecto, onClick }: CardChicaProps) => {
           <h3 className="text-left text-tiza text-lg sm:text-xl font-normal">
             {miniTitulo}
           </h3>
-          <p className="text-left mt-2 ml-2 text-tiza text-xs sm:text-sm font-normal opacity-90 line-clamp-2 flex-1 min-h-0">
+          <p className="font-manrope text-left mt-2 ml-2 text-tiza text-xs sm:text-sm font-normal opacity-90 line-clamp-2 flex-1 min-h-0">
             {miniDescripcion}
           </p>
         </div>

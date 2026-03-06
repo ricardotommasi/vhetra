@@ -54,7 +54,7 @@ function SharedHeroInner({ children }: { children: React.ReactNode }) {
           className={twMerge(
             "absolute transition-all duration-1000 ease-in-out w-[150px] h-[150px] xs:w-[200px] xs:h-[200px] sm:w-[250px] sm:h-[250px]",
             showLayoutPosition
-              ? "hidden sm:flex bottom-[2%] -right-[125px]"
+              ? "hidden sm:flex bottom-[2%] -right-[125px] lg:bottom-[10%] lg:w-[500px] lg:h-[500px]"
               : "mt-10 sm:mt-0 left-1/2 -translate-x-1/2"
           )}
         >

@@ -8,9 +8,9 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 const SERVICE_KEYS = [
-  { id: 1, name: "sitio-esencial", displayKey: "sitioEsencial", miniKey: "sitioEsencialMini", fullKey: "sitioEsencialFull", destacado: true },
-  { id: 2, name: "presencia-digital", displayKey: "presenciaDigital", miniKey: "presenciaDigitalMini", fullKey: "presenciaDigitalFull", destacado: true },
-  { id: 3, name: "marca-digital", displayKey: "marcaDigital", miniKey: "marcaDigitalMini", fullKey: "marcaDigitalFull", destacado: true },
+  { id: 1, name: "presencia-digital", displayKey: "presenciaDigital", miniKey: "presenciaDigitalMini", fullKey: "presenciaDigitalFull", destacado: true },
+  { id: 2, name: "marca-digital", displayKey: "marcaDigital", miniKey: "marcaDigitalMini", fullKey: "marcaDigitalFull", destacado: true },
+  { id: 3, name: "presencia-en-redes", displayKey: "presenciaEnRedes", miniKey: "presenciaEnRedesMini", fullKey: "presenciaEnRedesFull", destacado: true },
   { id: 4, name: "landing-page", displayKey: "landingPage", miniKey: "landingPageMini", fullKey: "landingPageFull", destacado: false },
   { id: 5, name: "ecommerce", displayKey: "ecommerce", miniKey: "ecommerceMini", fullKey: "ecommerceFull", destacado: false },
   { id: 6, name: "paginas-personalizadas", displayKey: "paginasPersonalizadas", miniKey: "paginasPersonalizadasMini", fullKey: "paginasPersonalizadasFull", destacado: false },
