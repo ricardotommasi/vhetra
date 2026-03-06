@@ -25,7 +25,7 @@ export default async function RootLayout({
     <html lang={locale}>
       <body className="antialiased">
         <main className="relative h-screen w-screen flex flex-col overflow-hidden">
-          <div className="absolute inset-0 bg-[url(/img/bg.png)] bg-center sm:bg-cover bg-no-repeat opacity-70 -z-10" />
+          <div className="absolute inset-0 bg-[url(/img/bg.webp)] bg-center sm:bg-cover bg-no-repeat opacity-70 -z-10" />
 
           {children}
 
