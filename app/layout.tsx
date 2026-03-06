@@ -25,7 +25,7 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body className="antialiased">
-        <main className="relative h-screen w-screen flex flex-col overflow-hidden">
+        <main className="relative h-screen-dynamic w-screen-dynamic flex flex-col overflow-hidden">
           <div className="absolute inset-0 bg-[url(/img/bg.webp)] bg-center sm:bg-cover bg-no-repeat opacity-70 -z-10" />
 
           {children}
@@ -35,7 +35,7 @@ export default async function RootLayout({
             alt="BackgroundDetail"
             width={49}
             height={308}
-            className="absolute bottom-[5%] -left-1 w-[40px] z-10"
+            className="absolute bottom-[5%] left-0 w-[45px] z-10"
           />
         </main>
       </body>

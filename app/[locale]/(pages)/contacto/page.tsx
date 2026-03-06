@@ -7,10 +7,13 @@ type Props = {
   params: Promise<{ locale: string }>;
 };
 
+const whatsappPhone = process.env.NEXT_PUBLIC_WHATSAPP_PHONE ?? "5216242661967";
+const whatsappHref = `https://wa.me/${whatsappPhone}?text=${encodeURIComponent("Hola !\nTe contacto desde la web de VHETRA.")}`;
+
 const CONTACTOS = [
   { id: 1, img: "/icons/instagramIco.svg", titleKey: "instagramTitle" as const, actionKey: "instagramAction" as const, href: "https://www.instagram.com/somosvhetra/" },
   { id: 2, img: "/icons/gmailIco.svg", titleKey: "gmailTitle" as const, actionKey: "gmailAction" as const, href: "mailto:somosvhetra@gmail.com" },
-  { id: 3, img: "/icons/whatsappIco.svg", titleKey: "whatsappTitle" as const, actionKey: "whatsappAction" as const, href: "https://wa.me/5216242661967?text=Hola%20!%0ATe%20contacto%20desde%20la%20web%20de%20VHETRA." },
+  { id: 3, img: "/icons/whatsappIco.svg", titleKey: "whatsappTitle" as const, actionKey: "whatsappAction" as const, href: whatsappHref },
 ];
 
 export default async function Contacto({ params }: Props) {

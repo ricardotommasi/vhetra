@@ -14,7 +14,7 @@ export const CardGrande = ({
   const tWhatsapp = useTranslations("whatsapp");
 
   const handleWhatsApp = () => {
-    const phoneNumber = "5493876836037";
+    const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_PHONE ?? "5216242661967";
     const message = tWhatsapp("message", { service: servicio.displayName });
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
@@ -36,9 +36,6 @@ export const CardGrande = ({
         <h2 className="text-center text-tiza text-xl font-normal shrink-0">
           {servicio.displayName}
         </h2>
-        <p className="text-tiza text-sm sm:text-base mt-2 opacity-90 shrink-0">
-          {servicio.miniDescripcion}
-        </p>
         <div className="flex-1 min-h-0 overflow-y-auto mt-2 text-tiza text-sm sm:text-base pr-2">
           {servicio.descripcionCompleta}
         </div>

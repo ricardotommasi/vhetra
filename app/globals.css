@@ -39,3 +39,19 @@ canvas {
   animation: breathe 4.5s ease-in-out infinite;
   transform-origin: center;
 }
+
+/* Dynamic viewport units with vh/vw fallback for old iOS (dvh/dvw since iOS 15.4) */
+.h-screen-dynamic {
+  height: 100vh;
+  height: 100dvh;
+}
+
+.w-screen-dynamic {
+  width: 100vw;
+  width: 100dvw;
+}
+
+.h-hero-dynamic {
+  height: calc(100vh - 200px);
+  height: calc(100dvh - 200px);
+}

@@ -7,8 +7,6 @@ import { Bloom, EffectComposer } from '@react-three/postprocessing';
 
 function Model({ path, scale = 1 }: { path: string, scale?: number }) {
     const { scene } = useGLTF(path); // path relative to /public
-    console.log(useGLTF(path).materials);
-
     return <primitive object={scene} scale={scale} receiveShadow />;
 }
 
@@ -112,7 +110,7 @@ export default function BlenderModel({ path, type = 'simple', scale, canInteract
 
     return (
         <div style={{ width: '100%', height: '100%' }}>
-            <Canvas shadows={false} camera={{ position: [0, 0, 5], fov: 50 }} dpr={[1, 1.15]}
+            <Canvas shadows={false} camera={{ position: [0, 0, 5], fov: 50 }} dpr={[1, 1.15]} linear
                 gl={{ alpha: true, premultipliedAlpha: false }}
                 style={{ background: 'transparent' }}
                 onCreated={({ gl }) => {
@@ -130,7 +128,7 @@ export default function BlenderModel({ path, type = 'simple', scale, canInteract
                         intensity={0.4}
                         luminanceThreshold={0.85}
                         luminanceSmoothing={0.2}
-                        mipmapBlur
+                        mipmapBlur={false}
                     />
                 </EffectComposer>
             </Canvas>
