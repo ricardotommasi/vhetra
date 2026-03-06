@@ -67,6 +67,20 @@
     "whatsappTitle": "WHATSAPP",
     "whatsappAction": "Conectemos y demos el primer paso."
   },
+  "projects": {
+    "heading1": "Diferentes visiones, un mismo propósito,",
+    "heading2": "transformar elecciones en identidad.",
+    "subtitle": "Aquí compartimos algunos de los proyectos que reflejan ese resultado.",
+    "visitWeb": "Visitar la web",
+    "acrodata": {
+      "miniTitulo": "Acrodata web",
+      "titulo": "Una experiencia digital pensada para acompañar el movimiento.",
+      "miniDescripcion": "Web especializada",
+      "descripcionP1": "Incluye una galería de cartas para explorar posturas de Acroyoga y una herramienta para combinarlas en flows propios. Se suma una sección de clases, cartilla informativa y un contacto simple y directo, todo dentro de una interfaz ligera.",
+      "descripcionP2": "Diseñada parte por parte, convirtiendo estructura en estética y funcionalidad en fluidez.",
+      "technologies": "Tecnologías: React · Tailwind CSS"
+    }
+  },
   "common": {
     "contact": "CONTACTAR",
     "close": "Cerrar"
