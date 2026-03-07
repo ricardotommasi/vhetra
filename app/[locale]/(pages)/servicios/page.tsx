@@ -38,15 +38,15 @@ export default function Servicios() {
     destacado: s.destacado,
   }));
 
-  const gridsClassNames = "grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-10 sm:mx-auto items-center relative";
+  const gridsClassNames = "grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-10 sm:mx-auto items-center relative";
 
   return (
-    <div className="flex flex-col relative mx-6 gap-10">
+    <div className="flex flex-col relative mx-6 gap-10 mt-2">
       <div className={gridsClassNames}>
         {servicios.filter((s) => s.destacado).map((servicio) => (
           <CardChica key={servicio.id} servicio={servicio} onClick={() => setSelectedCard(servicio)} />
         ))}
-        <Image src="/accent/flechaDerecha.svg" alt="flechaDeco" width={180} height={200} className="hidden xs:flex sm:hidden md:hidden lg:flex -rotate-15" />
+        <Image src="/accent/flechaDerecha.svg" alt="flechaDeco" width={180} height={200} className="hidden xs:flex sm:hidden md:hidden xl:flex -rotate-15" />
       </div>
       <div className={gridsClassNames}>
         {servicios.filter((s) => !s.destacado).map((servicio) => (

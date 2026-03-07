@@ -49,12 +49,14 @@ function SharedHeroInner({ children }: { children: React.ReactNode }) {
         {tHome("tagline")}
       </h2>
       <div className="relative flex flex-col h-hero-dynamic w-full overflow-hidden">
-        {children}
+        <div className="z-20 h-full">
+          {children}
+        </div>
         <div
           className={twMerge(
-            "absolute transition-all duration-1000 ease-in-out w-[150px] h-[150px] xs:w-[200px] xs:h-[200px] sm:w-[250px] sm:h-[250px]",
+            "absolute z-10 w-[150px] h-[150px] xs:w-[200px] xs:h-[200px] sm:w-[250px] sm:h-[250px] md:w-[320px] md:h-[320px]",
             showLayoutPosition
-              ? "hidden sm:flex bottom-[2%] -right-[125px] lg:bottom-[10%] lg:w-[500px] lg:h-[500px]"
+              ? "hidden sm:flex bottom-[2%] -right-[125px] lg:bottom-[10%] lg:-right-[350px] lg:w-[600px] lg:h-[600px]"
               : "mt-10 sm:mt-0 left-1/2 -translate-x-1/2"
           )}
         >
