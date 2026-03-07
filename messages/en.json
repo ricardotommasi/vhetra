@@ -72,6 +72,7 @@
     "heading2": "transforming choices into identity.",
     "subtitle": "Here we share some of the projects that reflect that result.",
     "visitWeb": "Visit website",
+    "visitInstagram": "Visit Instagram",
     "acrodata": {
       "miniTitulo": "Acrodata web",
       "titulo": "A digital experience designed to accompany movement.",
@@ -79,6 +80,21 @@
       "descripcionP1": "Includes a card gallery to explore Acroyoga poses and a tool to combine them into your own flows. A classes section, informative booklet and simple direct contact are added, all within a light interface.",
       "descripcionP2": "Designed part by part, turning structure into aesthetics and functionality into flow.",
       "technologies": "Technologies: React · Tailwind CSS"
+    },
+    "estacionAlemania": {
+      "miniTitulo": "Estación Alemania",
+      "miniDescripcion": "Online menu + informative website",
+      "titulo": "A digital experience to discover the history and flavors of Estación Alemania.",
+      "descripcionP1": "We developed an online menu designed so visitors can easily explore the gastronomic proposal of the place. The site presents the complete menu in Spanish and English, allowing both tourists and local visitors to access the same information clearly and simply.",
+      "descripcionP2": "In addition to the digital menu, the web includes a brief history of the old railway station and an introduction to the Interpretation Center that operates in the same space, integrating the cultural value of the place with its gastronomic proposal. Direct access to Instagram, contact options and location were also incorporated to facilitate the arrival of visitors to the station.",
+      "technologies": "Technology: Next.js, React and Tailwind"
+    },
+    "filiSuites": {
+      "miniTitulo": "Fili Suites",
+      "miniDescripcion": "Social media + Branding",
+      "titulo": "A visual identity designed to inhabit the digital space",
+      "descripcionP1": "At Fili Suites we worked on the design of the visual identity for social media and the content strategy for Instagram, creating a coherent aesthetic inspired by the colors, textures and atmosphere of the space.",
+      "descripcionP2": "The communication seeks to reflect the tranquility and warmth of the accommodation, building a clear, professional online presence aligned with the experience guests have."
     }
   },
   "common": {

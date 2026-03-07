@@ -5,31 +5,33 @@ import Image from "next/image";
 interface CardChicaProps {
   proyecto: Proyecto;
   onClick?: () => void;
+  imgClassName?: string;
 }
 
-const CardChica = ({ proyecto, onClick }: CardChicaProps) => {
+const CardChica = ({ proyecto, onClick, imgClassName }: CardChicaProps) => {
   const { name, miniTitulo, miniDescripcion, miniatura } = proyecto;
 
   return (
     <button onClick={onClick} className="z-20">
       <div
         id={`card-${name}`}
-        className={twMerge(`sm:w-[250px] sm:w-[280px] h-[160px] p-4 flex flex-row items-center relative bg-card rounded-lg shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] overflow-visible gap-6
+        className={twMerge(`w-full xs:w-[400px] h-[120px] p-4 flex flex-row items-start relative bg-card rounded-lg shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] overflow-visible gap-6
           transform hover:scale-105 hover:shadow-[10px_10px_20px_rgba(16,17,17,0.4)] hover:z-30 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]`,
         )
         }
       >
-        <div className="w-28 -mx-4 overflow-visible">
-          <Image src={miniatura} alt={miniTitulo} width={144} height={288} className="object-cover object-center" />
+        <div className={twMerge(imgClassName, "relative overflow-visible")}>
+          <Image src={miniatura} alt={miniTitulo} fill className="w-full h-full object-contain" />
         </div>
-        <div className="flex-1 flex flex-col">
+        <div className="flex-1 flex flex-col min-w-0">
           <h3 className="text-left text-tiza text-lg sm:text-xl font-normal">
             {miniTitulo}
           </h3>
-          <p className="font-manrope text-left mt-2 ml-2 text-tiza text-xs sm:text-sm font-normal opacity-90 line-clamp-2 flex-1 min-h-0">
+          <p className="font-manrope text-left mt-2 text-tiza text-xs sm:text-sm font-normal opacity-90 line-clamp-2 flex-1 min-h-0">
             {miniDescripcion}
           </p>
         </div>
+        <span className="absolute -bottom-1 right-3 text-tiza text-4xl font-light opacity-80">+</span>
       </div>
     </button >
   );

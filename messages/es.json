@@ -72,6 +72,7 @@
     "heading2": "transformar elecciones en identidad.",
     "subtitle": "Aquí compartimos algunos de los proyectos que reflejan ese resultado.",
     "visitWeb": "Visitar la web",
+    "visitInstagram": "Visitar instagram",
     "acrodata": {
       "miniTitulo": "Acrodata web",
       "titulo": "Una experiencia digital pensada para acompañar el movimiento.",
@@ -79,6 +80,21 @@
       "descripcionP1": "Incluye una galería de cartas para explorar posturas de Acroyoga y una herramienta para combinarlas en flows propios. Se suma una sección de clases, cartilla informativa y un contacto simple y directo, todo dentro de una interfaz ligera.",
       "descripcionP2": "Diseñada parte por parte, convirtiendo estructura en estética y funcionalidad en fluidez.",
       "technologies": "Tecnologías: React · Tailwind CSS"
+    },
+    "estacionAlemania": {
+      "miniTitulo": "Estación Alemania",
+      "miniDescripcion": "Carta online + web informativa",
+      "titulo": "Una experiencia digital para descubrir la historia y los sabores de Estación Alemania.",
+      "descripcionP1": "Desarrollamos una carta online pensada para que los visitantes puedan explorar fácilmente la propuesta gastronómica del lugar. El sitio presenta el menú completo en español e inglés, permitiendo que tanto turistas como visitantes locales accedan a la misma información de forma clara y simple.",
+      "descripcionP2": "Además de la carta digital, la web incluye una breve historia de la antigua estación ferroviaria y una introducción al Centro de Interpretación que funciona en el mismo espacio, integrando el valor cultural del lugar con su propuesta gastronómica. También se incorporaron accesos directos a Instagram, opciones de contacto y la ubicación para facilitar la llegada de quienes visitan la estación.",
+      "technologies": "Tecnología: Next.js, React y Tailwind"
+    },
+    "filiSuites": {
+      "miniTitulo": "Fili Suites",
+      "miniDescripcion": "Redes + Branding",
+      "titulo": "Una identidad visual pensada para habitar lo digital",
+      "descripcionP1": "En Fili Suites trabajamos en el diseño de la identidad visual para redes sociales y en la estrategia de contenido de Instagram, creando una estética coherente inspirada en los colores, texturas y atmósfera del espacio.",
+      "descripcionP2": "La comunicación busca reflejar la tranquilidad y calidez del alojamiento, construyendo una presencia online clara, profesional y alineada con la experiencia que viven los huéspedes."
     }
   },
   "common": {
