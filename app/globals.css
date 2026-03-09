@@ -17,6 +17,12 @@
   --color-accent: rgba(168, 40, 17, 1);
 }
 
+html,
+body {
+  overflow: hidden;
+  height: 100%;
+}
+
 body {
   font-family: khand, Helvetica, sans-serif;
 }
