@@ -38,6 +38,7 @@ export const NavBar = () => {
             <li key={section.location} className="flex items-center">
               <Link
                 href={section.location}
+                prefetch={false}
                 className={twMerge(menuClassNames,
                   isSelected ? menuClassNamesSelected : '',
                 )}

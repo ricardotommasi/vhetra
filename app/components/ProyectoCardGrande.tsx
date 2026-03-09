@@ -36,7 +36,7 @@ const ProyectoCardGrande = ({ proyecto, onClose }: ProyectoCardGrandeProps) => {
 
   return (
     <div
-      className="fixed inset-0 z-30 flex justify-center items-center bg-black/50 p-4"
+      className="w-full h-full fixed inset-0 z-60 flex justify-center items-center bg-black/50 p-4"
       onClick={onClose}
     >
       <div

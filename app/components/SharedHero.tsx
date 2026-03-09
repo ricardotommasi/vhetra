@@ -54,10 +54,10 @@ function SharedHeroInner({ children }: { children: React.ReactNode }) {
         </div>
         <div
           className={twMerge(
-            "absolute z-10 w-[150px] h-[150px] xs:w-[200px] xs:h-[200px] sm:w-[250px] sm:h-[250px] md:w-[320px] md:h-[320px]",
+            "absolute w-[150px] h-[150px] xs:w-[200px] xs:h-[200px] sm:w-[250px] sm:h-[250px] md:w-[320px] md:h-[320px]",
             showLayoutPosition
-              ? "hidden sm:flex bottom-[2%] -right-[125px] lg:bottom-[10%] lg:-right-[350px] lg:w-[600px] lg:h-[600px]"
-              : "mt-10 sm:mt-0 left-1/2 -translate-x-1/2"
+              ? "z-10 hidden sm:flex bottom-[2%] -right-[125px] lg:bottom-[10%] lg:-right-[350px] lg:w-[600px] lg:h-[600px]"
+              : "z-20 mt-10 sm:mt-0 left-1/2 -translate-x-1/2"
           )}
         >
           <BlenderModel

@@ -6,9 +6,10 @@ interface CardChicaProps {
   proyecto: Proyecto;
   onClick?: () => void;
   imgClassName?: string;
+  priority?: boolean;
 }
 
-const CardChica = ({ proyecto, onClick, imgClassName }: CardChicaProps) => {
+const CardChica = ({ proyecto, onClick, imgClassName, priority }: CardChicaProps) => {
   const { name, miniTitulo, miniDescripcion, miniatura } = proyecto;
 
   return (
@@ -21,7 +22,7 @@ const CardChica = ({ proyecto, onClick, imgClassName }: CardChicaProps) => {
         }
       >
         <div className={twMerge(imgClassName, "relative overflow-visible")}>
-          <Image src={miniatura} alt={miniTitulo} fill className="w-full h-full object-contain" />
+          <Image src={miniatura} alt={miniTitulo} fill className="w-full h-full object-contain" loading={priority ? undefined : "lazy"} priority={priority} />
         </div>
         <div className="flex-1 flex flex-col min-w-0">
           <h3 className="text-left text-tiza text-lg sm:text-xl font-normal">

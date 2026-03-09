@@ -55,7 +55,7 @@ export default function Proyectos() {
         ),
         miniatura: "/projects/estacion1.svg",
         imagen: "/projects/estacion2.svg",
-        webUrl: "https://estacionalemania.com.ar/",
+        webUrl: "https://estacionalemania.vhetra.com.ar/",
         layoutType: "textImage",
         imgClassName: "flex w-40 h-40 self-end -mb-11 -ml-4"
       },
@@ -97,12 +97,13 @@ export default function Proyectos() {
         {t("subtitle")}
       </p>
       <div className="mt-7 grid grid-cols-1 md:grid-cols-2 gap-10 items-center mx-auto relative">
-        {proyectos.map((proyecto) => (
+        {proyectos.map((proyecto, index) => (
           <ProyectoCardChica
             key={proyecto.id}
             proyecto={proyecto}
             onClick={() => setSelectedProyecto(proyecto)}
             imgClassName={proyecto.imgClassName}
+            priority={index === 0}
           />
         ))}
       </div>

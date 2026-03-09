@@ -6,7 +6,8 @@
     "dev": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "optimize:projects": "node scripts/optimize-project-images.js"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",
