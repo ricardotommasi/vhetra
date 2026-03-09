@@ -44,19 +44,13 @@ export default function Servicios() {
     <div className="flex flex-col relative mx-6 gap-10 mt-2">
       <div className={gridsClassNames}>
         {servicios.filter((s) => s.destacado).map((servicio) => (
-          <div key={servicio.id} className="card-stagger">
-            <CardChica servicio={servicio} onClick={() => setSelectedCard(servicio)} />
-          </div>
+          <CardChica key={servicio.id} servicio={servicio} onClick={() => setSelectedCard(servicio)} />
         ))}
-        <div className="card-stagger hidden xs:flex sm:hidden md:hidden xl:flex">
-          <Image src="/accent/flechaDerecha.svg" alt="flechaDeco" width={180} height={200} className="flecha-float" />
-        </div>
+        <Image src="/accent/flechaDerecha.svg" alt="flechaDeco" width={180} height={200} className="hidden xs:flex sm:hidden md:hidden xl:flex -rotate-15" />
       </div>
       <div className={gridsClassNames}>
         {servicios.filter((s) => !s.destacado).map((servicio) => (
-          <div key={servicio.id} className="card-stagger">
-            <CardChica servicio={servicio} onClick={() => setSelectedCard(servicio)} />
-          </div>
+          <CardChica key={servicio.id} servicio={servicio} onClick={() => setSelectedCard(servicio)} />
         ))}
       </div>
       {selectedCard && <CardGrande servicio={selectedCard} onClose={() => setSelectedCard(null)} />}

@@ -34,7 +34,7 @@ function SharedHeroInner({ children }: { children: React.ReactNode }) {
           "left-1/2 -translate-x-1/2",
           showLayoutPosition
             ? "top-[24px]"
-            : "top-[calc(200px+150px+20px)] xs:top-[calc(200px+250px+20px)] pointer-events-none",
+            : "top-[calc(200px+150px+20px)] xs:top-[calc(200px+250px+20px)]  lg:top-[calc(200px+250px+60px)] pointer-events-none",
           showLayoutPosition && "cursor-pointer hover:opacity-90"
         )}
         aria-label={showLayoutPosition ? t("goHome") : undefined}
@@ -46,7 +46,7 @@ function SharedHeroInner({ children }: { children: React.ReactNode }) {
       <h2 className={twMerge("absolute text-azulo text-center text-lg xs:text-3xl sm:text-4xl text-shadow-title w-full",
         showLayoutPosition
           ? "hidden"
-          : "top-[calc(200px+150px+90px)] xs:top-[calc(200px+250px+130px)] left-1/2 -translate-x-1/2 hero-tagline"
+          : "top-[calc(200px+150px+90px)] xs:top-[calc(200px+250px+130px)] lg:top-[calc(200px+250px+160px)] left-1/2 -translate-x-1/2 hero-tagline"
       )}>
         {tHome("tagline")}
       </h2>

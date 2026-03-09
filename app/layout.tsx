@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { getLocale } from "next-intl/server";
 import Image from "next/image";
 import "./globals.css";
-import { CustomCursor } from "./components/CustomCursor";
 import { ParallaxBg } from "./components/ParallaxBg";
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
@@ -40,10 +39,9 @@ export default async function RootLayout({
             className="absolute bottom-[5%] left-0 w-[45px] z-10"
           />
         </main>
+        <Analytics />
+        <SpeedInsights />
       </body>
-      <CustomCursor />
-      <Analytics />
-      <SpeedInsights />
     </html>
   );
 }

@@ -231,17 +231,3 @@ canvas {
     opacity: 1;
   }
 }
-
-/* ========== Custom cursor (desktop only) ========== */
-@media (pointer: fine) {
-  .cursor-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--color-accent);
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    mix-blend-mode: difference;
-  }
-}
