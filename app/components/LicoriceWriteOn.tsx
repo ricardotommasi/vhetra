@@ -19,7 +19,7 @@ export default function LicoriceWriteOn({
 }: LicoriceWriteOnProps) {
   return (
     <span
-      className={twMerge("px-2 licorice-write-on inline-block", className)}
+      className={twMerge("px-2 py-1 licorice-write-on inline-block", className)}
       style={
         {
           "--licorice-duration": `${duration}s`,
