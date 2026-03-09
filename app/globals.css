@@ -26,24 +26,6 @@ canvas {
   background: transparent !important;
 }
 
-@keyframes breathe {
-
-  0%,
-  100% {
-    transform: scale(1);
-  }
-
-  40%,
-  60% {
-    transform: scale(1.04);
-  }
-}
-
-.svg-breathe {
-  animation: breathe 4.5s ease-in-out infinite;
-  transform-origin: center;
-}
-
 /* Dynamic viewport units with vh/vw fallback for old iOS (dvh/dvw since iOS 15.4) */
 .h-screen-dynamic {
   height: 100vh;
@@ -58,4 +40,208 @@ canvas {
 .h-hero-dynamic {
   height: calc(100vh - 200px);
   height: calc(100dvh - 200px);
+}
+
+/* Write-on animation for Licorice font - text reveals as if written by hand */
+.licorice-write-on {
+  clip-path: inset(0 100% 0 0);
+  animation: licorice-write-on var(--licorice-duration, 1.5s) ease-out var(--licorice-delay, 0s) forwards;
+}
+
+@keyframes licorice-write-on {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* ========== Hero animations ========== */
+.hero-letter {
+  opacity: 0;
+  transform: translateY(12px) scale(0.95);
+  animation: hero-letter-in 0.5s ease-out forwards;
+}
+.hero-letter:nth-child(1) { animation-delay: 0.05s; }
+.hero-letter:nth-child(2) { animation-delay: 0.1s; }
+.hero-letter:nth-child(3) { animation-delay: 0.15s; }
+.hero-letter:nth-child(4) { animation-delay: 0.2s; }
+.hero-letter:nth-child(5) { animation-delay: 0.25s; }
+.hero-letter:nth-child(6) { animation-delay: 0.3s; }
+@keyframes hero-letter-in {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.hero-tagline {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: hero-tagline-in 0.8s ease-out 0.5s forwards;
+}
+@keyframes hero-tagline-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-model {
+  opacity: 0;
+  transform: scale(0.9);
+  animation: hero-model-in 1s ease-out 0.3s forwards;
+}
+@keyframes hero-model-in {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ========== NavBar stagger ========== */
+.nav-item {
+  opacity: 0;
+  transform: translateY(-8px);
+  animation: nav-item-in 0.4s ease-out forwards;
+}
+.nav-item:nth-child(1) { animation-delay: 0.1s; }
+.nav-item:nth-child(2) { animation-delay: 0.15s; }
+.nav-item:nth-child(3) { animation-delay: 0.2s; }
+.nav-item:nth-child(4) { animation-delay: 0.25s; }
+.nav-item:nth-child(5) { animation-delay: 0.3s; }
+.nav-lang {
+  opacity: 0;
+  animation: nav-item-in 0.4s ease-out 0.4s forwards;
+}
+@keyframes nav-item-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========== Card stagger ========== */
+.card-stagger {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: card-stagger-in 0.5s ease-out forwards;
+}
+.card-stagger:nth-child(1) { animation-delay: 0.05s; }
+.card-stagger:nth-child(2) { animation-delay: 0.1s; }
+.card-stagger:nth-child(3) { animation-delay: 0.15s; }
+.card-stagger:nth-child(4) { animation-delay: 0.2s; }
+.card-stagger:nth-child(5) { animation-delay: 0.25s; }
+.card-stagger:nth-child(6) { animation-delay: 0.3s; }
+.card-stagger:nth-child(7) { animation-delay: 0.35s; }
+.card-stagger:nth-child(8) { animation-delay: 0.4s; }
+.card-stagger:nth-child(9) { animation-delay: 0.45s; }
+.card-stagger:nth-child(10) { animation-delay: 0.5s; }
+.card-stagger:nth-child(11) { animation-delay: 0.55s; }
+@keyframes card-stagger-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========== Modal animations ========== */
+.modal-overlay {
+  animation: modal-overlay-in 0.25s ease-out forwards;
+}
+@keyframes modal-overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-content {
+  animation: modal-content-in 0.35s ease-out forwards;
+}
+@keyframes modal-content-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-overlay.closing {
+  animation: modal-overlay-out 0.2s ease-in forwards;
+}
+.modal-content.closing {
+  animation: modal-content-out 0.2s ease-in forwards;
+}
+@keyframes modal-overlay-out {
+  to { opacity: 0; }
+}
+@keyframes modal-content-out {
+  to {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+
+/* ========== Filosofía respira ========== */
+.respira {
+  animation: respira 4s ease-in-out infinite;
+}
+@keyframes respira {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.03); opacity: 0.9; }
+}
+
+/* ========== Flecha decorativa ========== */
+.flecha-float {
+  animation: flecha-float 3s ease-in-out infinite;
+}
+@keyframes flecha-float {
+  0%, 100% { transform: rotate(-15deg) translateY(0); }
+  50% { transform: rotate(-15deg) translateY(-6px); }
+}
+
+/* ========== Scroll reveal ========== */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========== Ripple / button press effect ========== */
+.ripple-btn {
+  transition: transform 0.15s ease-out;
+}
+.ripple-btn:active {
+  transform: scale(0.97);
+}
+
+/* ========== Page transition ========== */
+.page-fade-in {
+  animation: page-fade-in 0.4s ease-out forwards;
+}
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ========== Custom cursor (desktop only) ========== */
+@media (pointer: fine) {
+  .cursor-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+  }
 }

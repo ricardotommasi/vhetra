@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Proyecto } from "@/app/model/proyecto.type";
 
@@ -11,6 +12,12 @@ interface ProyectoCardGrandeProps {
 }
 
 const ProyectoCardGrande = ({ proyecto, onClose }: ProyectoCardGrandeProps) => {
+  const [isClosing, setIsClosing] = useState(false);
+
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(onClose, 200);
+  };
   const t = useTranslations("projects");
   const tCommon = useTranslations("common");
   const { titulo, imagen, descripcionCompleta, webUrl, ctaLabelKey, layoutType = "default" } = proyecto;
@@ -36,17 +43,17 @@ const ProyectoCardGrande = ({ proyecto, onClose }: ProyectoCardGrandeProps) => {
 
   return (
     <div
-      className="w-full h-full fixed inset-0 z-60 flex justify-center items-center bg-black/50 p-4"
-      onClick={onClose}
+      className={`w-full h-full fixed inset-0 z-60 flex justify-center items-center bg-black/50 p-4 modal-overlay ${isClosing ? "closing" : ""}`}
+      onClick={handleClose}
     >
       <div
-        className="w-full max-w-[912px] max-h-[90vh] flex flex-col bg-neutral-900 rounded-lg shadow-[5px_5px_5px_0px_rgba(0,0,0,0.55)] overflow-hidden p-6"
+        className={`w-full max-w-[912px] max-h-[90vh] flex flex-col bg-neutral-900 rounded-lg shadow-[5px_5px_5px_0px_rgba(0,0,0,0.55)] overflow-hidden p-6 modal-content ${isClosing ? "closing" : ""}`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header: close button - responsive size */}
         <div className="flex justify-end shrink-0 mb-4">
           <button
-            onClick={onClose}
+            onClick={handleClose}
             className="p-1 hover:opacity-80 transition-opacity"
             aria-label={tCommon("close")}
           >
@@ -91,7 +98,7 @@ const ProyectoCardGrande = ({ proyecto, onClose }: ProyectoCardGrandeProps) => {
               href={webUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex justify-center items-center px-3.5 py-[5px] min-w-[8rem] h-10 sm:h-12 bg-zinc-300 rounded-lg text-slate-700/80 text-sm sm:text-base md:text-lg font-normal hover:bg-zinc-200 transition-colors"
+              className="ripple-btn inline-flex justify-center items-center px-3.5 py-[5px] min-w-[8rem] h-10 sm:h-12 bg-zinc-300 rounded-lg text-slate-700/80 text-sm sm:text-base md:text-lg font-normal hover:bg-zinc-200 transition-colors"
             >
               {ctaLabel}
             </Link>

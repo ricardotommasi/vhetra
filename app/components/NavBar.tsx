@@ -35,7 +35,7 @@ export const NavBar = () => {
           const isSelected =
             section.location === "/" ? home : pathname === `/${section.location}`;
           return (
-            <li key={section.location} className="flex items-center">
+            <li key={section.location} className="flex items-center nav-item">
               <Link
                 href={section.location}
                 prefetch={false}
@@ -49,7 +49,7 @@ export const NavBar = () => {
           );
         })}
       </ul>
-      <div className="absolute top-6 right-6 flex gap-2 text-sm">
+      <div className="absolute top-6 right-6 flex gap-2 text-sm nav-lang">
         <Link
           href={pathname}
           locale="es"

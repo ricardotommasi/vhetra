@@ -2,9 +2,8 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { PageTransition } from "../components/PageTransition";
 import { SharedHero } from "../components/SharedHero";
-import { div } from "three/tsl";
-
 export const dynamic = "force-dynamic";
 
 type Props = {
@@ -31,7 +30,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       <NextIntlClientProvider messages={messages}>
         <SharedHero>
           <div className="h-full overflow-y-auto">
-            {children}
+            <PageTransition>{children}</PageTransition>
           </div>
         </SharedHero>
       </NextIntlClientProvider>

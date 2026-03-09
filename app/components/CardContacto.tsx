@@ -8,7 +8,7 @@ const baseClasses = "w-full sm:w-[450px] h-28 p-4 gap-2 relative flex flex-row i
 const CardContacto = ({ id, img, title, action, href }: { id: number, img: string, title: string, action: ReactNode, href: string }) => {
     return (
         <Link href={href} id={`card-${id}`}
-            className={twMerge(baseClasses, id % 2 === 0 && "sm:ml-[40px]")}>
+            className={twMerge(baseClasses, "ripple-btn", id % 2 === 0 && "sm:ml-[40px]")}>
             <Image className="flex w-16 h-14" src={img} alt={title} width={65} height={60} />
             <div className="flex flex-col">
                 <div className="text-left justify-start text-xl">{title}</div>

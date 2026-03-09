@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
+import LicoriceWriteOn from "@/app/components/LicoriceWriteOn";
 import ProyectoCardChica from "@/app/components/ProyectoCardChica";
 import ProyectoCardGrande from "@/app/components/ProyectoCardGrande";
 import { Proyecto } from "@/app/model/proyecto.type";
@@ -89,22 +90,26 @@ export default function Proyectos() {
         <h3 className="text-black text-2xl md:text-3xl font-semibold sm:shrink-0 ">
           {t("heading1")}
         </h3>
-        <h3 className="text-accent stroke-accent text-3xl md:text-6xl font-semibold font-licorice shrink-0">
+        <LicoriceWriteOn
+          className="text-accent stroke-accent text-3xl md:text-6xl font-semibold font-licorice shrink-0"
+          duration={2}
+        >
           {t("heading2")}
-        </h3>
+        </LicoriceWriteOn>
       </div>
       <p className="text-black text-xl md:text-4xl font-medium align-top">
         {t("subtitle")}
       </p>
       <div className="mt-7 grid grid-cols-1 md:grid-cols-2 gap-10 items-center mx-auto relative">
         {proyectos.map((proyecto, index) => (
-          <ProyectoCardChica
-            key={proyecto.id}
-            proyecto={proyecto}
-            onClick={() => setSelectedProyecto(proyecto)}
-            imgClassName={proyecto.imgClassName}
-            priority={index === 0}
-          />
+          <div key={proyecto.id} className="card-stagger">
+            <ProyectoCardChica
+              proyecto={proyecto}
+              onClick={() => setSelectedProyecto(proyecto)}
+              imgClassName={proyecto.imgClassName}
+              priority={index === 0}
+            />
+          </div>
         ))}
       </div>
       {selectedProyecto && (
