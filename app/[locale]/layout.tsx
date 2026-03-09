@@ -26,13 +26,15 @@ export default async function LocaleLayout({ children, params }: Props) {
   const messages = await getMessages();
 
   return (
-    <div className="relative z-20 h-full">
+    <div className="relative z-20 h-full flex flex-col min-h-0">
       <NextIntlClientProvider messages={messages}>
-        <SharedHero>
-          <div className="h-full overflow-y-auto">
-            <PageTransition>{children}</PageTransition>
-          </div>
-        </SharedHero>
+        <div className="flex-1 min-h-0 flex flex-col">
+          <SharedHero>
+            <div className="h-full overflow-y-auto">
+              <PageTransition>{children}</PageTransition>
+            </div>
+          </SharedHero>
+        </div>
       </NextIntlClientProvider>
     </div>
   );

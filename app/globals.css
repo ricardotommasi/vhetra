@@ -38,8 +38,8 @@ canvas {
 }
 
 .h-hero-dynamic {
-  height: calc(100vh - 200px);
-  height: calc(100dvh - 200px);
+  flex: 1;
+  min-height: 0;
 }
 
 /* Write-on animation for Licorice font - text reveals as if written by hand */

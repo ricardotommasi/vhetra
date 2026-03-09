@@ -20,7 +20,7 @@ function SharedHeroInner({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <>
+    <div className="flex flex-col flex-1 min-h-0">
       <NavBar />
       <h1
         role={showLayoutPosition ? "link" : undefined}
@@ -70,7 +70,7 @@ function SharedHeroInner({ children }: { children: React.ReactNode }) {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
