@@ -32,8 +32,8 @@ export default function Proyectos() {
             {t("acrodata.technologies")}
           </>
         ),
-        miniatura: "/projects/acrodata2.svg",
-        imagen: "/projects/acrodata1.svg",
+        miniatura: "/projects/acrodata1.svg",
+        imagen: "/projects/acrodata2.svg",
         webUrl: "https://acrodata.systemart.com.ar/",
         imgClassName: "w-28 h-40 self-center -rotate-12",
       },
