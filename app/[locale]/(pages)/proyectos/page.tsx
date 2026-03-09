@@ -10,7 +10,7 @@ import { Proyecto } from "@/app/model/proyecto.type";
 export default function Proyectos() {
   const t = useTranslations("projects");
   const [selectedProyecto, setSelectedProyecto] = useState<Proyecto | null>(
-    null
+    null,
   );
 
   const proyectos = useMemo<Proyecto[]>(
@@ -35,7 +35,7 @@ export default function Proyectos() {
         miniatura: "/projects/acrodata1.svg",
         imagen: "/projects/acrodata2.svg",
         webUrl: "https://acrodata.systemart.com.ar/",
-        imgClassName: "w-28 h-40 self-center"
+        imgClassName: "w-28 h-40 self-center -rotate-12",
       },
       {
         id: 2,
@@ -58,7 +58,7 @@ export default function Proyectos() {
         imagen: "/projects/estacion2.svg",
         webUrl: "https://estacionalemania.vhetra.com.ar/",
         layoutType: "textImage",
-        imgClassName: "flex w-40 h-40 self-end -mb-11 -ml-4"
+        imgClassName: "flex w-40 h-40 self-end -mb-11 -ml-4",
       },
       {
         id: 3,
@@ -78,10 +78,10 @@ export default function Proyectos() {
         imagen: "/projects/fili2.svg",
         webUrl: "https://www.instagram.com/filisuites_oax/",
         ctaLabelKey: "visitInstagram",
-        imgClassName: "flex w-30 h-30 -mt-3"
+        imgClassName: "flex w-30 h-30 -mt-3",
       },
     ],
-    [t]
+    [t],
   );
 
   return (
