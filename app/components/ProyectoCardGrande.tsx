@@ -20,7 +20,14 @@ const ProyectoCardGrande = ({ proyecto, onClose }: ProyectoCardGrandeProps) => {
   };
   const t = useTranslations("projects");
   const tCommon = useTranslations("common");
-  const { titulo, imagen, descripcionCompleta, webUrl, ctaLabelKey, layoutType = "default" } = proyecto;
+  const {
+    titulo,
+    imagen,
+    descripcionCompleta,
+    webUrl,
+    ctaLabelKey,
+    layoutType = "default",
+  } = proyecto;
   const ctaLabel = ctaLabelKey ? t(ctaLabelKey) : t("visitWeb");
 
   const contentArea = (
@@ -79,7 +86,7 @@ const ProyectoCardGrande = ({ proyecto, onClose }: ProyectoCardGrandeProps) => {
               <div className="flex flex-1 min-w-0 order-2 xs:order-1">
                 {contentArea}
               </div>
-              <div className="flex-shrink-0 lg:basis-[40%] lg:min-w-0 xs:order-1">
+              <div className="flex-shrink-0 lg:basis-[20%] lg:min-w-0 xs:order-1">
                 {imageArea}
               </div>
             </div>
