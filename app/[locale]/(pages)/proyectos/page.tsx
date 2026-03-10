@@ -100,9 +100,9 @@ export default function Proyectos() {
       <p className="text-black text-xl md:text-4xl font-medium align-top">
         {t("subtitle")}
       </p>
-      <div className="mt-7 grid grid-cols-1 md:grid-cols-2 gap-10 items-center mx-auto relative">
+      <div className="mt-7 grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch mx-auto relative w-full max-w-2xl md:max-w-4xl">
         {proyectos.map((proyecto, index) => (
-          <div key={proyecto.id} className="card-stagger">
+          <div key={proyecto.id} className="w-full min-w-0">
             <ProyectoCardChica
               proyecto={proyecto}
               onClick={() => setSelectedProyecto(proyecto)}

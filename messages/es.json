@@ -1,4 +1,8 @@
 {
+  "metadata": {
+    "title": "Vhetra | Diseño web e identidad visual",
+    "description": "Vhetra es un estudio de diseño web, identidad visual y presencia digital. Creamos sitios claros, estratégicos y personalizados para marcas, emprendimientos y proyectos."
+  },
   "nav": {
     "home": "Inicio",
     "services": "Servicios",
@@ -8,19 +12,22 @@
     "goHome": "Ir al inicio"
   },
   "home": {
-    "tagline": "Diseñamos ecosistemas de marca"
+    "tagline": "Diseño web y presencia digital"
   },
   "philosophy": {
-    "title": "En VHETRA lo digital respira",
+    "title": "Filosofía de Vhetra | Diseño web, identidad visual y presencia digital",
     "titlePrefix": "En VHETRA lo digital",
     "titleSuffix": "respira",
-    "subtitle": "No vemos pantallas: vemos experiencias que se sienten.",
-    "paragraph1": "Cada proyecto es un proceso consciente donde lo técnico encuentra forma estética y lo estético obtiene estructura. Menos plantillas, más artesanía.",
-    "paragraph2": "Somos el punto donde convergen la precisión del código y la sensibilidad del diseño.",
-    "intro": "No creamos piezas aisladas; construimos marcas como sistemas coherentes.",
-    "body1": "En Vhetra integramos tecnología, diseño y estrategia para transformar ideas en identidades vivas. Entendemos que una marca no se define por un solo elemento, sino por la relación entre todos: su arquitectura digital, su identidad visual y su presencia en el mundo físico.",
-    "body2": "Trabajamos desde la intención y el análisis, combinando precisión técnica con sensibilidad estética. No seguimos tendencias pasajeras; diseñamos estructuras con identidad, pensadas para funcionar y perdurar.",
-    "body3": "Somos estructura y sensibilidad al mismo tiempo: código que respira marca."
+
+    "intro": "No creamos piezas aisladas; construimos <strong>marcas como sistemas coherentes</strong>.",
+
+    "body1": "En Vhetra integramos <strong>tecnología, diseño y estrategia</strong> para transformar ideas en identidades vivas. Entendemos que una marca no se define por un solo elemento, sino por la relación entre todos: su <strong>arquitectura digital, identidad visual y presencia en el entorno online</strong>.",
+
+    "body2": "Desarrollamos <strong>diseño web y presencia digital</strong> para marcas, proyectos y emprendimientos que buscan comunicar con claridad y coherencia. Creamos <strong>sitios web rápidos, accesibles y adaptados a todos los dispositivos</strong>, combinando desarrollo con <strong>Next.js, React y tecnologías modernas</strong> junto a una dirección de diseño cuidada.",
+
+    "body3": "No seguimos tendencias pasajeras; diseñamos <strong>estructuras con identidad</strong>, pensadas para funcionar y perdurar.",
+
+    "body4": "Somos estructura y sensibilidad al mismo tiempo: <strong>código que respira marca</strong>."
   },
   "services": {
     "presenciaDigital": "PRESENCIA DIGITAL",

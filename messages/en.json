@@ -1,4 +1,8 @@
 {
+  "metadata": {
+    "title": "Vhetra | Web design and visual identity",
+    "description": "Vhetra is a studio focused on web design, visual identity and digital presence. We create clear, strategic and tailored websites for brands, businesses and projects."
+  },
   "nav": {
     "home": "Home",
     "services": "Services",
@@ -8,19 +12,22 @@
     "goHome": "Go to home"
   },
   "home": {
-    "tagline": "We design brand ecosystems"
+    "tagline": "Web design and digital visibility"
   },
   "philosophy": {
-    "title": "At VHETRA, digital breathes",
+    "title": "Our Philosophy | Web Design, Visual Identity & Digital Presence",
     "titlePrefix": "At VHETRA, digital",
     "titleSuffix": "breathes",
-    "subtitle": "We don't see screens: we see experiences that are felt.",
-    "paragraph1": "Each project is a conscious process where the technical finds aesthetic form and the aesthetic gains structure. Fewer templates, more craft.",
-    "paragraph2": "We are the point where code precision and design sensibility converge.",
-    "intro": "We don't create isolated pieces; we build brands as coherent systems.",
-    "body1": "At Vhetra we integrate technology, design and strategy to transform ideas into living identities. We understand that a brand is not defined by a single element, but by the relationship between all of them: its digital architecture, its visual identity and its presence in the physical world.",
-    "body2": "We work from intention and analysis, combining technical precision with aesthetic sensibility. We don't follow passing trends; we design structures with identity, built to function and endure.",
-    "body3": "We are structure and sensibility at the same time: code that breathes brand."
+
+    "intro": "We don’t create isolated pieces; we build <strong>brands as coherent systems</strong>.",
+
+    "body1": "At Vhetra we integrate <strong>technology, design and strategy</strong> to transform ideas into living identities. We understand that a brand is not defined by a single element, but by the relationship between all of them: its <strong>digital architecture, visual identity and presence in the online world</strong>.",
+
+    "body2": "We develop <strong>web design and digital presence</strong> for brands, projects and businesses that want to communicate with clarity and coherence. We create <strong>fast, accessible websites adapted to every device</strong>, combining development with <strong>Next.js, React and modern technologies</strong> alongside a carefully directed design approach.",
+
+    "body3": "We do not follow passing trends; we design <strong>structures with identity</strong>, built to function and endure.",
+
+    "body4": "We are structure and sensitivity at the same time: <strong>code that breathes brand</strong>."
   },
   "services": {
     "presenciaDigital": "DIGITAL PRESENCE",
