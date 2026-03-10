@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { Servicio } from "@/app/model/servicio.type";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
@@ -12,8 +13,13 @@ export const CardGrande = ({
   onClose: () => void;
 }) => {
   const [isClosing, setIsClosing] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const t = useTranslations("common");
   const tWhatsapp = useTranslations("whatsapp");
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleClose = () => {
     setIsClosing(true);
@@ -28,7 +34,7 @@ export const CardGrande = ({
     window.open(whatsappUrl, "_blank");
   };
 
-  return (
+  const modalContent = (
     <div className={`fixed inset-0 z-30 flex justify-center items-center pt-10 bg-black/30 modal-overlay ${isClosing ? "closing" : ""}`} onClick={handleClose}>
       <div id={`detalle-${servicio.name}`} className={`mx-auto z-40 w-[80%] sm:w-[60%] max-h-[80vh] flex flex-col bg-card-grande sm:bg-card-grande-transparente rounded-lg shadow-[5px_5px_5px_0px_rgba(0,0,0,0.55)] overflow-hidden p-4 sm:p-10 modal-content ${isClosing ? "closing" : ""}`} onClick={(e) => e.stopPropagation()}>
         <button className="ml-auto shrink-0" onClick={handleClose}>
@@ -55,4 +61,10 @@ export const CardGrande = ({
       </div>
     </div>
   );
+
+  if (!mounted || typeof document === "undefined") {
+    return null;
+  }
+
+  return createPortal(modalContent, document.body);
 };
