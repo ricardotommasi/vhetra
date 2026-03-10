@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { useTranslations } from "next-intl";
 import { Proyecto } from "@/app/model/proyecto.type";
 
@@ -13,6 +14,11 @@ interface ProyectoCardGrandeProps {
 
 const ProyectoCardGrande = ({ proyecto, onClose }: ProyectoCardGrandeProps) => {
   const [isClosing, setIsClosing] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleClose = () => {
     setIsClosing(true);
@@ -48,7 +54,7 @@ const ProyectoCardGrande = ({ proyecto, onClose }: ProyectoCardGrandeProps) => {
     </div>
   );
 
-  return (
+  const modalContent = (
     <div
       className={`w-full h-full fixed inset-0 z-60 flex justify-center items-center bg-black/50 p-4 modal-overlay ${isClosing ? "closing" : ""}`}
       onClick={handleClose}
@@ -114,6 +120,12 @@ const ProyectoCardGrande = ({ proyecto, onClose }: ProyectoCardGrandeProps) => {
       </div>
     </div>
   );
+
+  if (!mounted || typeof document === "undefined") {
+    return null;
+  }
+
+  return createPortal(modalContent, document.body);
 };
 
 export default ProyectoCardGrande;
