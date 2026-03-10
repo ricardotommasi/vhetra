@@ -13,10 +13,10 @@ const CardChica = ({ proyecto, onClick, imgClassName, priority }: CardChicaProps
   const { name, miniTitulo, miniDescripcion, miniatura } = proyecto;
 
   return (
-    <button onClick={onClick} className="z-20">
+    <button onClick={onClick} className="z-20 w-full text-left">
       <div
         id={`card-${name}`}
-        className={twMerge(`w-full xs:w-[400px] h-[120px] p-4 flex flex-row items-start relative bg-card rounded-lg shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] overflow-visible gap-6
+        className={twMerge(`w-full h-[120px] p-4 flex flex-row items-start relative bg-card rounded-lg shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] overflow-visible gap-6
           transform hover:scale-105 hover:-translate-y-1 hover:shadow-[10px_10px_20px_rgba(16,17,17,0.4)] hover:z-30 transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group`,
         )
         }
