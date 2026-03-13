@@ -1,7 +1,7 @@
 "use client";
 import { twMerge } from "tailwind-merge";
 import { Link, usePathname } from "@/i18n/navigation";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 
 const PAGE_SECTIONS = [
   { key: "home" as const, location: "/" },
@@ -17,18 +17,16 @@ const menuClassNamesSelected = "scale-125 xs:scale-150 font-semibold opacity-100
 
 export const NavBar = () => {
   const pathname = usePathname();
-  const locale = useLocale();
   const t = useTranslations("nav");
 
   const home = pathname === "/";
 
   return (
-    <nav className="z-20 relative w-full mt-10 sm:mt-0 py-6 text-azulo text-khand">
+    <nav className="z-20 relative w-full sm:mt-0 py-6 text-azulo text-khand">
       <ul
         className={twMerge(
-          "mt-10 xs:mt-16 sm:mt-24",
           "flex justify-evenly",
-          'xl:mx-[120px]'
+          'xl:mx-30'
         )}
       >
         {PAGE_SECTIONS.map((section) => {
@@ -49,29 +47,6 @@ export const NavBar = () => {
           );
         })}
       </ul>
-      <div className="absolute top-6 right-6 flex gap-2 text-sm nav-lang">
-        <Link
-          href={pathname}
-          locale="es"
-          className={twMerge(
-            "opacity-80 hover:opacity-100 transition-opacity",
-            locale === "es" && "font-medium opacity-100",
-          )}
-        >
-          ES
-        </Link>
-        <span className="opacity-60">|</span>
-        <Link
-          href={pathname}
-          locale="en"
-          className={twMerge(
-            "opacity-80 hover:opacity-100 transition-opacity",
-            locale === "en" && "font-medium opacity-100",
-          )}
-        >
-          EN
-        </Link>
-      </div>
     </nav>
   );
 };

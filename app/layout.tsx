@@ -102,7 +102,7 @@ export default async function RootLayout({
             alt="BackgroundDetail"
             width={49}
             height={308}
-            className="absolute bottom-[5%] left-0 w-[45px] z-10"
+            className="absolute bottom-[5%] left-0 w-11.25 z-10"
           />
         </main>
         <Analytics />

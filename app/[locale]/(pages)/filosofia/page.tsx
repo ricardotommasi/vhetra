@@ -13,7 +13,7 @@ export default async function Filosofia({ params }: Props) {
   const t = await getTranslations("philosophy");
 
   return (
-    <div className="flex px-4 sm:px-8 py-8 flex-col w-full max-w-[920px] sm:mt-10 lg:mt-20 bg-white/50 shadow-[0px_5px_5px_0px_rgba(0,0,0,0.45)] rounded-lg mx-auto">
+    <div className="flex px-4 sm:px-8 py-8 flex-col w-full max-w-[920px] sm:mt-10 lg:mt-20 bg-white/50 shadow-[0px_5px_5px_0px_rgba(0,0,0,0.45)] rounded-lg mx-auto overflow-visible">
       <div className="flex flex-row gap-5 items-center mb-4">
         <h3 className="text-black text-2xl sm:text-4xl md:text-6xl font-medium shrink-0">
           {t("titlePrefix")}
