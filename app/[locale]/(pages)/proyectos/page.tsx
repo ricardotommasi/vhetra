@@ -34,7 +34,7 @@ export default function Proyectos() {
         ),
         miniatura: "/projects/acrodata1.svg",
         imagen: "/projects/acrodata2.svg",
-        webUrl: "https://acrodata.systemart.com.ar/",
+        webUrl: "https://www.acrodata.vhetra.com.ar/",
         imgClassName: "w-28 h-40 self-center -rotate-12",
       },
       {
