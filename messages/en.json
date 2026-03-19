@@ -64,6 +64,11 @@
     "automatizacionesMini": "Forms, appointments and external connections",
     "automatizacionesFull": "Integration of forms, appointment systems, automatic responses or connections with external platforms. (Varies according to the complexity of the required functionality)"
   },
+  "tarjeta": {
+    "tagline": "Design with direction.",
+    "description": "We design brands and their digital presence. (Web, social media and identity)",
+    "website": "www.vhetra.com.ar"
+  },
   "contact": {
     "title": "Every identity begins with a conversation",
     "letsTalk": "let's talk",

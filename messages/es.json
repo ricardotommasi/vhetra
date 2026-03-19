@@ -64,6 +64,11 @@
     "automatizacionesMini": "Formularios, turnos y conexiones externas",
     "automatizacionesFull": "Integración de formularios, sistemas de turnos, respuestas automáticas o conexiones con plataformas externas. (Varía según la complejidad de la funcionalidad requerida)"
   },
+  "tarjeta": {
+    "tagline": "Diseño con dirección.",
+    "description": "Diseñamos marcas y su presencia digital. (Web, redes e identidad)",
+    "website": "www.vhetra.com.ar"
+  },
   "contact": {
     "title": "Toda identidad comienza con una conversación",
     "letsTalk": "hablemos",
