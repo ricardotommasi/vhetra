@@ -94,6 +94,7 @@ export default async function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preload" href="/img/bg.webp" as="image" />
       </head>
       <body className="antialiased">
         <main className="relative h-screen-dynamic w-screen-dynamic flex flex-col overflow-hidden">

@@ -34,7 +34,7 @@ export default async function Filosofia({ params }: Props) {
             aria-hidden
             width={200}
             height={80}
-            className="absolute -top-15 -right-20 sm:-top-25 sm:-right-35 md:-top-35 md:-right-45 lg:-top-45 lg:-right- w-full h-auto z-10 pointer-events-none respira"
+            className="absolute -top-15 -right-20 sm:-top-25 sm:-right-35 md:-top-35 md:-right-45 lg:-top-45 lg:-right-55 w-full h-auto z-10 pointer-events-none respira"
           />
         </div>
       </div>

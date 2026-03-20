@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --webpack",
     "build": "next build --webpack",
+    "build:analyze": "cross-env ANALYZE=true next build --webpack",
     "start": "next start",
     "lint": "eslint",
     "optimize:projects": "node scripts/optimize-project-images.js"
@@ -25,10 +26,12 @@
   },
   "devDependencies": {
     "@gltf-transform/cli": "^4.3.0",
+    "@next/bundle-analyzer": "^15.5.14",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cross-env": "^10.1.0",
     "eslint": "^9",
     "eslint-config-next": "16.0.10",
     "sharp": "^0.34.5",

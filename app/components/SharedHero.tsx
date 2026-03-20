@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { twMerge } from "tailwind-merge";
@@ -14,6 +15,10 @@ const BlenderModel = dynamic(() => import("./BlenderModel"), {
   ),
 });
 
+const PLACEHOLDER = (
+  <div className="w-full h-full min-w-[120px] min-h-[120px] bg-azulo/5 rounded-lg animate-pulse" aria-hidden />
+);
+
 /** Defers BlenderModel mount until after idle to improve INP - loads 3D only when browser is free */
 function DeferredBlenderModel(props: React.ComponentProps<typeof BlenderModel>) {
   const [mounted, setMounted] = React.useState(false);
@@ -21,12 +26,34 @@ function DeferredBlenderModel(props: React.ComponentProps<typeof BlenderModel>) 
     const id = requestIdleCallback(() => setMounted(true), { timeout: 500 });
     return () => cancelIdleCallback(id);
   }, []);
-  if (!mounted) {
+  if (!mounted) return PLACEHOLDER;
+  return <BlenderModel {...props} />;
+}
+
+/** On mobile: static image for better INP. On desktop: 3D model. */
+function HeroModel(props: React.ComponentProps<typeof BlenderModel>) {
+  const [isMobile, setIsMobile] = React.useState<boolean | null>(null);
+  React.useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    setIsMobile(mq.matches);
+    const handler = () => setIsMobile(mq.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+  if (isMobile === null) return PLACEHOLDER;
+  if (isMobile) {
     return (
-      <div className="w-full h-full min-w-[120px] min-h-[120px] bg-azulo/5 rounded-lg animate-pulse" aria-hidden />
+      <Image
+        src="/img/logoImgVhetra.webp"
+        alt="VHETRA"
+        width={320}
+        height={320}
+        className="w-full h-full object-contain"
+        priority
+      />
     );
   }
-  return <BlenderModel {...props} />;
+  return <DeferredBlenderModel {...props} />;
 }
 
 function SharedHeroInner({ children }: { children: React.ReactNode }) {
@@ -97,7 +124,7 @@ function SharedHeroInner({ children }: { children: React.ReactNode }) {
             "shrink-0 self-center hero-model",
             modelSizes,
           )}>
-            <DeferredBlenderModel
+            <HeroModel
               path="/animations/vhetra-logo.glb"
               type="animated"
               scale={2.5}
@@ -130,7 +157,7 @@ function SharedHeroInner({ children }: { children: React.ReactNode }) {
             className={twMerge(
               "absolute z-10 hidden sm:flex w-37.5 h-37.5 xs:w-50 xs:h-50 sm:w-62.5 sm:h-62.5 md:w-[320px] md:h-80 bottom-[1%] -right-31.25 lg:bottom-[2%] lg:-right-87.5 lg:w-150 lg:h-150 transition-[left,right,bottom,transform] duration-1000 ease-in-out",)}
           >
-            <DeferredBlenderModel
+            <HeroModel
               path="/animations/vhetra-logo.glb"
               type="animated"
               scale={2.5}
