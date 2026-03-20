@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { twMerge } from "tailwind-merge";
@@ -28,32 +27,6 @@ function DeferredBlenderModel(props: React.ComponentProps<typeof BlenderModel>) 
   }, []);
   if (!mounted) return PLACEHOLDER;
   return <BlenderModel {...props} />;
-}
-
-/** On mobile: static image for better INP. On desktop: 3D model. */
-function HeroModel(props: React.ComponentProps<typeof BlenderModel>) {
-  const [isMobile, setIsMobile] = React.useState<boolean | null>(null);
-  React.useEffect(() => {
-    const mq = window.matchMedia("(max-width: 768px)");
-    setIsMobile(mq.matches);
-    const handler = () => setIsMobile(mq.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
-  if (isMobile === null) return PLACEHOLDER;
-  if (isMobile) {
-    return (
-      <Image
-        src="/img/logoImgVhetra.webp"
-        alt="VHETRA"
-        width={320}
-        height={320}
-        className="w-full h-full object-contain"
-        priority
-      />
-    );
-  }
-  return <DeferredBlenderModel {...props} />;
 }
 
 function SharedHeroInner({ children }: { children: React.ReactNode }) {
@@ -124,7 +97,7 @@ function SharedHeroInner({ children }: { children: React.ReactNode }) {
             "shrink-0 self-center hero-model",
             modelSizes,
           )}>
-            <HeroModel
+            <DeferredBlenderModel
               path="/animations/vhetra-logo.glb"
               type="animated"
               scale={2.5}
@@ -157,7 +130,7 @@ function SharedHeroInner({ children }: { children: React.ReactNode }) {
             className={twMerge(
               "absolute z-10 hidden sm:flex w-37.5 h-37.5 xs:w-50 xs:h-50 sm:w-62.5 sm:h-62.5 md:w-[320px] md:h-80 bottom-[1%] -right-31.25 lg:bottom-[2%] lg:-right-87.5 lg:w-150 lg:h-150 transition-[left,right,bottom,transform] duration-1000 ease-in-out",)}
           >
-            <HeroModel
+            <DeferredBlenderModel
               path="/animations/vhetra-logo.glb"
               type="animated"
               scale={2.5}

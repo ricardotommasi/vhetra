@@ -94,8 +94,22 @@ export function RotatingModel({ path, scale = 1, canInteract }: { path: string, 
     )
 }
 
+function useIsMobile() {
+    const [isMobile, setIsMobile] = useState(() =>
+        typeof window !== 'undefined' ? window.matchMedia('(max-width: 768px)').matches : true
+    );
+    useEffect(() => {
+        const mq = window.matchMedia('(max-width: 768px)');
+        const handler = () => setIsMobile(mq.matches);
+        mq.addEventListener('change', handler);
+        return () => mq.removeEventListener('change', handler);
+    }, []);
+    return isMobile;
+}
+
 export default function BlenderModel({ path, type = 'simple', scale, canInteract = false }: { path: string, type: 'autoRotate' | 'simple' | 'animated', scale?: number, canInteract?: boolean }) {
     useGLTF.preload(path);
+    const isMobile = useIsMobile();
 
     const renderModel = () => {
         switch (type) {
@@ -110,12 +124,21 @@ export default function BlenderModel({ path, type = 'simple', scale, canInteract
 
     return (
         <div style={{ width: '100%', height: '100%' }}>
-            <Canvas shadows={false} camera={{ position: [0, 0, 5], fov: 50 }} dpr={[1, 1.15]} linear
-                gl={{ alpha: true, premultipliedAlpha: false }}
+            <Canvas
+                shadows={false}
+                camera={{ position: [0, 0, 5], fov: 50 }}
+                dpr={isMobile ? 1 : [1, 1.15]}
+                linear
+                gl={{
+                    alpha: true,
+                    premultipliedAlpha: false,
+                    powerPreference: isMobile ? 'low-power' : 'default',
+                }}
                 style={{ background: 'transparent' }}
                 onCreated={({ gl }) => {
                     gl.setClearColor(0x000000, 0)
-                }}>
+                }}
+            >
                 <ambientLight intensity={0.3} />
                 <directionalLight position={[3, 5, 2]} intensity={1.2} castShadow />
                 <directionalLight position={[-2, -3, -1]} intensity={0.4} castShadow />
@@ -123,14 +146,16 @@ export default function BlenderModel({ path, type = 'simple', scale, canInteract
                 <Suspense fallback={null}>
                     {renderModel()}
                 </Suspense>
-                <EffectComposer enableNormalPass={false}>
-                    <Bloom
-                        intensity={0.4}
-                        luminanceThreshold={0.85}
-                        luminanceSmoothing={0.2}
-                        mipmapBlur={false}
-                    />
-                </EffectComposer>
+                {!isMobile && (
+                    <EffectComposer enableNormalPass={false}>
+                        <Bloom
+                            intensity={0.4}
+                            luminanceThreshold={0.85}
+                            luminanceSmoothing={0.2}
+                            mipmapBlur={false}
+                        />
+                    </EffectComposer>
+                )}
             </Canvas>
         </div>
     );
