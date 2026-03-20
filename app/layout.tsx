@@ -91,6 +91,10 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
       <body className="antialiased">
         <main className="relative h-screen-dynamic w-screen-dynamic flex flex-col overflow-hidden">
           <ParallaxBg />

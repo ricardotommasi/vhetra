@@ -1,10 +1,33 @@
 "use client";
 
+import React from "react";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { twMerge } from "tailwind-merge";
-import BlenderModel from "./BlenderModel";
+import dynamic from "next/dynamic";
 import { NavBar } from "./NavBar";
+
+const BlenderModel = dynamic(() => import("./BlenderModel"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full min-w-[120px] min-h-[120px] bg-azulo/5 rounded-lg animate-pulse" aria-hidden />
+  ),
+});
+
+/** Defers BlenderModel mount until after idle to improve INP - loads 3D only when browser is free */
+function DeferredBlenderModel(props: React.ComponentProps<typeof BlenderModel>) {
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    const id = requestIdleCallback(() => setMounted(true), { timeout: 500 });
+    return () => cancelIdleCallback(id);
+  }, []);
+  if (!mounted) {
+    return (
+      <div className="w-full h-full min-w-[120px] min-h-[120px] bg-azulo/5 rounded-lg animate-pulse" aria-hidden />
+    );
+  }
+  return <BlenderModel {...props} />;
+}
 
 function SharedHeroInner({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -74,7 +97,7 @@ function SharedHeroInner({ children }: { children: React.ReactNode }) {
             "shrink-0 self-center hero-model",
             modelSizes,
           )}>
-            <BlenderModel
+            <DeferredBlenderModel
               path="/animations/vhetra-logo.glb"
               type="animated"
               scale={2.5}
@@ -107,7 +130,7 @@ function SharedHeroInner({ children }: { children: React.ReactNode }) {
             className={twMerge(
               "absolute z-10 hidden sm:flex w-37.5 h-37.5 xs:w-50 xs:h-50 sm:w-62.5 sm:h-62.5 md:w-[320px] md:h-80 bottom-[1%] -right-31.25 lg:bottom-[2%] lg:-right-87.5 lg:w-150 lg:h-150 transition-[left,right,bottom,transform] duration-1000 ease-in-out",)}
           >
-            <BlenderModel
+            <DeferredBlenderModel
               path="/animations/vhetra-logo.glb"
               type="animated"
               scale={2.5}
