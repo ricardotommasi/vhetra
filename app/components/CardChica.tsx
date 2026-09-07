@@ -1,4 +1,5 @@
 import { Servicio } from "../model/servicio.type";
+import Image from "next/image";
 
 interface CardChicaProps {
   servicio: Servicio;
@@ -17,9 +18,9 @@ const CardChica = ({ servicio, onClick }: CardChicaProps) => {
           transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group p-3 sm:p-4 lg:p-5 min-[1800px]:!p-7 overflow-hidden"
         style={{
           aspectRatio: "3/4.35",
-          backgroundImage: `url(${servicio.texture})`,
         }}
       >
+        <Image src={servicio.texture} alt="" fill sizes="(min-width: 1400px) 20vw, (min-width: 650px) 33vw, (min-width: 340px) 50vw, 100vw" className="object-cover" />
         <div className="pointer-events-none absolute inset-0 bg-black/40 transition-colors duration-500 group-hover:bg-black/24" />
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.28),transparent_45%,rgba(0,0,0,0.62))]" />
         <h3 className="relative z-10 text-left text-tiza text-sm sm:text-base md:text-lg lg:text-[1.45rem] xl:text-[1.6rem] min-[1800px]:!text-[2rem] font-extralight tracking-[0.12em] uppercase leading-[1.05] max-w-[82%]">

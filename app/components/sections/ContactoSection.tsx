@@ -1,41 +1,14 @@
+import { CONTACTS, whatsappUrl } from "@/app/config/site";
 import { getTranslations } from "next-intl/server";
 import CardContacto from "@/app/components/CardContacto";
 
-const whatsappPhone = process.env.NEXT_PUBLIC_WHATSAPP_PHONE ?? "5493875038714";
-
-const CONTACTOS = [
-  {
-    id: 1,
-    img: "/icons/instagramIco.svg",
-    titleKey: "instagramTitle" as const,
-    actionKey: "instagramAction" as const,
-    href: "https://www.instagram.com/holavhetra/",
-  },
-  {
-    id: 2,
-    img: "/icons/gmailIco.svg",
-    titleKey: "gmailTitle" as const,
-    actionKey: "gmailAction" as const,
-    href: "mailto:hola.vhetra@gmail.com",
-  },
-  {
-    id: 3,
-    img: "/icons/whatsappIco.svg",
-    titleKey: "whatsappTitle" as const,
-    actionKey: "whatsappAction" as const,
-    href: "",
-  },
-];
-
 export async function ContactoSection() {
   const t = await getTranslations("contact");
-  const whatsappHref = `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(
-    t("whatsappMessage"),
-  )}`;
+  const whatsappHref = whatsappUrl(t("whatsappMessage"));
 
-  const contactos = CONTACTOS.map((c) => ({
+  const contactos = CONTACTS.map((c) => ({
     ...c,
-    href: c.titleKey === "whatsappTitle" ? whatsappHref : c.href,
+    href: c.href ?? whatsappHref,
     title: t(c.titleKey),
     action: t.rich(c.actionKey, { br: () => <br /> }),
   }));

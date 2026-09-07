@@ -9,12 +9,12 @@ interface CardChicaProps {
 }
 
 const CardChica = ({ proyecto, onClick, imgClassName }: CardChicaProps) => {
-  const { name, miniTitulo, miniDescripcion, miniatura } = proyecto;
+  const { miniTitulo, miniDescripcion, miniatura } = proyecto;
 
   return (
     <button onClick={onClick} className="z-20 w-full text-left">
       <div
-        id={`card-${name}`}
+        id={`project-${proyecto.id}`}
         className={twMerge(`project-card-surface w-full h-28 sm:h-32 lg:h-36 min-[1800px]:!h-44 p-3 sm:p-4 min-[1800px]:!p-6 flex flex-row items-start relative bg-card rounded-lg shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] overflow-visible gap-4 sm:gap-5 lg:gap-6 min-[1800px]:!gap-8
           transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]`,
         )
@@ -26,6 +26,7 @@ const CardChica = ({ proyecto, onClick, imgClassName }: CardChicaProps) => {
               src={miniatura}
               alt={miniTitulo}
               fill
+              sizes="(min-width: 1800px) 200px, 160px"
               className="w-full h-full object-contain"
               loading="lazy"
             />

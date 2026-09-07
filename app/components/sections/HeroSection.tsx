@@ -1,13 +1,12 @@
+import { ContactLink } from "../ContactLink";
+import { whatsappUrl } from "@/app/config/site";
 import { getTranslations } from "next-intl/server";
 import { HeroMedia } from "./HeroMedia";
 
-const whatsappPhone = process.env.NEXT_PUBLIC_WHATSAPP_PHONE ?? "5493875038714";
 
 export async function HeroSection() {
   const t = await getTranslations("home");
-  const whatsappHref = `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(
-    t("whatsappMessage"),
-  )}`;
+  const whatsappHref = whatsappUrl(t("whatsappMessage"));
 
   return (
     <section
@@ -48,39 +47,7 @@ export async function HeroSection() {
             {t("heroDescription")}
           </p>
 
-          <a
-            href={whatsappHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="
-              group
-              vhetra-cta
-              mt-2
-              inline-flex
-              items-center
-              justify-between
-              self-start
-              overflow-hidden
-              rounded-sm
-              border
-              border-black
-              bg-black
-              font-khanda
-              font-light
-              tracking-[-0.02em]
-              text-white
-              transition-all
-              duration-500
-              hover:border-[#A82811]
-              hover:bg-[#A82811]
-            "
-          >
-            <span>{t("heroCta")}</span>
-
-            <span className="vhetra-cta-arrow font-light transition-transform duration-300 group-hover:translate-x-2">
-              ⟶
-            </span>
-          </a>
+          <ContactLink href={whatsappHref} className="mt-2 self-start">{t("heroCta")}</ContactLink>
         </div>
       </div>
     </section>

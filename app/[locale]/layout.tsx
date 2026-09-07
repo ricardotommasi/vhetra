@@ -7,6 +7,8 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import "../globals.css";
+import { SITE_URL } from "@/app/config/site";
+import { pageMetadata } from "@/app/config/metadata";
 
 type Props = {
   children: React.ReactNode;
@@ -50,11 +52,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const messages = (await import(`@/messages/${locale}.json`)).default;
   const meta = messages.metadata as { title: string; description: string };
-  const baseUrl = "https://vhetra.com.ar";
-  const localizedUrl = `${baseUrl}/${locale}`;
-
   return {
-    metadataBase: new URL(baseUrl),
+    ...pageMetadata(locale, meta.title, meta.description),
+    metadataBase: new URL(SITE_URL),
     title: { default: meta.title, template: "%s | Vhetra" },
     description: meta.description,
     applicationName: "Vhetra",
@@ -75,25 +75,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         "max-snippet": -1,
         "max-video-preview": -1,
       },
-    },
-    openGraph: {
-      type: "website",
-      locale: locale === "es" ? "es_AR" : "en_US",
-      url: localizedUrl,
-      siteName: "Vhetra",
-      title: meta.title,
-      description: meta.description,
-      images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Vhetra" }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: meta.title,
-      description: meta.description,
-      images: ["/og-image.jpg"],
-    },
-    alternates: {
-      canonical: localizedUrl,
-      languages: { es: `${baseUrl}/es`, en: `${baseUrl}/en` },
     },
     icons: {
       icon: "/icon.png",

@@ -1,5 +1,20 @@
 @import "tailwindcss";
 
+:where(a, button):focus-visible {
+  outline: 2px solid #CD614B;
+  outline-offset: 4px;
+}
+
+.vhetra-dialog .modal-content {
+  overscroll-behavior: contain;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vhetra-dialog .modal-content {
+    animation: none;
+  }
+}
+
 @theme {
   --breakpoint-xs: 420px;
   --font-manrope: var(--font-manrope-local), Arial, sans-serif;
@@ -31,10 +46,6 @@ body {
   font-family: var(--font-khand), "Arial Narrow", Arial, sans-serif;
 }
 
-canvas {
-  touch-action: none;
-  background: transparent !important;
-}
 
 /* Dynamic viewport units with vh/vw fallback for old iOS (dvh/dvw since iOS 15.4) */
 .h-screen-dynamic {
@@ -136,10 +147,6 @@ canvas {
     font-size: 3.7rem;
   }
 
-  .hero-model-size {
-    max-width: 420px;
-    max-height: 420px;
-  }
 }
 
 @media (hover: hover) and (min-width: 768px) {
@@ -173,7 +180,7 @@ canvas {
   }
 
   .snap-panel {
-    padding-top: 3.5rem;
+    padding-top: max(var(--nav-clearance, 5rem), 3.5rem);
     padding-bottom: 1.25rem;
   }
 }
@@ -199,203 +206,7 @@ canvas {
   }
 }
 
-.h-hero-dynamic {
-  flex: 1;
-  min-height: 0;
-}
-
-/* ========== Hero animations ========== */
-.hero-letter {
-  opacity: 0;
-  transform: translateY(12px) scale(0.95);
-  animation: hero-letter-in 0.5s ease-out forwards;
-}
-
-.hero-letter:nth-child(1) {
-  animation-delay: 0.05s;
-}
-
-.hero-letter:nth-child(2) {
-  animation-delay: 0.1s;
-}
-
-.hero-letter:nth-child(3) {
-  animation-delay: 0.15s;
-}
-
-.hero-letter:nth-child(4) {
-  animation-delay: 0.2s;
-}
-
-.hero-letter:nth-child(5) {
-  animation-delay: 0.25s;
-}
-
-.hero-letter:nth-child(6) {
-  animation-delay: 0.3s;
-}
-
-@keyframes hero-letter-in {
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.hero-tagline {
-  opacity: 0;
-  transform: translateY(16px);
-  animation: hero-tagline-in 0.8s ease-out 0.5s forwards;
-}
-
-@keyframes hero-tagline-in {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.hero-model {
-  opacity: 0;
-  transform: scale(0.9);
-  animation: hero-model-in 1s ease-out 0.3s forwards;
-}
-
-/* Model size: percentage of min(dvh - nav/title/subtitle, dvw) */
-.hero-model-size {
-  --hero-chrome-h: 260px;
-  /* nav + title + subtitle approximate */
-  --hero-available-h: calc(100vh - var(--hero-chrome-h));
-  --hero-available-h: calc(100dvh - var(--hero-chrome-h));
-  --hero-base: min(var(--hero-available-h), 100vw);
-  --hero-base: min(var(--hero-available-h), 100dvw);
-  width: calc(var(--hero-base) * 0.7);
-  height: calc(var(--hero-base) * 0.7);
-  min-width: 50px;
-  min-height: 50px;
-  max-width: 320px;
-  max-height: 320px;
-}
-
-@keyframes hero-model-in {
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* ========== NavBar stagger ========== */
-.nav-item {
-  opacity: 0;
-  transform: translateY(-8px);
-  animation: nav-item-in 0.4s ease-out forwards;
-}
-
-.nav-item:nth-child(1) {
-  animation-delay: 0.1s;
-}
-
-.nav-item:nth-child(2) {
-  animation-delay: 0.15s;
-}
-
-.nav-item:nth-child(3) {
-  animation-delay: 0.2s;
-}
-
-.nav-item:nth-child(4) {
-  animation-delay: 0.25s;
-}
-
-.nav-item:nth-child(5) {
-  animation-delay: 0.3s;
-}
-
-.nav-lang {
-  opacity: 0;
-  animation: nav-item-in 0.4s ease-out 0.4s forwards;
-}
-
-@keyframes nav-item-in {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ========== Card stagger ========== */
-.card-stagger {
-  opacity: 0;
-  transform: translateY(24px);
-  animation: card-stagger-in 0.5s ease-out forwards;
-}
-
-.card-stagger:nth-child(1) {
-  animation-delay: 0.05s;
-}
-
-.card-stagger:nth-child(2) {
-  animation-delay: 0.1s;
-}
-
-.card-stagger:nth-child(3) {
-  animation-delay: 0.15s;
-}
-
-.card-stagger:nth-child(4) {
-  animation-delay: 0.2s;
-}
-
-.card-stagger:nth-child(5) {
-  animation-delay: 0.25s;
-}
-
-.card-stagger:nth-child(6) {
-  animation-delay: 0.3s;
-}
-
-.card-stagger:nth-child(7) {
-  animation-delay: 0.35s;
-}
-
-.card-stagger:nth-child(8) {
-  animation-delay: 0.4s;
-}
-
-.card-stagger:nth-child(9) {
-  animation-delay: 0.45s;
-}
-
-.card-stagger:nth-child(10) {
-  animation-delay: 0.5s;
-}
-
-.card-stagger:nth-child(11) {
-  animation-delay: 0.55s;
-}
-
-@keyframes card-stagger-in {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 /* ========== Modal animations ========== */
-.modal-overlay {
-  animation: modal-overlay-in 0.25s ease-out forwards;
-}
-
-@keyframes modal-overlay-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
 .modal-content {
   animation: modal-content-in 0.35s ease-out forwards;
 }
@@ -412,75 +223,6 @@ canvas {
   }
 }
 
-.modal-overlay.closing {
-  animation: modal-overlay-out 0.2s ease-in forwards;
-}
-
-.modal-content.closing {
-  animation: modal-content-out 0.2s ease-in forwards;
-}
-
-@keyframes modal-overlay-out {
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes modal-content-out {
-  to {
-    opacity: 0;
-    transform: scale(0.98);
-  }
-}
-
-/* ========== Filosofía respira ========== */
-.respira {
-  animation: respira 4s ease-in-out infinite;
-}
-
-@keyframes respira {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-  50% {
-    transform: scale(1.03);
-    opacity: 0.9;
-  }
-}
-
-/* ========== Flecha decorativa ========== */
-.flecha-float {
-  animation: flecha-float 3s ease-in-out infinite;
-}
-
-@keyframes flecha-float {
-  0%,
-  100% {
-    transform: rotate(-15deg) translateY(0);
-  }
-
-  50% {
-    transform: rotate(-15deg) translateY(-6px);
-  }
-}
-
-/* ========== Scroll reveal ========== */
-.scroll-reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition:
-    opacity 0.5s ease-out,
-    transform 0.5s ease-out;
-}
-
-.scroll-reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 /* ========== Ripple / button press effect ========== */
 .ripple-btn {
   transition: transform 0.15s ease-out;
@@ -490,39 +232,10 @@ canvas {
   transform: scale(0.97);
 }
 
-/* ========== Page transition ========== */
-.page-fade-in {
-  animation: page-fade-in 0.4s ease-out forwards;
-}
-
-@keyframes page-fade-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes projects-marquee {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
-}
-
 /* Safari/iOS can keep a touch hover state active while repainting transformed
    box-shadows inside the carousel, leaving a thin artifact below the card.
    Limit the decorative hover effects to devices with an actual hover pointer. */
 @media (hover: hover) and (pointer: fine) {
-  .project-carousel:hover .project-carousel-track {
-    animation: projects-marquee 35s linear infinite;
-  }
-
   .project-card:hover {
     z-index: 30;
     transform: translateY(-1.5rem) scale(1.08);
@@ -575,4 +288,13 @@ canvas {
 .section-render-window {
   content-visibility: auto;
   contain-intrinsic-size: auto 980px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

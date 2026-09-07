@@ -1,13 +1,12 @@
+import { SITE_URL } from "./config/site";
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://vhetra.com.ar";
-  const lastModified = new Date();
+  const baseUrl = SITE_URL;
 
   return ["es", "en"].flatMap((locale) => [
     {
       url: `${baseUrl}/${locale}`,
-      lastModified,
       changeFrequency: "monthly" as const,
       priority: 1,
       alternates: {
@@ -19,7 +18,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/${locale}/tarjeta`,
-      lastModified,
       changeFrequency: "monthly" as const,
       priority: 0.7,
       alternates: {

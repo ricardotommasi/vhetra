@@ -2,6 +2,7 @@
 
 import { animate } from "framer-motion";
 import React from "react";
+import { scrollToSectionStart } from "../utils/scrollToSection";
 
 const SNAP_COOLDOWN_MS = 1300;
 const WHEEL_THRESHOLD = 1;
@@ -26,7 +27,7 @@ export function SectionScrollController({
   children: React.ReactNode;
 }) {
   const mainRef = React.useRef<HTMLElement>(null);
-  const lastSnapRef = React.useRef(0);
+  const lastSnapRef = React.useRef(Number.NEGATIVE_INFINITY);
   const touchStartYRef = React.useRef<number | null>(null);
   const touchStartXRef = React.useRef<number | null>(null);
   const scrollAnimationRef = React.useRef<{ stop: () => void } | null>(null);
@@ -37,6 +38,23 @@ export function SectionScrollController({
   React.useEffect(() => {
     const main = mainRef.current;
     if (!main) return;
+
+    const modalIsOpen = () => Boolean(document.querySelector("dialog[open]"));
+    const resetTouch = () => {
+      touchStartYRef.current = null;
+      touchStartXRef.current = null;
+    };
+    const stopTransition = () => {
+      ++transitionIdRef.current;
+      scrollAnimationRef.current?.stop();
+      panelAnimationRef.current?.stop();
+      if (animatedPanelRef.current) {
+        animatedPanelRef.current.style.transform = "translate3d(0, 0, 0)";
+        animatedPanelRef.current.style.opacity = "1";
+      }
+      delete main.dataset.sectionTransition;
+      resetTouch();
+    };
 
     const getPanels = () =>
       Array.from(main.querySelectorAll<HTMLElement>(".snap-panel"));
@@ -151,6 +169,7 @@ export function SectionScrollController({
     };
 
     const handleSectionNavigate = (event: Event) => {
+      if (modalIsOpen()) { event.preventDefault(); return; }
       const id = (event as CustomEvent<{ id: string }>).detail?.id;
       const panel = id ? document.getElementById(id) : null;
       if (!(panel instanceof HTMLElement) || !main.contains(panel)) return;
@@ -162,6 +181,7 @@ export function SectionScrollController({
     };
 
     const handleWheel = (event: WheelEvent) => {
+      if (event.defaultPrevented || event.ctrlKey || modalIsOpen()) return;
       if (canUseNativeScroll(event.target)) return;
       if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
       if (Math.abs(event.deltaY) < WHEEL_THRESHOLD) return;
@@ -179,6 +199,8 @@ export function SectionScrollController({
     };
 
     const handleTouchStart = (event: TouchEvent) => {
+      resetTouch();
+      if (event.defaultPrevented || event.touches.length !== 1 || modalIsOpen()) return;
       if (canUseNativeScroll(event.target)) return;
 
       const touch = event.touches[0];
@@ -187,6 +209,10 @@ export function SectionScrollController({
     };
 
     const handleTouchMove = (event: TouchEvent) => {
+      if (event.defaultPrevented || event.touches.length !== 1 || modalIsOpen()) {
+        resetTouch();
+        return;
+      }
       if (canUseNativeScroll(event.target)) return;
       if (touchStartYRef.current === null || touchStartXRef.current === null) {
         return;
@@ -214,9 +240,15 @@ export function SectionScrollController({
     };
 
     const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.defaultPrevented || event.isComposing || event.ctrlKey || event.metaKey || event.altKey || modalIsOpen()) return;
+      const target = event.target;
+      if (target instanceof Element) {
+        if (target !== document.body && !main.contains(target)) return;
+        if (target.closest("button, a, input, textarea, select, [contenteditable]:not([contenteditable='false']), [role='button'], [role='slider'], [role='tab'], [role='combobox']")) return;
+      }
       if (canUseNativeScroll(event.target)) return;
 
-      if (["ArrowDown", "PageDown", " "].includes(event.key)) {
+      if (["ArrowDown", "PageDown"].includes(event.key) || (event.key === " " && !event.shiftKey)) {
         const activePanel = getActivePanel(event.target);
         if (activePanel && canPanelScroll(activePanel, 1)) {
           event.preventDefault();
@@ -231,7 +263,7 @@ export function SectionScrollController({
         snapTo(1, activePanel);
       }
 
-      if (["ArrowUp", "PageUp"].includes(event.key)) {
+      if (["ArrowUp", "PageUp"].includes(event.key) || (event.key === " " && event.shiftKey)) {
         const activePanel = getActivePanel(event.target);
         if (activePanel && canPanelScroll(activePanel, -1)) {
           event.preventDefault();
@@ -247,11 +279,22 @@ export function SectionScrollController({
       }
     };
 
-    window.addEventListener("wheel", handleWheel, { passive: false });
-    window.addEventListener("touchstart", handleTouchStart, { passive: true });
-    window.addEventListener("touchmove", handleTouchMove, { passive: false });
+    main.addEventListener("wheel", handleWheel, { passive: false });
+    main.addEventListener("touchstart", handleTouchStart, { passive: true });
+    main.addEventListener("touchmove", handleTouchMove, { passive: false });
+    main.addEventListener("touchend", resetTouch);
+    main.addEventListener("touchcancel", resetTouch);
+    document.addEventListener("vhetra:modal-open", stopTransition);
     window.addEventListener("keydown", handleKeyDown);
     main.addEventListener(SECTION_NAVIGATE_EVENT, handleSectionNavigate);
+    const restoreHash = () => {
+      try {
+        scrollToSectionStart(decodeURIComponent(window.location.hash.slice(1)) || "inicio", false);
+      } catch { /* Ignore malformed URL fragments. */ }
+    };
+    window.addEventListener("hashchange", restoreHash);
+    window.addEventListener("popstate", restoreHash);
+    const initialHashFrame = window.location.hash ? requestAnimationFrame(restoreHash) : null;
 
     return () => {
       scrollAnimationRef.current?.stop();
@@ -260,11 +303,17 @@ export function SectionScrollController({
         animatedPanelRef.current.style.transform = "translate3d(0, 0, 0)";
         animatedPanelRef.current.style.opacity = "1";
       }
-      window.removeEventListener("wheel", handleWheel);
-      window.removeEventListener("touchstart", handleTouchStart);
-      window.removeEventListener("touchmove", handleTouchMove);
+      main.removeEventListener("wheel", handleWheel);
+      main.removeEventListener("touchstart", handleTouchStart);
+      main.removeEventListener("touchmove", handleTouchMove);
+      main.removeEventListener("touchend", resetTouch);
+      main.removeEventListener("touchcancel", resetTouch);
+      document.removeEventListener("vhetra:modal-open", stopTransition);
       window.removeEventListener("keydown", handleKeyDown);
       main.removeEventListener(SECTION_NAVIGATE_EVENT, handleSectionNavigate);
+      window.removeEventListener("hashchange", restoreHash);
+      window.removeEventListener("popstate", restoreHash);
+      if (initialHashFrame !== null) cancelAnimationFrame(initialHashFrame);
     };
   }, []);
 

@@ -1,6 +1,8 @@
+import { SectionHeading } from "../SectionHeading";
+import { ContactLink } from "../ContactLink";
+import { whatsappUrl } from "@/app/config/site";
 import { getTranslations } from "next-intl/server";
 
-const whatsappPhone = process.env.NEXT_PUBLIC_WHATSAPP_PHONE ?? "5493875038714";
 
 const STEPS = [
   { num: "01", titleKey: "step1Title" as const, descKey: "step1Desc" as const },
@@ -10,9 +12,7 @@ const STEPS = [
 
 export async function ComoTrabajamosSection() {
   const t = await getTranslations("howWeWork");
-  const whatsappHref = `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(
-    t("whatsappMessage"),
-  )}`;
+  const whatsappHref = whatsappUrl(t("whatsappMessage"));
 
   return (
     <section
@@ -20,17 +20,7 @@ export async function ComoTrabajamosSection() {
       className="snap-panel section-render-window philosophy-section-background relative overflow-x-hidden overflow-y-auto px-6 py-14 sm:px-12 sm:py-16 lg:px-20 lg:py-20"
     >
       <div className="section-panel-content relative z-10 mx-auto max-w-7xl min-[1800px]:!max-w-[1680px]">
-        <div className="mb-10 max-w-6xl sm:mb-12 lg:mb-14 min-[1800px]:!mb-20 min-[1800px]:!max-w-[1500px]">
-          <div className="mb-4 h-px w-20 bg-[#A82811] sm:mb-6 sm:w-24 min-[1800px]:!mb-8 min-[1800px]:!w-32" />
-
-          <p className="mb-3 font-manrope text-xs uppercase tracking-[0.18em] text-white/45 sm:mb-4 min-[1800px]:!text-sm">
-            {t("eyebrow")}
-          </p>
-
-          <h2 className="font-khanda text-5xl font-light uppercase leading-[0.8] tracking-[-0.075em] text-[#F9F9F9] sm:text-6xl lg:text-[5.8rem] min-[1800px]:!text-[7.2rem]">
-            {t("title")}
-          </h2>
-        </div>
+        <SectionHeading eyebrow={t("eyebrow")} title={t("title")}  />
 
         <div className="group/steps grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-3 lg:gap-6 min-[1800px]:!gap-12">
           {STEPS.map(({ num, titleKey, descKey }) => (
@@ -115,38 +105,7 @@ export async function ComoTrabajamosSection() {
         </div>
 
         <div className="mt-16 flex justify-start sm:mt-20 md:justify-end lg:mt-24">
-          <a
-            href={whatsappHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="
-              group
-              vhetra-cta
-              inline-flex
-              items-center
-              justify-between
-              overflow-hidden
-              rounded-sm
-              border
-              border-[#F9F9F9]
-              bg-[#F9F9F9]
-              font-khanda
-              font-light
-              tracking-[-0.02em]
-              text-[#171717]
-              transition-all
-              duration-500
-              hover:border-[#A82811]
-              hover:bg-[#A82811]
-              hover:text-white
-            "
-          >
-            <span>{t("cta")}</span>
-
-            <span className="vhetra-cta-arrow font-light transition-transform duration-300 group-hover:translate-x-2">
-              ⟶
-            </span>
-          </a>
+          <ContactLink href={whatsappHref} light>{t("cta")}</ContactLink>
         </div>
       </div>
     </section>

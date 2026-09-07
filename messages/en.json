@@ -10,7 +10,8 @@
     "philosophy": "Philosophy",
     "contact": "Contact",
     "goHome": "Back to home",
-    "openMenu": "Open menu"
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "home": {
     "eyebrow": "Digital studio",
@@ -103,6 +104,8 @@
     "whatsappMessage": "Hi! I’m reaching out from the VHETRA website."
   },
   "projects": {
+    "previous": "Previous project",
+    "next": "Next project",
     "eyebrow": "Selected work",
     "spaHeading": "EVERY PROJECT HAS ITS OWN POINT OF VIEW.",
     "spaAccent": "THE GOAL IS ALWAYS THE SAME: MAKE IT MATTER.",

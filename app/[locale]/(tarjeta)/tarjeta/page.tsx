@@ -1,3 +1,5 @@
+import { pageMetadata } from "@/app/config/metadata";
+import { CONTACTS, SITE_URL, whatsappUrl } from "@/app/config/site";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Image from "next/image";
@@ -7,47 +9,10 @@ type Props = {
   params: Promise<{ locale: string }>;
 };
 
-const whatsappPhone = process.env.NEXT_PUBLIC_WHATSAPP_PHONE ?? "5493875038714";
-const CONTACTOS = [
-  {
-    id: 1,
-    img: "/icons/instagramIco.svg",
-    titleKey: "instagramTitle" as const,
-    actionKey: "instagramAction" as const,
-    href: "https://www.instagram.com/holavhetra/",
-  },
-  {
-    id: 2,
-    img: "/icons/gmailIco.svg",
-    titleKey: "gmailTitle" as const,
-    actionKey: "gmailAction" as const,
-    href: "mailto:hola.vhetra@gmail.com",
-  },
-  {
-    id: 3,
-    img: "/icons/whatsappIco.svg",
-    titleKey: "whatsappTitle" as const,
-    actionKey: "whatsappAction" as const,
-    href: "",
-  },
-];
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  const baseUrl = "https://vhetra.com.ar";
-
-  return {
-    alternates: {
-      canonical: `${baseUrl}/${locale}/tarjeta`,
-      languages: {
-        es: `${baseUrl}/es/tarjeta`,
-        en: `${baseUrl}/en/tarjeta`,
-      },
-    },
-    openGraph: {
-      url: `${baseUrl}/${locale}/tarjeta`,
-    },
-  };
+  const t = await getTranslations({ locale, namespace: "tarjeta" });
+  return pageMetadata(locale, t("tagline"), t("description"), "/tarjeta");
 }
 
 export default async function TarjetaPage({ params }: Props) {
@@ -56,12 +21,10 @@ export default async function TarjetaPage({ params }: Props) {
   const t = await getTranslations("tarjeta");
   const tContact = await getTranslations("contact");
 
-  const whatsappHref = `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(
-    tContact("whatsappMessage"),
-  )}`;
-  const contactos = CONTACTOS.map((c) => ({
+  const whatsappHref = whatsappUrl(tContact("whatsappMessage"));
+  const contactos = CONTACTS.map((c) => ({
     ...c,
-    href: c.titleKey === "whatsappTitle" ? whatsappHref : c.href,
+    href: c.href ?? whatsappHref,
     title: tContact(c.titleKey),
     action: tContact.rich(c.actionKey, { br: () => <br /> }),
   }));
@@ -90,7 +53,7 @@ export default async function TarjetaPage({ params }: Props) {
           </p>
 
           <Link
-            href="https://www.vhetra.com.ar"
+            href={SITE_URL}
             className="group mt-8 inline-flex min-h-11 items-center gap-5 border-b border-[#A82811]/30 pb-1 font-manrope text-sm font-semibold text-[#A82811] transition-colors hover:border-[#A82811] focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-[#A82811] sm:mt-10"
           >
             {t("website")}

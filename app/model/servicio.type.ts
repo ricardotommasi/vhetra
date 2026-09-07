@@ -1,11 +1,9 @@
-import { ReactNode } from "react";
+import type { SERVICE_KEYS } from "../data/services";
 
 export type Servicio = {
   id: number;
   name: string;
   displayName: string;
-  miniDescripcion: string;
-  descripcionCompleta: ReactNode;
+  descriptionKey: (typeof SERVICE_KEYS)[number]["fullKey"];
   texture: string;
-  destacado: boolean;
 };

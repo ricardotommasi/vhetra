@@ -1,8 +1,10 @@
 "use client";
 
+import { SectionHeading } from "../SectionHeading";
 import dynamic from "next/dynamic";
 import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
+import { SERVICE_KEYS } from "@/app/data/services";
 import CardChica from "@/app/components/CardChica";
 import { Servicio } from "@/app/model/servicio.type";
 
@@ -11,52 +13,9 @@ const CardGrande = dynamic(
   { ssr: false },
 );
 
-const SERVICE_KEYS = [
-  {
-    id: 1,
-    name: "automatizaciones",
-    displayKey: "automatizaciones",
-    miniKey: "automatizacionesMini",
-    fullKey: "automatizacionesFull",
-    texture: "/services/texture-abstract.webp",
-  },
-  {
-    id: 2,
-    name: "landing-page",
-    displayKey: "landingPage",
-    miniKey: "landingPageMini",
-    fullKey: "landingPageFull",
-    texture: "/services/texture-pebbled.webp",
-  },
-  {
-    id: 3,
-    name: "paginas-personalizadas",
-    displayKey: "paginasPersonalizadas",
-    miniKey: "paginasPersonalizadasMini",
-    fullKey: "paginasPersonalizadasFull",
-    texture: "/services/texture-brushed.webp",
-  },
-  {
-    id: 4,
-    name: "ecommerce",
-    displayKey: "ecommerce",
-    miniKey: "ecommerceMini",
-    fullKey: "ecommerceFull",
-    texture: "/services/texture-satin.webp",
-  },
-  {
-    id: 5,
-    name: "mantenimiento-web",
-    displayKey: "mantenimientoWeb",
-    miniKey: "mantenimientoWebMini",
-    fullKey: "mantenimientoWebFull",
-    texture: "/services/texture-marble.webp",
-  },
-] as const;
-
 export function ServiciosSection() {
   const t = useTranslations("services");
-  const [selectedCard, setSelectedCard] = useState<Servicio | null>(null);
+  const [selectedId, setSelectedId] = useState<number | null>(null);
 
   const servicios: Servicio[] = useMemo(
     () =>
@@ -64,19 +23,13 @@ export function ServiciosSection() {
         id: s.id,
         name: s.name,
         displayName: t(s.displayKey),
-        miniDescripcion: t(s.miniKey),
-        descripcionCompleta: t.rich(s.fullKey, {
-          br: () => <br />,
-          ul: (chunks) => (
-            <ul className="my-2 list-inside list-disc space-y-1">{chunks}</ul>
-          ),
-          li: (chunks) => <li>{chunks}</li>,
-        }),
+        descriptionKey: s.fullKey,
         texture: s.texture,
-        destacado: false,
       })),
     [t],
   );
+
+  const selectedCard = servicios.find((service) => service.id === selectedId);
 
   return (
     <section
@@ -87,21 +40,7 @@ export function ServiciosSection() {
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),transparent_42%)]" />
 
       <div className="section-panel-content relative z-10 mx-auto max-w-[1040px] min-[1400px]:max-w-[1400px] min-[1800px]:!max-w-[1680px]">
-        <div className="mb-10 max-w-6xl sm:mb-12 lg:mb-14 min-[1800px]:!mb-20 min-[1800px]:!max-w-[1500px]">
-          <div className="mb-4 h-px w-20 bg-[#A82811] sm:mb-6 sm:w-24 min-[1800px]:!mb-8 min-[1800px]:!w-32" />
-
-          <p className="mb-3 font-manrope text-xs uppercase tracking-[0.18em] text-white/45 sm:mb-4 min-[1800px]:!text-sm">
-            {t("eyebrow")}
-          </p>
-
-          <h2 className="font-khanda text-5xl font-light uppercase leading-[0.8] tracking-[-0.075em] text-white sm:text-6xl lg:text-[5.8rem] min-[1800px]:!text-[7.2rem]">
-            {t("heading")}
-          </h2>
-
-          <h2 className="mt-1 font-khanda text-5xl font-light uppercase leading-[0.8] tracking-[-0.075em] text-[#A82811] sm:text-6xl lg:text-[5.8rem] min-[1800px]:!text-[7.2rem]">
-            {t("headingAccent")}
-          </h2>
-        </div>
+        <SectionHeading eyebrow={t("eyebrow")} title={t("heading")} accent={t("headingAccent")} />
 
         <div className="group/cards grid grid-cols-1 gap-3 min-[340px]:grid-cols-2 min-[650px]:grid-cols-3 min-[650px]:gap-4 min-[1400px]:grid-cols-5 min-[1400px]:gap-5 min-[1800px]:!gap-7">
           {servicios.map((servicio) => (
@@ -121,7 +60,7 @@ export function ServiciosSection() {
             >
               <CardChica
                 servicio={servicio}
-                onClick={() => setSelectedCard(servicio)}
+                onClick={() => setSelectedId(servicio.id)}
               />
             </div>
           ))}
@@ -131,7 +70,7 @@ export function ServiciosSection() {
       {selectedCard && (
         <CardGrande
           servicio={selectedCard}
-          onClose={() => setSelectedCard(null)}
+          onClose={() => setSelectedId(null)}
         />
       )}
     </section>

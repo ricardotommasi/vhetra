@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import { createPortal } from "react-dom";
+import { useId } from "react";
+import { Modal } from "./Modal";
 import { useTranslations } from "next-intl";
 import { Proyecto } from "@/app/model/proyecto.type";
 
@@ -13,12 +13,7 @@ interface ProyectoCardGrandeProps {
 }
 
 const ProyectoCardGrande = ({ proyecto, onClose }: ProyectoCardGrandeProps) => {
-  const [isClosing, setIsClosing] = useState(false);
-
-  const handleClose = () => {
-    setIsClosing(true);
-    setTimeout(onClose, 200);
-  };
+  const titleId = useId();
   const t = useTranslations("projects");
   const tCommon = useTranslations("common");
   const {
@@ -34,7 +29,7 @@ const ProyectoCardGrande = ({ proyecto, onClose }: ProyectoCardGrandeProps) => {
 
   const contentArea = (
     <div className="font-manrope text-zinc-300 text-xs sm:text-sm md:text-base lg:text-lg min-[1800px]:!text-xl font-normal leading-relaxed min-[1800px]:!leading-8">
-      {descripcionCompleta}
+      {descripcionCompleta.map((paragraph, index) => <p key={index} className="mb-4 last:mb-0">{paragraph}</p>)}
     </div>
   );
 
@@ -50,25 +45,19 @@ const ProyectoCardGrande = ({ proyecto, onClose }: ProyectoCardGrandeProps) => {
     </div>
   ) : null;
 
-  const modalContent = (
-    <div
-      className={`w-full h-full fixed inset-0 z-60 flex justify-center items-center bg-black/50 p-4 modal-overlay ${isClosing ? "closing" : ""}`}
-      onClick={handleClose}
-    >
-      <div
-        className={`w-full max-w-[912px] min-[1800px]:!max-w-[1180px] max-h-[90vh] flex flex-col bg-neutral-900 rounded-lg shadow-[5px_5px_5px_0px_rgba(0,0,0,0.55)] overflow-hidden p-6 min-[1800px]:!p-10 modal-content ${isClosing ? "closing" : ""}`}
-        onClick={(e) => e.stopPropagation()}
-      >
+  return (
+    <Modal labelledBy={titleId} onClose={onClose} className="w-[min(92vw,912px)] min-[1800px]:w-[min(92vw,1180px)] max-h-[90dvh] flex flex-col bg-neutral-900 rounded-lg shadow-xl overflow-hidden p-6 min-[1800px]:p-10">
         {/* Header: close button - responsive size */}
         <div className="flex justify-end shrink-0 mb-4">
           <button
-            onClick={handleClose}
-            className="p-1 hover:opacity-80 transition-opacity"
+            type="button"
+            onClick={onClose}
+            className="flex min-h-11 min-w-11 items-center justify-center p-1 hover:opacity-80 transition-opacity"
             aria-label={tCommon("close")}
           >
             <Image
               src="/icons/cerrar.svg"
-              alt={tCommon("close")}
+              alt=""
               width={36}
               height={32}
               className="w-4 sm:w-7 min-[1800px]:!w-9"
@@ -77,7 +66,7 @@ const ProyectoCardGrande = ({ proyecto, onClose }: ProyectoCardGrandeProps) => {
         </div>
 
         {/* Title: centered, increases at larger breakpoints */}
-        <h2 className="text-center text-zinc-300 text-sm sm:text-base md:text-lg min-[1800px]:!text-2xl font-medium shrink-0 mb-4 sm:mb-6 min-[1800px]:!mb-8">
+        <h2 id={titleId} className="text-center text-zinc-300 text-sm sm:text-base md:text-lg min-[1800px]:!text-2xl font-medium shrink-0 mb-4 sm:mb-6 min-[1800px]:!mb-8">
           {titulo}
         </h2>
 
@@ -133,15 +122,8 @@ const ProyectoCardGrande = ({ proyecto, onClose }: ProyectoCardGrandeProps) => {
             </Link>
           </div>
         )}
-      </div>
-    </div>
+    </Modal>
   );
-
-  if (typeof document === "undefined") {
-    return null;
-  }
-
-  return createPortal(modalContent, document.body);
 };
 
 export default ProyectoCardGrande;
