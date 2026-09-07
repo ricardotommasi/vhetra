@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Image from "next/image";
 import Link from "next/link";
-import { twMerge } from "tailwind-merge";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -68,61 +67,66 @@ export default async function TarjetaPage({ params }: Props) {
   }));
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#F7F7F7] px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(168,40,17,0.1),transparent_42%)]" />
+    <main className="relative flex min-h-svh items-center overflow-hidden bg-[#EAE6DF] px-4 py-6 sm:px-8 sm:py-12">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(168,40,17,0.08),transparent_60%)]" />
 
-      <div className="relative mx-auto flex min-h-[calc(100vh-4rem)] w-full max-w-5xl flex-col justify-center gap-8 rounded-4xl border border-black/5 bg-white/70 p-6 shadow-[0_30px_80px_rgba(0,0,0,0.08)] backdrop-blur sm:p-8 lg:flex-row lg:items-center lg:gap-12 lg:p-12">
-        <div className="max-w-2xl flex-1">
-          <p className="mb-4 font-manrope text-xs uppercase tracking-[0.2em] text-black/50 sm:mb-5">
-            {tContact("eyebrow")}
-          </p>
+      <div className="relative mx-auto grid w-full max-w-5xl overflow-hidden rounded-[1.75rem] border border-black/10 bg-[#F8F5EF] shadow-[0_24px_80px_-24px_rgba(40,30,20,0.25)] sm:rounded-[2.5rem] lg:grid-cols-[1.15fr_1fr]">
+        <div className="relative flex flex-col items-start p-7 sm:p-12 lg:p-14">
+          <div aria-hidden="true" className="mb-9 flex items-center gap-2 sm:mb-12">
+            <span className="h-2 w-2 rounded-full bg-[#A82811]" />
+            <span className="h-px w-12 bg-[#A82811]/30" />
+          </div>
 
-          <h1 className="font-khanda text-5xl font-light uppercase leading-[0.82] tracking-[-0.075em] text-black sm:text-6xl lg:text-[5.4rem]">
+          <h1 className="font-khanda text-[4.5rem] font-medium uppercase leading-[0.82] tracking-[-0.065em] text-[#191919] sm:text-[6rem]">
             VHETRA<span className="text-[#A82811]">.</span>
           </h1>
 
-          <p className="mt-4 max-w-xl font-khanda text-2xl font-light uppercase leading-[0.95] tracking-[-0.04em] text-black sm:text-3xl">
+          <p className="mt-8 max-w-sm text-balance font-khanda text-4xl font-medium leading-[1.05] tracking-[-0.025em] text-[#26231F] sm:mt-10 sm:text-[2.75rem]">
             {t("tagline")}
           </p>
 
-          <p className="mt-3 max-w-xl font-manrope text-sm leading-7 text-black/70 sm:text-base">
+          <p className="mt-4 max-w-sm font-manrope text-sm leading-7 text-[#686159] sm:text-[0.95rem]">
             {t("description")}
           </p>
 
           <Link
             href="https://www.vhetra.com.ar"
-            className="mt-6 inline-flex items-center rounded-full border border-[#A82811]/20 bg-[#A82811]/10 px-4 py-2 font-manrope text-sm font-semibold uppercase tracking-[0.18em] text-[#A82811] transition-colors duration-300 hover:bg-[#A82811]/20"
+            className="group mt-8 inline-flex min-h-11 items-center gap-5 border-b border-[#A82811]/30 pb-1 font-manrope text-sm font-semibold text-[#A82811] transition-colors hover:border-[#A82811] focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-[#A82811] sm:mt-10"
           >
             {t("website")}
+            <span aria-hidden="true" className="text-xl motion-safe:transition-transform motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5">↗</span>
           </Link>
         </div>
 
-        <div className="w-full max-w-xl">
-          <div className="flex flex-col gap-3 sm:gap-4">
-            {contactos.map((contacto, index) => (
+        <div className="relative flex flex-col justify-center bg-[#1D1D1B] p-6 sm:p-10 lg:p-12">
+          <div aria-hidden="true" className="pointer-events-none absolute right-0 top-0 h-56 w-56 bg-[radial-gradient(ellipse_at_top_right,rgba(168,40,17,0.22),transparent_70%)]" />
+          <p className="relative mb-6 flex items-center gap-3 font-manrope text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-[#C7BFB4]">
+            <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#CD614B]" />
+            {tContact("eyebrow")}
+          </p>
+          <div className="relative flex flex-col gap-3">
+            {contactos.map((contacto) => (
               <Link
                 key={contacto.titleKey}
                 href={contacto.href}
-                className={twMerge(
-                  "group flex w-full items-center gap-3 rounded-2xl border border-black/10 bg-[#111111] p-4 text-[#F5F0EA] shadow-[4px_4px_16px_rgba(0,0,0,0.16)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[10px_10px_24px_rgba(0,0,0,0.2)] sm:p-5",
-                  index % 2 === 0 ? "sm:translate-x-3" : "sm:-translate-x-3",
-                )}
+                className="group flex w-full items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.035] p-4 text-[#F5F0EA] transition-colors duration-200 hover:border-[#CD614B]/60 hover:bg-white/[0.075] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#CD614B] sm:gap-4 sm:p-5"
               >
                 <Image
                   src={contacto.img}
-                  alt={contacto.title}
+                  alt=""
                   width={48}
                   height={48}
-                  className="h-12 w-12 shrink-0 sm:h-14 sm:w-14"
+                  className="h-10 w-10 shrink-0 rounded-xl sm:h-11 sm:w-11"
                 />
                 <div className="flex min-w-0 flex-col">
-                  <span className="text-base font-semibold uppercase leading-tight text-[#F5F0EA] sm:text-lg">
+                  <span className="font-manrope text-xs font-semibold uppercase leading-tight tracking-[0.12em] text-[#F5F0EA]">
                     {contacto.title}
                   </span>
-                  <span className="mt-1 text-sm leading-5 text-[#F5F0EA]/80 sm:text-[0.95rem]">
+                  <span className="mt-2 font-manrope text-xs leading-5 text-[#C7BFB4]">
                     {contacto.action}
                   </span>
                 </div>
+                <span aria-hidden="true" className="ml-auto shrink-0 text-xl text-[#C7BFB4] transition-colors group-hover:text-[#E88973]">↗</span>
               </Link>
             ))}
           </div>
