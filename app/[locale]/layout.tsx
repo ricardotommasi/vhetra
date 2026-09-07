@@ -96,9 +96,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       languages: { es: `${baseUrl}/es`, en: `${baseUrl}/en` },
     },
     icons: {
-      icon: "/favicon.ico",
-      shortcut: "/favicon.ico",
-      apple: "/apple-touch-icon.png",
+      icon: "/icon.png",
+      shortcut: "/icon.png",
+      apple: "/apple-icon.png",
     },
   };
 }
