@@ -5,7 +5,6 @@ export type Proyecto = {
     titulo: string;
     miniDescripcion: string;
     descripcionCompleta: string[];
-    miniatura?: string;
     imagen?: string;
     webUrl?: string;
     technologies?: readonly string[];

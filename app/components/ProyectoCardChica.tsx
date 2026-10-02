@@ -1,49 +1,43 @@
-import { twMerge } from "tailwind-merge";
-import { Proyecto } from "../model/proyecto.type";
-import Image from "next/image";
+import type { Proyecto } from "../model/proyecto.type";
 
-interface CardChicaProps {
+interface ProyectoCardChicaProps {
   proyecto: Proyecto;
-  onClick?: () => void;
-  imgClassName?: string;
+  isActive: boolean;
+  onClick: () => void;
 }
 
-const CardChica = ({ proyecto, onClick, imgClassName }: CardChicaProps) => {
-  const { miniTitulo, miniDescripcion, miniatura } = proyecto;
+export default function ProyectoCardChica({ proyecto, isActive, onClick }: ProyectoCardChicaProps) {
+  const { miniTitulo, miniDescripcion } = proyecto;
 
   return (
-    <button onClick={onClick} className="z-20 w-full text-left">
-      <div
-        id={`project-${proyecto.id}`}
-        className={twMerge(`project-card-surface w-full h-28 sm:h-32 lg:h-36 min-[1800px]:!h-44 p-3 sm:p-4 min-[1800px]:!p-6 flex flex-row items-start relative bg-card rounded-lg shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] overflow-visible gap-4 sm:gap-5 lg:gap-6 min-[1800px]:!gap-8
-          transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]`,
-        )
-        }
-      >
-        {miniatura && (
-          <div className={twMerge(imgClassName, "relative overflow-visible")}>
-            <Image
-              src={miniatura}
-              alt={miniTitulo}
-              fill
-              sizes="(min-width: 1800px) 200px, 160px"
-              className="w-full h-full object-contain"
-              loading="lazy"
-            />
-          </div>
-        )}
-        <div className="flex-1 flex flex-col min-w-0">
-          <h3 className="text-left text-tiza text-[clamp(0.95rem,4.8vw,1.25rem)] min-[1800px]:!text-[1.55rem] font-normal leading-none">
-            {miniTitulo}
-          </h3>
-          <p className="font-manrope text-left mt-2 text-tiza text-[clamp(0.72rem,3.4vw,0.9rem)] min-[1800px]:!text-[1.05rem] min-[1800px]:!leading-6 font-normal opacity-90 line-clamp-2 flex-1 min-h-0">
+    <button
+      type="button"
+      onClick={onClick}
+      aria-haspopup="dialog"
+      aria-label={`${miniTitulo}: ${miniDescripcion}`}
+      className={`project-card-surface group relative isolate flex aspect-[1.62/1] w-full flex-col overflow-hidden rounded-[15px] border bg-[#080808] text-left transition duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#A82811] ${isActive ? "border-[#A82811] shadow-[0_0_28px_rgba(168,40,17,0.12)]" : "border-white/15 hover:border-white/35"}`}
+    >
+      <div className="relative z-10 flex h-full w-full flex-col justify-center p-4 sm:p-5 lg:p-7">
+        <h3 className="max-w-full break-words font-manrope text-[clamp(1.3rem,2.4vw,2.25rem)] font-light leading-[1.05] tracking-[-0.045em] text-white">
+          {miniTitulo}
+        </h3>
+
+        <div className={`mt-3 h-px w-12 transition-colors ${isActive ? "bg-[#A82811]" : "bg-white/55"}`} />
+
+        <div className="mt-3 flex min-w-0 items-center justify-between gap-3">
+          <p className="min-w-0 font-manrope text-[clamp(0.72rem,0.9vw,0.84rem)] font-medium uppercase leading-[1.45] tracking-[0.12em] text-white/65">
             {miniDescripcion}
           </p>
+          <span
+            aria-hidden="true"
+            className={`flex size-9 shrink-0 items-center justify-center rounded-full border transition-colors duration-300 sm:size-10 lg:size-11 ${isActive ? "border-[#D84A31] text-[#D84A31] group-hover:bg-[#A82811] group-hover:text-white" : "border-white/40 text-white group-hover:border-white/80"}`}
+          >
+            <svg viewBox="0 0 24 24" fill="none" className="size-5">
+              <path d="M5 12h14m0 0-6-6m6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </span>
         </div>
-        <span className="project-card-plus absolute -bottom-1 right-3 text-tiza text-4xl min-[1800px]:!text-5xl font-light opacity-80 transition-transform duration-300">+</span>
       </div>
-    </button >
+    </button>
   );
-};
-
-export default CardChica;
+}

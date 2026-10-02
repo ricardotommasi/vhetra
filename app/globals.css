@@ -221,11 +221,7 @@ body {
   #contacto .section-panel-content > div:first-child > div:nth-child(2) img { width: 2rem; height: 2rem; }
   #proyectos .section-panel-content > div:first-child { margin-bottom: 0.6rem; }
   #proyectos .section-panel-content > div:first-child > p:last-child { font-size: 0.7rem; line-height: 1.35; }
-  #proyectos .project-card-surface { height: 5.25rem; padding: 0.5rem; gap: 0.45rem; }
-  #proyectos .project-card-surface h3 { font-size: 0.72rem; }
-  #proyectos .project-card-surface p { margin-top: 0.25rem; font-size: 0.58rem; line-height: 1.25; }
-  #proyectos .project-card-plus { right: 0.4rem; font-size: 1.4rem; }
-  #proyectos .project-carousel { margin-top: 0.6rem; gap: 0.45rem; }
+  #proyectos .project-carousel { margin-top: 0.6rem; gap: 0.45rem; zoom: 1.28; }
   #proyectos .vhetra-cta { min-height: 2.25rem; font-size: 0.95rem; }
 }
 
@@ -255,7 +251,7 @@ body {
   .section-panel-content { zoom: 0.88; }
   #servicios .group\/cards h3 { font-size: clamp(0.7rem, 1.2vw, 0.95rem); line-height: 1.05; letter-spacing: 0.08em; }
   #servicios .group\/cards p { font-size: 3.4rem; }
-  #proyectos .project-card-surface { height: 6rem; padding: 0.65rem; gap: 0.5rem; }
+  #proyectos .project-carousel { zoom: 1.12; }
   #proyectos .section-panel-content > div:first-child { margin-bottom: 1rem; }
 }
 
@@ -330,18 +326,11 @@ body {
 @media (hover: hover) and (pointer: fine) {
   .project-card:hover {
     z-index: 30;
-    transform: translateY(-0.35rem) scale(1.025);
     opacity: 1;
   }
 
   .project-card-surface:hover {
-    z-index: 30;
-    transform: translateY(-0.15rem) scale(1.015);
-    box-shadow: 0 12px 24px rgba(16, 17, 17, 0.3);
-  }
-
-  .project-card-surface:hover .project-card-plus {
-    transform: scale(1.25);
+    transform: translateY(-2px);
   }
 }
 
