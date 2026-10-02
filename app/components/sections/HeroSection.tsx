@@ -11,7 +11,7 @@ export async function HeroSection() {
   return (
     <section
       id="inicio"
-      className="snap-panel isolate relative flex items-center overflow-x-hidden overflow-y-auto bg-[#F9F9F9] px-6 pt-20 pb-8 sm:px-12 sm:pb-10 lg:px-20"
+      className="snap-panel isolate relative flex items-center bg-[#F9F9F9] px-6 pt-20 pb-8 sm:px-12 sm:pb-10 lg:px-20"
     >
       <HeroMedia />
 

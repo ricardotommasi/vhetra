@@ -7,7 +7,6 @@ import { scrollToSectionStart } from "../utils/scrollToSection";
 const SNAP_COOLDOWN_MS = 1300;
 const WHEEL_THRESHOLD = 1;
 const TOUCH_THRESHOLD = 42;
-const SCROLL_EDGE_TOLERANCE = 2;
 const SECTION_NAVIGATE_EVENT = "vhetra:section-navigate";
 const EDITORIAL_EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -82,17 +81,6 @@ export function SectionScrollController({
       return getPanels()[currentPanelIndex()] ?? null;
     };
 
-    const canPanelScroll = (panel: HTMLElement, direction: 1 | -1) => {
-      if (direction === 1) {
-        return (
-          panel.scrollTop + panel.clientHeight <
-          panel.scrollHeight - SCROLL_EDGE_TOLERANCE
-        );
-      }
-
-      return panel.scrollTop > SCROLL_EDGE_TOLERANCE;
-    };
-
     const animateToPanel = (panel: HTMLElement) => {
       scrollAnimationRef.current?.stop();
       panelAnimationRef.current?.stop();
@@ -161,10 +149,7 @@ export function SectionScrollController({
       if (nextIndex === currentIndex) return;
 
       lastSnapRef.current = now;
-      panels[nextIndex].scrollTop =
-        direction === 1
-          ? 0
-          : panels[nextIndex].scrollHeight - panels[nextIndex].clientHeight;
+      panels[nextIndex].scrollTop = 0;
       animateToPanel(panels[nextIndex]);
     };
 
@@ -192,7 +177,6 @@ export function SectionScrollController({
 
       const direction = event.deltaY > 0 ? 1 : -1;
       const activePanel = getActivePanel(event.target);
-      if (activePanel && canPanelScroll(activePanel, direction)) return;
 
       event.preventDefault();
       snapTo(direction, activePanel);
@@ -226,7 +210,6 @@ export function SectionScrollController({
 
       const direction = deltaY > 0 ? 1 : -1;
       const activePanel = getActivePanel(event.target);
-      if (activePanel && canPanelScroll(activePanel, direction)) return;
 
       // Safari starts its rubber-band effect before a swipe reaches the snap
       // threshold. Cancel the gesture as soon as it reaches a panel edge, then
@@ -250,30 +233,12 @@ export function SectionScrollController({
 
       if (["ArrowDown", "PageDown"].includes(event.key) || (event.key === " " && !event.shiftKey)) {
         const activePanel = getActivePanel(event.target);
-        if (activePanel && canPanelScroll(activePanel, 1)) {
-          event.preventDefault();
-          activePanel.scrollBy({
-            top: event.key === "ArrowDown" ? 48 : activePanel.clientHeight * 0.8,
-            behavior: prefersReducedMotion() ? "auto" : "smooth",
-          });
-          return;
-        }
-
         event.preventDefault();
         snapTo(1, activePanel);
       }
 
       if (["ArrowUp", "PageUp"].includes(event.key) || (event.key === " " && event.shiftKey)) {
         const activePanel = getActivePanel(event.target);
-        if (activePanel && canPanelScroll(activePanel, -1)) {
-          event.preventDefault();
-          activePanel.scrollBy({
-            top: event.key === "ArrowUp" ? -48 : -activePanel.clientHeight * 0.8,
-            behavior: prefersReducedMotion() ? "auto" : "smooth",
-          });
-          return;
-        }
-
         event.preventDefault();
         snapTo(-1, activePanel);
       }

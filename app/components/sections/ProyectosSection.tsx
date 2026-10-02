@@ -31,7 +31,7 @@ export function ProyectosSection() {
   return (
     <section
       id="proyectos"
-      className="snap-panel section-render-window relative overflow-x-hidden overflow-y-auto bg-cover bg-center bg-no-repeat px-6 py-14 sm:px-12 sm:py-16 lg:px-20 lg:py-20"
+      className="snap-panel section-render-window relative bg-cover bg-center bg-no-repeat px-6 py-14 sm:px-12 sm:py-16 lg:px-20 lg:py-20"
     >
       <div className="pointer-events-none absolute inset-0 bg-[#F9F9F9]/20" />
 
@@ -51,14 +51,14 @@ export function ProyectosSection() {
             {t("spaAccent")}
           </h2>
 
-          <p className="mt-6 max-w-3xl font-manrope text-sm leading-relaxed text-black/65 sm:text-base lg:text-lg min-[1800px]:!mt-8 min-[1800px]:!max-w-5xl min-[1800px]:!text-xl min-[1800px]:!leading-8">
+          <p className="mt-3 max-w-3xl font-manrope text-sm leading-relaxed text-black/65 sm:mt-6 sm:text-base lg:text-lg min-[1800px]:!mt-8 min-[1800px]:!max-w-5xl min-[1800px]:!text-xl min-[1800px]:!leading-8">
             {t("salesIntro")}
           </p>
         </div>
 
         <ProjectCarousel projects={proyectos} onSelect={setSelectedId} />
 
-        <div className="relative mt-6 mb-24 flex justify-center sm:mt-8 sm:mb-0">
+        <div className="relative mt-3 mb-0 flex justify-center sm:mt-8 sm:mb-0">
           <ContactLink href={whatsappHref} >{t("spaCta")}</ContactLink>
         </div>
       </div>

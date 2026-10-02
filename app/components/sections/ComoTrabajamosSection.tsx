@@ -17,7 +17,7 @@ export async function ComoTrabajamosSection() {
   return (
     <section
       id="filosofia"
-      className="snap-panel section-render-window philosophy-section-background relative overflow-x-hidden overflow-y-auto px-6 py-14 sm:px-12 sm:py-16 lg:px-20 lg:py-20"
+      className="snap-panel section-render-window philosophy-section-background relative px-6 py-14 sm:px-12 sm:py-16 lg:px-20 lg:py-20"
     >
       <div className="section-panel-content relative z-10 mx-auto max-w-7xl min-[1800px]:!max-w-[1680px]">
         <SectionHeading eyebrow={t("eyebrow")} title={t("title")}  />

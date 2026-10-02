@@ -13,12 +13,9 @@ const CardChica = ({ servicio, onClick }: CardChicaProps) => {
     <button onClick={onClick} className="z-20 w-full text-left">
       <div
         id={`card-${name}`}
-        className="relative flex flex-col w-full bg-black bg-cover bg-center rounded border border-zinc-700
+        className="relative flex flex-col w-full aspect-[3/4.35] max-[767px]:aspect-[1/0.82] bg-black bg-cover bg-center rounded border border-zinc-700
           hover:border-zinc-500 hover:-translate-y-1 hover:z-30
           transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group p-3 sm:p-4 lg:p-5 min-[1800px]:!p-7 overflow-hidden"
-        style={{
-          aspectRatio: "3/4.35",
-        }}
       >
         <Image src={servicio.texture} alt="" fill sizes="(min-width: 1400px) 20vw, (min-width: 650px) 33vw, (min-width: 340px) 50vw, 100vw" className="object-cover" />
         <div className="pointer-events-none absolute inset-0 bg-black/40 transition-colors duration-500 group-hover:bg-black/24" />

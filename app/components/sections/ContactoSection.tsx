@@ -16,7 +16,7 @@ export async function ContactoSection() {
   return (
     <section
       id="contacto"
-      className="snap-panel section-render-window relative overflow-x-hidden overflow-y-auto bg-cover bg-center bg-no-repeat px-6 py-14 sm:px-12 sm:py-16 lg:px-20 lg:py-20"
+      className="snap-panel section-render-window relative bg-cover bg-center bg-no-repeat px-6 py-14 sm:px-12 sm:py-16 lg:px-20 lg:py-20"
     >
       <div className="pointer-events-none absolute inset-0 bg-[#F9F9F9]/20" />
 
