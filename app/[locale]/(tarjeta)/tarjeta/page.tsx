@@ -33,7 +33,7 @@ export default async function TarjetaPage({ params }: Props) {
     <main className="relative flex h-svh items-center overflow-hidden bg-[#EAE6DF] px-4 py-4 sm:px-8 sm:py-8">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(168,40,17,0.08),transparent_60%)]" />
 
-      <div className="tarjeta-card relative mx-auto grid w-full max-w-5xl overflow-hidden rounded-[1.75rem] border border-black/10 bg-[#F8F5EF] shadow-[0_24px_80px_-24px_rgba(40,30,20,0.25)] sm:rounded-[2.5rem] lg:grid-cols-[1.15fr_1fr]">
+      <div className="tarjeta-card relative mx-auto grid w-full max-w-5xl overflow-hidden rounded-sm border border-black/10 bg-[#F8F5EF] shadow-[0_24px_80px_-24px_rgba(40,30,20,0.25)] lg:grid-cols-[1.15fr_1fr]">
         <div className="relative flex flex-col items-start p-7 sm:p-12 lg:p-14">
           <div aria-hidden="true" className="mb-9 flex items-center gap-2 sm:mb-12">
             <span className="h-2 w-2 rounded-full bg-[#A82811]" />
@@ -72,14 +72,14 @@ export default async function TarjetaPage({ params }: Props) {
               <Link
                 key={contacto.titleKey}
                 href={contacto.href}
-                className="group flex w-full items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.035] p-4 text-[#F5F0EA] transition-colors duration-200 hover:border-[#CD614B]/60 hover:bg-white/[0.075] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#CD614B] sm:gap-4 sm:p-5"
+                className="group flex w-full items-center gap-3 rounded-sm border border-white/10 bg-white/[0.035] p-4 text-[#F5F0EA] transition-colors duration-200 hover:border-[#CD614B]/60 hover:bg-white/[0.075] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#CD614B] sm:gap-4 sm:p-5"
               >
                 <Image
                   src={contacto.img}
                   alt=""
                   width={48}
                   height={48}
-                  className="h-10 w-10 shrink-0 rounded-xl sm:h-11 sm:w-11"
+                  className="h-10 w-10 shrink-0 rounded-sm sm:h-11 sm:w-11"
                 />
                 <div className="flex min-w-0 flex-col">
                   <span className="font-manrope text-xs font-semibold uppercase leading-tight tracking-[0.12em] text-[#F5F0EA]">

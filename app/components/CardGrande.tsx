@@ -24,7 +24,7 @@ export const CardGrande = ({
   };
 
   return (
-    <Modal labelledBy={titleId} onClose={onClose} className="w-[min(92vw,800px)] max-h-[85dvh] flex flex-col bg-card-grande rounded-lg shadow-xl overflow-hidden p-4 sm:p-10">
+    <Modal labelledBy={titleId} onClose={onClose} className="w-[min(92vw,800px)] max-h-[85dvh] flex flex-col bg-card-grande rounded-sm shadow-xl overflow-hidden p-4 sm:p-10">
         <button type="button" aria-label={t("close")} className="ml-auto flex min-h-11 min-w-11 items-center justify-center shrink-0" onClick={onClose}>
           <Image
             className="w-3.5 h-3.5 min-[1800px]:!h-5 min-[1800px]:!w-5"
@@ -45,7 +45,7 @@ export const CardGrande = ({
           })}
         </div>
         <button
-          className="ripple-btn ml-auto mt-4 w-32 rounded-lg bg-tiza p-2 text-center text-[clamp(1rem,4vw,1.25rem)] min-[1800px]:!text-[1.55rem] font-normal text-azulo shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] sm:w-40 min-[1800px]:!w-52 shrink-0"
+          className="ripple-btn ml-auto mt-4 w-32 rounded-sm bg-tiza p-2 text-center text-[clamp(1rem,4vw,1.25rem)] min-[1800px]:!text-[1.55rem] font-normal text-azulo shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] sm:w-40 min-[1800px]:!w-52 shrink-0"
           onClick={handleWhatsApp}
         >
           {t("contact")}

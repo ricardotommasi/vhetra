@@ -17,10 +17,10 @@ export async function ComoTrabajamosSection() {
   return (
     <section
       id="filosofia"
-      className="snap-panel section-render-window philosophy-section-background relative px-6 py-14 sm:px-12 sm:py-16 lg:px-20 lg:py-20"
+      className="snap-panel section-render-window philosophy-section-background relative px-4 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-14 xl:px-16"
     >
-      <div className="section-panel-content relative z-10 mx-auto max-w-7xl min-[1800px]:!max-w-[1680px]">
-        <SectionHeading eyebrow={t("eyebrow")} title={t("title")}  />
+      <div className="section-panel-content relative z-10 mx-auto w-full max-w-[1420px]">
+        <SectionHeading eyebrow={t("eyebrow")} title={t("title")} tone="dark" />
 
         <div className="group/steps grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-3 lg:gap-6 min-[1800px]:!gap-12">
           {STEPS.map(({ num, titleKey, descKey }) => (

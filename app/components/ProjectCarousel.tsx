@@ -71,14 +71,14 @@ export function ProjectCarousel({ projects, onSelect }: { projects: Proyecto[]; 
   }
 
   return (
-    <div className="project-carousel mt-4 grid grid-cols-1 items-center gap-2 sm:mt-6 md:grid-cols-[48px_minmax(0,1fr)_48px] md:gap-2">
+    <div className="project-carousel mx-auto mt-4 grid w-full max-w-[1420px] grid-cols-1 items-center gap-2 sm:mt-6 md:grid-cols-[48px_minmax(0,1fr)_48px] md:gap-2">
       <button
         type="button"
         aria-controls={id}
         aria-label={t("previous")}
         disabled={edges.start}
         onClick={() => move(-1)}
-        className="project-carousel-control group hidden size-11 items-center justify-center rounded-full border border-black/25 bg-transparent text-black/75 transition-colors duration-200 hover:border-[#A82811] hover:text-[#A82811] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#A82811] disabled:cursor-default disabled:opacity-25 md:flex"
+        className="project-carousel-control group hidden size-11 items-center justify-center bg-transparent text-black/65 transition-colors duration-200 hover:text-[#A82811] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#A82811] disabled:cursor-default disabled:opacity-25 md:flex"
       >
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="size-5 transition-transform group-hover:-translate-x-0.5">
           <path d="M19 12H5m0 0 6 6m-6-6 6-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -94,12 +94,12 @@ export function ProjectCarousel({ projects, onSelect }: { projects: Proyecto[]; 
         tabIndex={0}
         className="project-carousel-viewport scrollbar-hide relative min-w-0 overflow-x-auto overflow-y-hidden overscroll-x-contain px-1 snap-x snap-mandatory"
       >
-        <div className="flex w-max flex-nowrap gap-3 py-3 sm:gap-4 lg:gap-5">
+        <div className="flex w-max flex-nowrap gap-3 py-3 md:gap-3 lg:gap-5">
           {projects.map((project, index) => (
             <div
               key={project.id}
               data-project-card
-              className="project-card w-[min(84vw,420px)] shrink-0 snap-center md:w-[clamp(260px,30vw,420px)]"
+              className="project-card shrink-0 snap-center"
             >
               <ProyectoCardChica
                 proyecto={project}
@@ -120,7 +120,7 @@ export function ProjectCarousel({ projects, onSelect }: { projects: Proyecto[]; 
         aria-label={t("next")}
         disabled={edges.end}
         onClick={() => move(1)}
-        className="project-carousel-control group hidden size-11 items-center justify-center rounded-full border border-black/25 bg-transparent text-black/75 transition-colors duration-200 hover:border-[#A82811] hover:text-[#A82811] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#A82811] disabled:cursor-default disabled:opacity-25 md:flex"
+        className="project-carousel-control group hidden size-11 items-center justify-center bg-transparent text-black/65 transition-colors duration-200 hover:text-[#A82811] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#A82811] disabled:cursor-default disabled:opacity-25 md:flex"
       >
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="size-5 transition-transform group-hover:translate-x-0.5">
           <path d="M5 12h14m0 0-6-6m6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -135,7 +135,7 @@ export function ProjectCarousel({ projects, onSelect }: { projects: Proyecto[]; 
             aria-label={`${project.miniTitulo} ${index + 1} / ${projects.length}`}
             aria-current={activeIndex === index ? "true" : undefined}
             onClick={() => scrollToIndex(index)}
-            className={`project-carousel-indicator h-2 rounded-full transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#A82811] ${activeIndex === index ? "w-12 bg-[#A82811] shadow-[0_0_12px_rgba(168,40,17,0.3)]" : "w-10 bg-black/15 hover:bg-black/35"}`}
+            className={`project-carousel-indicator h-2 rounded-sm transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#A82811] ${activeIndex === index ? "w-12 bg-[#A82811] shadow-[0_0_12px_rgba(168,40,17,0.3)]" : "w-10 bg-black/15 hover:bg-black/35"}`}
           />
         ))}
       </div>

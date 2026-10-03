@@ -46,7 +46,7 @@ const ProyectoCardGrande = ({ proyecto, onClose }: ProyectoCardGrandeProps) => {
   ) : null;
 
   return (
-    <Modal labelledBy={titleId} onClose={onClose} className="w-[min(92vw,912px)] min-[1800px]:w-[min(92vw,1180px)] max-h-[90dvh] flex flex-col bg-neutral-900 rounded-lg shadow-xl overflow-hidden p-6 min-[1800px]:p-10">
+    <Modal labelledBy={titleId} onClose={onClose} className="w-[min(92vw,912px)] min-[1800px]:w-[min(92vw,1180px)] max-h-[90dvh] flex flex-col bg-neutral-900 rounded-sm shadow-xl overflow-hidden p-6 min-[1800px]:p-10">
         {/* Header: close button - responsive size */}
         <div className="flex justify-end shrink-0 mb-4">
           <button
@@ -99,7 +99,7 @@ const ProyectoCardGrande = ({ proyecto, onClose }: ProyectoCardGrandeProps) => {
                 {technologies.map((technology) => (
                   <span
                     key={technology}
-                    className="rounded-full border border-zinc-700 bg-zinc-800/70 px-3 py-1 min-[1800px]:!px-4 min-[1800px]:!py-1.5 font-manrope text-xs text-zinc-300 sm:text-sm min-[1800px]:!text-base"
+                    className="rounded-sm border border-zinc-700 bg-zinc-800/70 px-3 py-1 min-[1800px]:!px-4 min-[1800px]:!py-1.5 font-manrope text-xs text-zinc-300 sm:text-sm min-[1800px]:!text-base"
                   >
                     {technology}
                   </span>
@@ -116,7 +116,7 @@ const ProyectoCardGrande = ({ proyecto, onClose }: ProyectoCardGrandeProps) => {
               href={webUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="ripple-btn inline-flex h-10 min-w-[7rem] items-center justify-center rounded-lg bg-zinc-300 px-3 py-[5px] text-[clamp(0.85rem,3.6vw,1.05rem)] min-[1800px]:!text-[1.25rem] font-normal text-slate-700/80 transition-colors hover:bg-zinc-200 sm:h-12 sm:min-w-[8rem] sm:px-3.5 min-[1800px]:!h-14 min-[1800px]:!min-w-[10rem]"
+              className="ripple-btn inline-flex h-10 min-w-[7rem] items-center justify-center rounded-sm bg-zinc-300 px-3 py-[5px] text-[clamp(0.85rem,3.6vw,1.05rem)] min-[1800px]:!text-[1.25rem] font-normal text-slate-700/80 transition-colors hover:bg-zinc-200 sm:h-12 sm:min-w-[8rem] sm:px-3.5 min-[1800px]:!h-14 min-[1800px]:!min-w-[10rem]"
             >
               {ctaLabel}
             </Link>
