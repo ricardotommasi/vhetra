@@ -44,7 +44,7 @@ export function Modal({ children, labelledBy, onClose, className }: ModalProps) 
       ref={dialogRef}
       aria-labelledby={labelledBy}
       aria-modal="true"
-      className="vhetra-dialog fixed inset-0 m-auto max-h-none max-w-none overflow-visible border-0 bg-transparent p-0 text-inherit outline-none backdrop:bg-black/60"
+      className="vhetra-dialog fixed inset-0 m-auto max-h-none max-w-none overflow-visible border-0 bg-transparent p-0 text-inherit outline-none backdrop:bg-black/75 backdrop:backdrop-blur-sm"
       onCancel={(event) => { event.preventDefault(); onClose(); }}
       onKeyDown={(event) => {
         if (event.key !== "Tab" || event.defaultPrevented) return;
