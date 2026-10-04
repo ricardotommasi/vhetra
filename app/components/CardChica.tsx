@@ -35,7 +35,7 @@ const CardChica = ({ servicio, onClick }: CardChicaProps) => {
     absolute z-10 right-3 bottom-[0px] sm:bottom-[-8px]
     text-tiza text-[4rem] sm:text-[5rem] lg:text-[6rem] xl:text-[7rem] min-[1800px]:!text-[8.5rem]
     font-black leading-none select-none opacity-90
-    translate-y-8 group-hover:translate-y-0
+    md:translate-y-8 md:group-hover:translate-y-0
     transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]
     group-hover:scale-105
   "

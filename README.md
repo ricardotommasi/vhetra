@@ -7,7 +7,7 @@ Producción: [vhetra.com.ar](https://vhetra.com.ar)
 ## Características
 
 - **Landing multipanel** con navegación por secciones: inicio, servicios, proyectos, filosofía y contacto
-- **Scroll controlado** (`SectionScrollController`): scroll interno dentro de cada sección y salto animado entre paneles (rueda, touch, teclado y navbar)
+- **Scroll adaptable** (`SectionScrollController`): scroll continuo cuando falta altura y saltos animados entre paneles cuando el contenido entra completo (rueda, touch, teclado y navbar)
 - **Internacionalización** con `next-intl` (`/es`, `/en`)
 - **Video en el hero**, con póster estático para movimiento reducido y pausa fuera de pantalla
 - **Carrusel de proyectos** con scroll nativo, controles anterior/siguiente y modales accesibles
@@ -80,7 +80,7 @@ NEXT_PUBLIC_WHATSAPP_PHONE=5493875038714
 
 La navbar y los CTAs usan `scrollToSectionStart()` (`app/utils/scrollToSection.ts`), que dispara el evento `vhetra:section-navigate` en el contenedor `.snap-page`. `SectionScrollController` escucha ese evento y ejecuta la transición animada hacia la sección indicada.
 
-Cada sección usa la clase `snap-panel` y ocupa el alto del viewport (`100dvh`).
+Cada sección usa la clase `snap-panel` y ocupa como mínimo el alto del viewport (`100dvh`), creciendo cuando su contenido necesita más espacio. Si alguna sección supera el alto disponible, el controlador permite scroll nativo continuo con rueda, touch y teclado. Cuando todas entran completas, mantiene los saltos animados entre secciones. El modo se recalcula al redimensionar la pantalla o cambiar el contenido.
 
 ## Rutas
 

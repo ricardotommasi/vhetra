@@ -39,7 +39,7 @@ test("Space activates service cards; dialogs keep focus and restore it", async (
 
 test("project dialog closes from the backdrop and restores focus", async ({ page }) => {
   await page.goto("/es");
-  const card = page.locator("#proyectos button").first();
+  const card = page.locator("#proyectos [data-project-card] button").first();
   await card.focus();
   await card.press("Enter");
   await expect(page.getByRole("dialog")).toBeVisible();

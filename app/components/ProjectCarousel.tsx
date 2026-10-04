@@ -20,8 +20,11 @@ export function ProjectCarousel({ projects, onSelect }: { projects: Proyecto[]; 
     const update = () => {
       const cards = Array.from(viewport.querySelectorAll<HTMLElement>("[data-project-card]"));
       const edgeSpace = Math.max(0, (viewport.clientWidth - (cards[0]?.clientWidth ?? 0)) / 2);
-      if (cards[0]) cards[0].style.marginInlineStart = `${edgeSpace}px`;
-      if (cards.length > 1) cards[cards.length - 1].style.marginInlineEnd = `${edgeSpace}px`;
+      const style = getComputedStyle(viewport);
+      // Include the viewport padding so the centered edge slides also reach
+      // the actual scroll limits, at every responsive card width.
+      if (cards[0]) cards[0].style.marginInlineStart = `${Math.max(0, edgeSpace - parseFloat(style.paddingInlineStart))}px`;
+      if (cards.length > 1) cards[cards.length - 1].style.marginInlineEnd = `${Math.max(0, edgeSpace - parseFloat(style.paddingInlineEnd))}px`;
       if (!positionedInitialSlide.current && cards.length > 1) {
         const featuredCard = cards[1];
         viewport.scrollLeft = featuredCard.offsetLeft + featuredCard.clientWidth / 2 - viewport.clientWidth / 2;

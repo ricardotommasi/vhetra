@@ -1,19 +1,35 @@
 import { expect, test } from "@playwright/test";
 
-test("carousel has unique projects and navigates to both ends", async ({ page }) => {
+test("carousel has unique projects and navigates to both ends", async ({ page, isMobile }) => {
   await page.goto("/es#proyectos");
-  const viewport = page.locator("[data-project-carousel-viewport]");
+  const viewport = page.locator(".project-carousel-viewport");
   await expect(viewport.locator("button")).toHaveCount(6);
   const previous = page.getByRole("button", { name: "Proyecto anterior" });
   const next = page.getByRole("button", { name: "Proyecto siguiente" });
-  await expect(previous).toBeDisabled();
-  await next.click();
-  await expect.poll(() => viewport.evaluate((el) => el.scrollLeft)).toBeGreaterThan(0);
-  await expect(previous).toBeEnabled();
-  for (let i = 0; i < 6 && await next.isEnabled(); i++) await next.click();
-  await expect(next).toBeDisabled();
-  for (let i = 0; i < 6 && await previous.isEnabled(); i++) await previous.click();
-  await expect(previous).toBeDisabled();
+  const indicators = page.locator(".project-carousel-indicator");
+  await indicators.first().click();
+  // Desktop arrows are hidden on mobile; indicators reach the same slides.
+  if (isMobile) {
+    await indicators.last().click();
+    await expect.poll(() => viewport.evaluate((el) => el.scrollWidth - el.clientWidth - el.scrollLeft)).toBeLessThan(3);
+    await indicators.first().click();
+    await expect.poll(() => viewport.evaluate((el) => el.scrollLeft)).toBeLessThan(3);
+  } else {
+    await expect(previous).toBeDisabled();
+    await next.click();
+    await expect.poll(() => viewport.evaluate((el) => el.scrollLeft)).toBeGreaterThan(0);
+    await expect(previous).toBeEnabled();
+    for (let i = 2; i < 6; i++) {
+      await next.click();
+      await expect(indicators.nth(i)).toHaveAttribute("aria-current", "true");
+    }
+    await expect(next).toBeDisabled();
+    for (let i = 4; i >= 0; i--) {
+      await previous.click();
+      await expect(indicators.nth(i)).toHaveAttribute("aria-current", "true");
+    }
+    await expect(previous).toBeDisabled();
+  }
   expect(await page.locator("[id]").evaluateAll((elements) => {
     const ids = elements.map((element) => element.id);
     return ids.filter((id, index) => ids.indexOf(id) !== index);

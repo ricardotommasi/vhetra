@@ -58,6 +58,25 @@ export function SectionScrollController({
     const getPanels = () =>
       Array.from(main.querySelectorAll<HTMLElement>(".snap-panel"));
 
+    // If any section needs more than one screen, keep one continuous native
+    // scroll area so wheel, touch and keyboard can reach all of its content.
+    let useNativeScroll = false;
+    const updateScrollMode = () => {
+      const nextNativeScroll = getPanels().some(
+        (panel) => panel.offsetHeight > main.clientHeight + 2,
+      );
+      if (nextNativeScroll !== useNativeScroll) {
+        stopTransition();
+        lastSnapRef.current = Number.NEGATIVE_INFINITY;
+      }
+      useNativeScroll = nextNativeScroll;
+      main.dataset.scrollMode = useNativeScroll ? "native" : "sections";
+    };
+    const layoutObserver = new ResizeObserver(updateScrollMode);
+    layoutObserver.observe(main);
+    getPanels().forEach((panel) => layoutObserver.observe(panel));
+    updateScrollMode();
+
     const currentPanelIndex = () => {
       const panels = getPanels();
       if (panels.length === 0) return 0;
@@ -82,6 +101,14 @@ export function SectionScrollController({
     };
 
     const animateToPanel = (panel: HTMLElement) => {
+      if (useNativeScroll) {
+        stopTransition();
+        main.scrollTo({
+          top: panel.offsetTop,
+          behavior: prefersReducedMotion() ? "instant" : "smooth",
+        });
+        return;
+      }
       scrollAnimationRef.current?.stop();
       panelAnimationRef.current?.stop();
       if (animatedPanelRef.current && animatedPanelRef.current !== panel) {
@@ -166,6 +193,7 @@ export function SectionScrollController({
     };
 
     const handleWheel = (event: WheelEvent) => {
+      if (useNativeScroll) return;
       if (event.defaultPrevented || event.ctrlKey || modalIsOpen()) return;
       if (canUseNativeScroll(event.target)) return;
       if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
@@ -184,6 +212,7 @@ export function SectionScrollController({
 
     const handleTouchStart = (event: TouchEvent) => {
       resetTouch();
+      if (useNativeScroll) return;
       if (event.defaultPrevented || event.touches.length !== 1 || modalIsOpen()) return;
       if (canUseNativeScroll(event.target)) return;
 
@@ -193,6 +222,7 @@ export function SectionScrollController({
     };
 
     const handleTouchMove = (event: TouchEvent) => {
+      if (useNativeScroll) return;
       if (event.defaultPrevented || event.touches.length !== 1 || modalIsOpen()) {
         resetTouch();
         return;
@@ -223,6 +253,7 @@ export function SectionScrollController({
     };
 
     const handleKeyDown = (event: KeyboardEvent) => {
+      if (useNativeScroll) return;
       if (event.defaultPrevented || event.isComposing || event.ctrlKey || event.metaKey || event.altKey || modalIsOpen()) return;
       const target = event.target;
       if (target instanceof Element) {
@@ -262,6 +293,7 @@ export function SectionScrollController({
     const initialHashFrame = window.location.hash ? requestAnimationFrame(restoreHash) : null;
 
     return () => {
+      layoutObserver.disconnect();
       scrollAnimationRef.current?.stop();
       panelAnimationRef.current?.stop();
       if (animatedPanelRef.current) {
