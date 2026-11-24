@@ -902,3 +902,8 @@ html, body { max-width: 100%; overflow-x: clip; }
 :is(.deck-sheet-content, .project-detail-scroll, .service-grid-modal-scroll)::-webkit-scrollbar-track { background: var(--scroll-track, var(--paper, #101010)); }
 :is(.deck-sheet-content, .project-detail-scroll, .service-grid-modal-scroll)::-webkit-scrollbar-thumb { background: #782e24; border-radius: 8px; border: 2px solid var(--scroll-track, var(--paper, #101010)); }
 :is(.deck-sheet-content, .project-detail-scroll, .service-grid-modal-scroll)::-webkit-scrollbar-thumb:hover { background: #984e40; }
+
+/* Give mobile project cards more space along the same circular orbit. */
+@media (max-width: 767px) {
+  .orbit-stage { --orbit-radius: clamp(170px, 54cqw, 290px); --tile-width: clamp(78px, 25cqw, 120px); perspective: 1200px; }
+}

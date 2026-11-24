@@ -1,9 +1,16 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
-import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useId, useRef, useState, useSyncExternalStore, type CSSProperties } from "react";
 import { useTranslations } from "next-intl";
 import type { Proyecto } from "../model/proyecto.type";
+
+const mobileQuery = "(max-width: 767px)";
+function subscribeMobile(callback: () => void) {
+  const query = window.matchMedia(mobileQuery);
+  query.addEventListener("change", callback);
+  return () => query.removeEventListener("change", callback);
+}
 
 export type ProjectSelection = { id: number; rect: { x: number; y: number; width: number; height: number }; opener: HTMLButtonElement };
 
@@ -18,10 +25,12 @@ export function ProjectCarousel({ projects, onSelect, paused }: { projects: Proy
   const camera = useRef({ x: 0, y: 0, targetX: 0, targetY: 0 });
   const interaction = useRef({ focus: false, visible: false, down: false, x: 0, distance: 0 });
   const [active, setActive] = useState(0);
-  const copies = Math.max(1, Math.ceil(20 / projects.length));
+  const mobile = useSyncExternalStore(subscribeMobile, () => window.matchMedia(mobileQuery).matches, () => false);
+  const copies = mobile ? 1 : Math.max(1, Math.ceil(20 / projects.length));
   const tiles = Array.from({ length: copies }, () => projects).flat();
 
   useEffect(() => {
+    tilesRef.current.length = tiles.length;
     const element = stage.current;
     if (!element) return;
     const observer = new IntersectionObserver(([entry]) => { interaction.current.visible = entry.isIntersecting; }, { threshold: 0.1 });
@@ -70,7 +79,7 @@ export function ProjectCarousel({ projects, onSelect, paused }: { projects: Proy
       section.removeEventListener("pointermove", trackCursor);
       section.removeEventListener("pointerleave", resetCursor);
     };
-  }, [paused]);
+  }, [paused, tiles.length]);
 
   function move(direction: number) {
     angle.current -= direction * 360 / tiles.length;
