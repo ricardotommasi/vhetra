@@ -29,7 +29,7 @@ export function HeroMedia() {
   }, [isVisible, isPageVisible, reducedMotion, videoFailed]);
 
   useEffect(() => {
-    const section = rootRef.current?.closest("section");
+    const section = rootRef.current?.closest(".deck-sheet, section");
     if (!section) return;
     const observer = new IntersectionObserver(([entry]) => setIsVisible(entry.isIntersecting), { threshold: 0.1 });
     observer.observe(section);

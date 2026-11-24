@@ -1,10 +1,9 @@
-import { NavBar } from "@/app/components/NavBar";
+import { SectionDeck } from "@/app/components/SectionDeck";
 import { HeroSection } from "@/app/components/sections/HeroSection";
 import { ServiciosSection } from "@/app/components/sections/ServiciosSection";
 import { ProyectosSection } from "@/app/components/sections/ProyectosSection";
 import { ComoTrabajamosSection } from "@/app/components/sections/ComoTrabajamosSection";
 import { ContactoSection } from "@/app/components/sections/ContactoSection";
-import { SectionScrollController } from "@/app/components/SectionScrollController";
 import { setRequestLocale } from "next-intl/server";
 
 type Props = {
@@ -17,14 +16,13 @@ export default async function Home({ params }: Props) {
 
   return (
     <>
-      <NavBar />
-      <SectionScrollController>
+      <SectionDeck>
         <HeroSection />
         <ServiciosSection />
         <ProyectosSection />
         <ComoTrabajamosSection />
         <ContactoSection />
-      </SectionScrollController>
+      </SectionDeck>
     </>
   );
 }
