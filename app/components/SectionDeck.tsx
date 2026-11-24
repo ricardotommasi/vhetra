@@ -81,7 +81,7 @@ export function SectionDeck({ children }: { children: ReactNode }) {
         <button type="button" onClick={() => open(null)} aria-label={locale === "es" ? "Ver todas las fichas" : "View all sections"}>VH<span>.</span></button>
         <div><Link href={pathname} locale="es" aria-current={locale === "es" ? "page" : undefined}>ES</Link><span>/</span><Link href={pathname} locale="en" aria-current={locale === "en" ? "page" : undefined}>EN</Link></div>
       </div>
-      <div className="deck-overlay-wordmark" aria-hidden="true">VHETRA<span>.</span></div>
+      <div className="deck-overlay-wordmark" aria-hidden="true"><span className="brand-desktop">VHETRA</span><span className="brand-mobile">VH</span><span>.</span></div>
       <div className="deck-panels">
         {sections.map((section, index) => {
           const depth = selectedIndex < 0 ? index : index === selectedIndex ? 0 : 1 + index - (index > selectedIndex ? 1 : 0);

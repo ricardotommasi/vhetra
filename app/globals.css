@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :where(a, button):focus-visible {
-  outline: 2px solid #CD614B;
+  outline: 2px solid #984e40;
   outline-offset: 4px;
 }
 
@@ -31,8 +31,8 @@
 }
 
 .vhetra-modal-close:hover {
-  border-color: #a82811;
-  background: #a82811;
+  border-color: #782e24;
+  background: #782e24;
   color: #fff;
 }
 
@@ -55,8 +55,8 @@
 }
 
 .vhetra-modal-cta:hover {
-  border-color: #a82811;
-  background: #a82811;
+  border-color: #782e24;
+  background: #782e24;
   color: #fff;
 }
 
@@ -84,10 +84,10 @@
   --color-tiza: #f5f0ea;
   --color-card: rgba(1, 1, 1, 0.8);
   --color-azulo: #010101;
-  --color-card-destacada: rgba(168, 40, 17, 0.7);
+  --color-card-destacada: rgba(120, 46, 36, 0.7);
   --color-card-grande: rgba(1, 1, 1);
   --color-card-grande-transparente: rgba(1, 1, 1, 0.93);
-  --color-accent: rgba(168, 40, 17, 1);
+  --color-accent: rgba(120, 46, 36, 1);
 }
 
 html {
@@ -160,7 +160,7 @@ body {
 .philosophy-section-background {
   background-color: #171717;
   background-image:
-    radial-gradient(circle at top right, rgba(168, 40, 17, 0.18), transparent 35%),
+    radial-gradient(circle at top right, rgba(120, 46, 36, 0.18), transparent 35%),
     linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent 38%),
     linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
 }
@@ -712,9 +712,9 @@ body {
 .contact-editorial-name { width: fit-content; font: 300 clamp(2.2rem, 4.1vw, 4rem)/.95 var(--font-khand), "Arial Narrow", sans-serif; letter-spacing: -.035em; transition: transform 300ms ease, color 300ms ease; }
 .contact-editorial-description { color: #888; font: 400 .8rem/1.65 var(--font-manrope-local), sans-serif; transition: color 300ms ease; }
 .contact-editorial-arrow { justify-self: end; color: #aaa; font: 300 clamp(1.5rem, 2.5vw, 2.2rem)/1 var(--font-manrope-local), sans-serif; transition: transform 300ms ease, color 300ms ease; }
-.contact-editorial-link:hover .contact-editorial-name { transform: translateX(8px); color: #A82811; }
+.contact-editorial-link:hover .contact-editorial-name { transform: translateX(8px); color: #782e24; }
 .contact-editorial-link:hover .contact-editorial-description { color: #444; }
-.contact-editorial-link:hover .contact-editorial-arrow { transform: translate(3px, -3px); color: #A82811; }
+.contact-editorial-link:hover .contact-editorial-arrow { transform: translate(3px, -3px); color: #782e24; }
 .contact-editorial-link:focus-visible { outline: 1px solid #aaa; outline-offset: -3px; }
 .contact-editorial-footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: clamp(2rem, 5vh, 4rem); color: #717171; }
 .contact-editorial-footer > span:first-child { font: 300 clamp(1.5rem, 2.5vw, 2.25rem)/1 var(--font-khand), "Arial Narrow", sans-serif; letter-spacing: -.035em; }
@@ -731,7 +731,7 @@ body {
 }
 
 .contact-watermark { position: absolute; z-index: 2; right: clamp(1.25rem, 5vw, 6rem); bottom: 2rem; pointer-events: none; user-select: none; font-family: var(--font-khand), "Arial Narrow", sans-serif; font-size: clamp(13rem, 24vw, 24rem); font-weight: 300; line-height: 1; letter-spacing: -.12em; color: #000; opacity: .56; }
-.contact-watermark > span { color: #A82811; }
+.contact-watermark > span { color: #782e24; }
 @media (max-width: 1023px) { .contact-watermark { display: none; } }
 /* Each section is a physical sheet with its own projecting index tab. */
 .section-deck.snap-page { --ear: 60px; --nav-clearance: 0rem; height: 100dvh; overflow: hidden; background: #d8d8d4; isolation: isolate; }
@@ -762,10 +762,10 @@ body {
 .deck-sheet-content > .snap-panel { background-color: var(--paper) !important; min-height: calc(100dvh - 20px); padding-top: 5rem; }
 .deck-tab { position: absolute; z-index: 2; top: var(--tab-top); right: 0; width: var(--ear); height: var(--tab-height); border: 0; padding: 0; background: transparent; color: inherit; cursor: pointer; }
 .deck-tab-label { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); writing-mode: vertical-rl; text-transform: uppercase; font: 400 clamp(.65rem, 2.4dvh, 1.4rem)/1 var(--font-khand), sans-serif; letter-spacing: .02em; }
-.deck-tab:hover .deck-tab-label { color: #b63b24; }
-.deck-tab[aria-current] .deck-tab-label { text-decoration: underline; text-decoration-color: #a82811; text-underline-offset: 6px; }
+.deck-tab:hover .deck-tab-label { color: #873b30; }
+.deck-tab[aria-current] .deck-tab-label { text-decoration: underline; text-decoration-color: #782e24; text-underline-offset: 6px; }
 .deck-tab:focus-visible { outline: none; }
-.deck-tab:focus-visible .deck-tab-label { outline: 2px solid #a82811; outline-offset: 5px; }
+.deck-tab:focus-visible .deck-tab-label { outline: 2px solid #782e24; outline-offset: 5px; }
 .deck-hero-background { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
 .deck-hero-wash { position: absolute; inset: 0; background: rgb(249 249 249 / 55%); }
 .deck-sheet-content > #inicio { background: transparent !important; }
@@ -825,3 +825,80 @@ body {
 }
 .is-open .deck-overlay-wordmark, .is-intro-leaving .deck-overlay-wordmark { opacity: 0; visibility: hidden; transform: translate(-120vw, -50%); transition: transform 800ms cubic-bezier(.76,0,.24,1), opacity 600ms 150ms, visibility 0ms 800ms; }
 @media (prefers-reduced-motion: reduce) { .deck-overlay-wordmark, .is-open .deck-overlay-wordmark, .is-intro-leaving .deck-overlay-wordmark { transition: none; } }
+
+/* Size adjustments preserve the committed layouts, collage and circular dial. */
+html, body { max-width: 100%; overflow-x: clip; }
+.section-deck .snap-panel { container-type: inline-size; min-width: 0; }
+.section-deck .section-panel-content { min-width: 0; max-width: 100%; }
+.brand-mobile { display: none; }
+#inicio h1 { font-size: clamp(1.8rem, 7.2cqw, 6.7rem); }
+#inicio .section-panel-content > div > div > p { font-size: clamp(4rem, 12cqw, 10.5rem); }
+#inicio .vhetra-cta { max-width: 100%; }
+#servicios .services-grid-header h2 { font-size: clamp(2rem, 10cqw, 8rem); }
+#proyectos .orbit-heading h2 { font-size: clamp(2.5rem, 10cqw, 9rem); }
+#filosofia .approach-header h2 { font-size: clamp(2rem, 6.8cqw, 6rem); }
+#contacto .contact-editorial-header h2 { font-size: clamp(3.2rem, 16cqw, 13rem); }
+.services-word { font-size: clamp(.85rem, 7.7cqw, 6rem); gap: .3rem; }
+.services-word-arrow { flex-shrink: 0; }
+.orbit-stage { --orbit-radius: clamp(180px, 39cqw, 740px); --tile-width: clamp(76px, 8.5cqw, 150px); overflow: clip; }
+.contact-editorial-link { grid-template-columns: minmax(0, 1fr) minmax(0, .8fr) 32px; gap: clamp(.75rem, 2cqw, 2rem); }
+.contact-editorial-name { font-size: clamp(1.7rem, 4.5cqw, 4rem); }
+.contact-editorial-description { min-width: 0; overflow-wrap: anywhere; }
+.project-detail-scroll, .service-grid-modal-scroll { overflow-x: hidden; }
+@media (max-width: 767px) {
+  .brand-desktop { display: none; }
+  .brand-mobile { display: inline; }
+  .deck-overlay-wordmark { left: 50%; transform: translate(-50%, -50%); font-size: min(72vw, 54dvh); }
+  .is-open .deck-overlay-wordmark, .is-intro-leaving .deck-overlay-wordmark { transform: translate(-150vw, -50%); }
+  .section-deck .deck-sheet-content > .snap-panel { padding-inline: clamp(1rem, 4vw, 1.75rem) !important; }
+  #inicio .section-panel-content > div { max-width: 100%; }
+  #inicio .section-panel-content { padding-block: 1rem; }
+  .services-word { font-size: clamp(.85rem, 9cqw, 3.25rem); }
+  .services-grid-header { gap: .5rem; }
+  .services-grid-header p { font-size: clamp(.45rem, 2cqw, .65rem); }
+  .orbit-stage { --orbit-radius: clamp(150px, 42cqw, 320px); --tile-width: clamp(70px, 15cqw, 110px); height: clamp(300px, 45dvh, 470px); }
+  #filosofia.approach-section { --dial-size: clamp(300px, 85cqw, 680px); }
+  .approach-stage { height: clamp(480px, 65dvh, 680px); }
+  .approach-marker button { min-width: 44px; min-height: 48px; right: 14px; font-size: clamp(2.5rem, 12cqw, 5rem); }
+  .approach-copy { right: calc(var(--dial-size) * .14 + 48px); width: calc(100% - var(--dial-size) * .14 - 48px); }
+  .approach-copy h3 { font-size: clamp(1.3rem, 6cqw, 2.6rem); line-height: 1.05; }
+  .approach-copy p { font-size: clamp(.75rem, 2.8cqw, .9rem); line-height: 1.7; }
+  .contact-editorial-link { grid-template-columns: minmax(0, 1fr) 28px; }
+  .orbit-footer { gap: .75rem; }
+  .orbit-caption strong { overflow-wrap: anywhere; }
+  .service-grid-modal { max-width: calc(100vw - 1.5rem); }
+}
+@media (max-height: 540px) {
+  .section-deck .deck-sheet-content > .snap-panel { align-items: flex-start; padding-top: 4.5rem; padding-bottom: 1.5rem !important; }
+  #inicio .section-panel-content { padding-block: .5rem; }
+  #inicio h1 { font-size: clamp(1.8rem, 5.5cqw, 4rem); }
+  #inicio .section-panel-content > div > div > p { font-size: clamp(3.5rem, 8cqw, 6rem); }
+  .deck-tab-label { font-size: clamp(.55rem, 2.6dvh, .9rem); }
+}
+/* Keep the original cropped dial proportional to the folder, also on tablets. */
+#filosofia.approach-section { --dial-size: clamp(300px, min(85cqw, 78dvh), 1050px); }
+.approach-stage { height: max(430px, calc(var(--dial-size) * .72)); }
+.approach-copy { right: calc(var(--dial-size) * .37 + clamp(1.5rem, 4vw, 4.5rem) + 100px); width: min(44cqw, 560px); }
+.approach-marker button { font-size: clamp(3rem, 8cqw, 7rem); }
+@media (max-width: 767px) {
+  .approach-stage { height: clamp(480px, 65dvh, 680px); }
+  .approach-copy { right: calc(var(--dial-size) * .14 + 48px); width: calc(100% - var(--dial-size) * .14 - 48px); }
+  .approach-marker button { font-size: clamp(2.5rem, 12cqw, 5rem); }
+}
+/* Brand-colored scrollbars on the left; content keeps its reading direction. */
+.deck-sheet-content,
+.project-detail-scroll,
+.service-grid-modal-scroll {
+  direction: rtl;
+  scrollbar-width: thin;
+  scrollbar-color: #782e24 var(--scroll-track, var(--paper, #101010));
+}
+.deck-sheet-content > *,
+.project-detail-scroll > *,
+.service-grid-modal-scroll > * { direction: ltr; }
+.project-detail-scroll { --scroll-track: #fff; }
+.service-grid-modal-scroll { --scroll-track: #101010; }
+:is(.deck-sheet-content, .project-detail-scroll, .service-grid-modal-scroll)::-webkit-scrollbar { width: 8px; }
+:is(.deck-sheet-content, .project-detail-scroll, .service-grid-modal-scroll)::-webkit-scrollbar-track { background: var(--scroll-track, var(--paper, #101010)); }
+:is(.deck-sheet-content, .project-detail-scroll, .service-grid-modal-scroll)::-webkit-scrollbar-thumb { background: #782e24; border-radius: 8px; border: 2px solid var(--scroll-track, var(--paper, #101010)); }
+:is(.deck-sheet-content, .project-detail-scroll, .service-grid-modal-scroll)::-webkit-scrollbar-thumb:hover { background: #984e40; }

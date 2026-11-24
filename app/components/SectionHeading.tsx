@@ -20,7 +20,7 @@ export function SectionEyebrow({
 
   return (
     <div className="mb-4 flex items-center gap-3 sm:mb-5">
-      <span className="h-px w-10 bg-[#A82811] sm:w-14" aria-hidden="true" />
+      <span className="h-px w-10 bg-[#782e24] sm:w-14" aria-hidden="true" />
       <p className={`font-manrope text-[0.68rem] font-semibold uppercase tracking-[0.2em] sm:text-xs ${isDark ? "text-white/60" : "text-black/55"}`}>
         {children}
       </p>
@@ -44,7 +44,7 @@ export function SectionHeading({
         <SectionEyebrow tone={tone}>{eyebrow}</SectionEyebrow>
         <h2 className={`section-heading-title max-w-4xl font-khanda font-light uppercase tracking-[-0.055em] ${isDark ? "text-white" : "text-black"}`}>
           <span>{title}</span>
-          {accent && <span className="mt-1 block text-[#A82811]">{accent}</span>}
+          {accent && <span className="mt-1 block text-[#782e24]">{accent}</span>}
         </h2>
       </div>
       {description && (
