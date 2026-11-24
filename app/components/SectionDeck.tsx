@@ -59,10 +59,9 @@ export function SectionDeck({ children }: { children: ReactNode }) {
         <button type="button" onClick={() => open(null)} aria-label={locale === "es" ? "Ver todas las fichas" : "View all sections"}>VH<span>.</span></button>
         <div><Link href={pathname} locale="es" aria-current={locale === "es" ? "page" : undefined}>ES</Link><span>/</span><Link href={pathname} locale="en" aria-current={locale === "en" ? "page" : undefined}>EN</Link></div>
       </div>
-      <div className="deck-wordmark" aria-hidden={!!active}>VHETRA<span>.</span></div>
       <div className="deck-panels">
         {sections.map((section, index) => {
-          const depth = selectedIndex < 0 ? 4 - index : index === selectedIndex ? 0 : 1 + index - (index > selectedIndex ? 1 : 0);
+          const depth = selectedIndex < 0 ? index : index === selectedIndex ? 0 : 1 + index - (index > selectedIndex ? 1 : 0);
           return (
             <div key={section.id} className={`deck-sheet ${index % 2 ? "is-dark" : "is-light"} ${active === section.id ? "is-active" : ""}`} style={{ "--sheet-index": index, "--sheet-depth": depth } as CSSProperties}>
               <div className="deck-folder-surface">

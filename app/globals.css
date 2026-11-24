@@ -740,12 +740,22 @@ body {
 .deck-tools > div { display: flex; gap: .6rem; font: 500 .75rem/1 var(--font-manrope-local), sans-serif; }
 .deck-tools a { opacity: .55; }
 .deck-tools a[aria-current] { opacity: 1; }
-.deck-wordmark { position: absolute; z-index: 30; top: 42%; left: 4%; width: 92%; pointer-events: none; color: white; mix-blend-mode: difference; font: 500 clamp(6rem, 38vw, 48rem)/.76 var(--font-khand), sans-serif; letter-spacing: -.075em; transition: opacity 350ms, transform 800ms cubic-bezier(.22,1,.36,1); }
-.is-open .deck-wordmark { opacity: 0; transform: translateY(-3rem); }
-.deck-sheet { pointer-events: none; --paper: #fff; --ink: #171717; --tab-height: 17%; --tab-top: calc(3% + var(--sheet-index) * 19%); position: absolute; top: 10px; bottom: 10px; left: calc(var(--sheet-index) * 18%); right: 14px; color: var(--ink); z-index: calc(10 - var(--sheet-depth)); filter: drop-shadow(2px 0 3px #00000024); transition: left 800ms cubic-bezier(.76,0,.24,1), right 800ms cubic-bezier(.76,0,.24,1); }
+.deck-sheet { pointer-events: none; --paper: #fff; --ink: #171717; --tab-height: 18.5%; --tab-top: calc(1.5% + var(--sheet-index) * 19.5%); position: absolute; top: 10px; bottom: 10px; left: calc(var(--sheet-index) * 18%); right: 14px; color: var(--ink); z-index: calc(10 - var(--sheet-depth)); filter: drop-shadow(2px 0 3px #00000024); transition: left 800ms cubic-bezier(.76,0,.24,1), right 800ms cubic-bezier(.76,0,.24,1); }
 .deck-sheet.is-dark { --paper: #101010; --ink: #fafaf8; }
 .is-open .deck-sheet { left: 8px; right: calc(14px + (4 - var(--sheet-depth)) * 6px); }
-.deck-folder-surface { pointer-events: auto; position: absolute; inset: 0; --body-edge: calc(100% - var(--ear)); background: var(--paper); border-radius: 8px; overflow: hidden; clip-path: shape(from 0 0, line to var(--body-edge) 0, line to var(--body-edge) var(--tab-top), curve to calc(var(--body-edge) + var(--ear) * .36) calc(var(--tab-top) + var(--tab-height) * .09) with calc(var(--body-edge) + var(--ear) * .22) var(--tab-top) / calc(var(--body-edge) + var(--ear) * .12) calc(var(--tab-top) + var(--tab-height) * .09), line to calc(100% - var(--ear) * .24) calc(var(--tab-top) + var(--tab-height) * .09), curve to 100% calc(var(--tab-top) + var(--tab-height) * .21) with 100% calc(var(--tab-top) + var(--tab-height) * .09), line to 100% calc(var(--tab-top) + var(--tab-height) * .79), curve to calc(100% - var(--ear) * .24) calc(var(--tab-top) + var(--tab-height) * .91) with 100% calc(var(--tab-top) + var(--tab-height) * .91), line to calc(var(--body-edge) + var(--ear) * .36) calc(var(--tab-top) + var(--tab-height) * .91), curve to var(--body-edge) calc(var(--tab-top) + var(--tab-height)) with calc(var(--body-edge) + var(--ear) * .12) calc(var(--tab-top) + var(--tab-height) * .91) / calc(var(--body-edge) + var(--ear) * .22) calc(var(--tab-top) + var(--tab-height)), line to var(--body-edge) 100%, line to 0 100%, close); }
+.deck-folder-surface { pointer-events: auto; position: absolute; inset: 0; --body-edge: calc(100% - var(--ear)); background: var(--paper); border-radius: 8px; overflow: hidden; clip-path: shape(
+    from 0 0,
+    line to var(--body-edge) 0,
+    line to var(--body-edge) var(--tab-top),
+    line to calc(100% - 6px) var(--tab-top),
+    curve to 100% calc(var(--tab-top) + 6px)
+      with 100% var(--tab-top),
+    line to 100% calc(var(--tab-top) + var(--tab-height) * .72 - 4px),
+    curve to calc(100% - 4px) calc(var(--tab-top) + var(--tab-height) * .72 + 2px)
+      with 100% calc(var(--tab-top) + var(--tab-height) * .72),
+    line to var(--body-edge) calc(var(--tab-top) + var(--tab-height)),
+    line to var(--body-edge) 100%,
+    line to 0 100%, close); }
 .deck-folder-surface::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .018; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23888' filter='url(%23n)' d='M0 0h180v180H0z'/%3E%3C/svg%3E"); }
 .deck-sheet-content { position: relative; width: calc(100% - var(--ear)); height: 100%; overflow-y: auto; overflow-x: hidden; opacity: 0; visibility: hidden; transition: opacity 220ms, visibility 220ms; scrollbar-width: thin; }
 .is-open .is-active .deck-sheet-content { opacity: 1; visibility: visible; transition: opacity 400ms 300ms, visibility 0ms; }
@@ -763,12 +773,27 @@ body {
   .section-deck.snap-page { --ear: 44px; }
   .deck-tools { left: 1rem; top: 1.25rem; gap: 1rem; }
   .deck-tools > div { font-size: .7rem; }
-  .deck-wordmark { top: 45%; left: 3%; }
   .deck-sheet { top: 6px; bottom: 6px; right: 6px; }
   .is-open .deck-sheet { left: 5px; right: calc(6px + (4 - var(--sheet-depth)) * 4px); }
   .deck-tab-label { right: 10px; font-size: clamp(.7rem, 2.4dvh, 1rem); }
   .deck-sheet-content > .snap-panel { min-height: calc(100dvh - 12px); padding-inline: 1rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .deck-sheet, .deck-sheet-content, .deck-wordmark { transition: none !important; }
+  .deck-sheet, .deck-sheet-content { transition: none !important; }
+}
+/* The opening stack reveals the actual section inside each sheet. */
+.is-overview .deck-sheet-content { width: calc(100% - var(--ear)); opacity: 1; visibility: visible; overflow: hidden; transition: opacity 400ms, visibility 0ms; }
+.is-overview .deck-sheet-content > .snap-panel { width: calc(100vw - var(--ear) - 52px); min-height: calc(100dvh - 20px); }
+@media (max-width: 767px) {
+  .is-overview .deck-sheet-content > .snap-panel { width: calc(100vw - var(--ear) - 32px); min-height: calc(100dvh - 12px); }
+}
+
+/* In the overview, every folder ends at its own projecting tab. */
+.is-overview .deck-sheet {
+  --overview-step: calc((100vw - var(--ear) - 14px) / 5);
+  left: calc(var(--sheet-index) * var(--overview-step));
+  right: calc(100% - (var(--sheet-index) + 1) * var(--overview-step) - var(--ear));
+}
+@media (max-width: 767px) {
+  .is-overview .deck-sheet { --overview-step: calc((100vw - var(--ear) - 6px) / 5); }
 }
