@@ -19,6 +19,8 @@ export function SectionDeck({ children }: { children: ReactNode }) {
   const locale = useLocale();
   const pathname = usePathname();
   const [active, setActive] = useState<string | null>(null);
+  const [introReady, setIntroReady] = useState(false);
+  const [introLeaving, setIntroLeaving] = useState(false);
   const root = useRef<HTMLElement>(null);
   const panels = Children.toArray(children);
   const selectedIndex = sections.findIndex((item) => item.id === active);
@@ -36,6 +38,7 @@ export function SectionDeck({ children }: { children: ReactNode }) {
       }
     };
     sync();
+    setIntroReady(true);
     const element = root.current;
     element?.addEventListener("vhetra:section-navigate", navigate);
     window.addEventListener("hashchange", sync);
@@ -47,18 +50,38 @@ export function SectionDeck({ children }: { children: ReactNode }) {
     };
   }, []);
 
+  useEffect(() => {
+    if (!introReady || active !== null) return;
+    const timer = window.setTimeout(() => setIntroLeaving(true), 3000);
+    return () => window.clearTimeout(timer);
+  }, [active, introReady]);
+
+  useEffect(() => {
+    if (!introLeaving || active !== null) return;
+    const duration = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 800;
+    const timer = window.setTimeout(() => {
+      if (document.querySelector("dialog[open]")) return;
+      setActive("inicio");
+      setIntroLeaving(false);
+      window.history.replaceState(null, "", "#inicio");
+    }, duration);
+    return () => window.clearTimeout(timer);
+  }, [active, introLeaving]);
+
   function open(id: string | null) {
     if (document.querySelector("dialog[open]")) return;
+    setIntroLeaving(false);
     setActive(id);
     window.history.pushState(null, "", id ? `#${id}` : window.location.pathname + window.location.search);
   }
 
   return (
-    <main ref={root} className={`section-deck snap-page ${active ? "is-open" : "is-overview"}`}>
+    <main ref={root} className={`section-deck snap-page ${active ? "is-open" : "is-overview"} ${introLeaving ? "is-intro-leaving" : ""}`}>
       <div className="deck-tools">
         <button type="button" onClick={() => open(null)} aria-label={locale === "es" ? "Ver todas las fichas" : "View all sections"}>VH<span>.</span></button>
         <div><Link href={pathname} locale="es" aria-current={locale === "es" ? "page" : undefined}>ES</Link><span>/</span><Link href={pathname} locale="en" aria-current={locale === "en" ? "page" : undefined}>EN</Link></div>
       </div>
+      <div className="deck-overlay-wordmark" aria-hidden="true">VHETRA<span>.</span></div>
       <div className="deck-panels">
         {sections.map((section, index) => {
           const depth = selectedIndex < 0 ? index : index === selectedIndex ? 0 : 1 + index - (index > selectedIndex ? 1 : 0);
