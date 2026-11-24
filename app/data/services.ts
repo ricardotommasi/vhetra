@@ -1,38 +1,31 @@
-export const SERVICE_KEYS = [
+﻿export const SERVICE_KEYS = [
   {
     id: 1,
     name: "automatizaciones",
-    displayKey: "automatizaciones",
-    fullKey: "automatizacionesFull",
+    displayKey: "grid.automationTitle",
+    fullKey: "grid.automationFull",
     texture: "/services/texture-abstract-640.webp",
   },
   {
     id: 2,
-    name: "landing-page",
-    displayKey: "landingPage",
-    fullKey: "landingPageFull",
+    name: "webs",
+    displayKey: "grid.webTitle",
+    fullKey: "grid.webFull",
     texture: "/services/texture-pebbled-640.webp",
   },
   {
     id: 3,
-    name: "paginas-personalizadas",
-    displayKey: "paginasPersonalizadas",
-    fullKey: "paginasPersonalizadasFull",
+    name: "sistemas",
+    displayKey: "grid.systemTitle",
+    fullKey: "grid.systemFull",
     texture: "/services/texture-brushed-640.webp",
-  },
-  {
-    id: 4,
-    name: "ecommerce",
-    displayKey: "ecommerce",
-    fullKey: "ecommerceFull",
-    texture: "/services/texture-satin-640.webp",
-  },
-  {
-    id: 5,
-    name: "mantenimiento-web",
-    displayKey: "mantenimientoWeb",
-    fullKey: "mantenimientoWebFull",
-    texture: "/services/texture-marble-640.webp",
   },
 ] as const;
 
+export const SERVICE_TEXTURES = [
+  { name: "abstract", src: "/services/texture-abstract-640.webp" },
+  { name: "pebbled", src: "/services/texture-pebbled-640.webp" },
+  { name: "brushed", src: "/services/texture-brushed-640.webp" },
+  { name: "satin", src: "/services/texture-satin-640.webp" },
+  { name: "marble", src: "/services/texture-marble-640.webp" },
+] as const;

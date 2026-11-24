@@ -1,147 +1,143 @@
-"use client";
+﻿"use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import Image from "next/image";
+import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import { useTranslations } from "next-intl";
 import type { Proyecto } from "../model/proyecto.type";
-import ProyectoCardChica from "./ProyectoCardChica";
 
-export function ProjectCarousel({ projects, onSelect }: { projects: Proyecto[]; onSelect: (id: number) => void }) {
+export type ProjectSelection = { id: number; rect: { x: number; y: number; width: number; height: number }; opener: HTMLButtonElement };
+
+export function ProjectCarousel({ projects, onSelect, paused }: { projects: Proyecto[]; onSelect: (selection: ProjectSelection) => void; paused: boolean }) {
   const t = useTranslations("projects");
   const id = useId();
-  const viewportRef = useRef<HTMLDivElement>(null);
-  const positionedInitialSlide = useRef(false);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [edges, setEdges] = useState({ start: true, end: false });
+  const stage = useRef<HTMLDivElement>(null);
+  const axis = useRef<HTMLDivElement>(null);
+  const ring = useRef<HTMLDivElement>(null);
+  const tilesRef = useRef<(HTMLDivElement | null)[]>([]);
+  const angle = useRef(0);
+  const camera = useRef({ x: 0, y: 0, targetX: 0, targetY: 0 });
+  const interaction = useRef({ focus: false, visible: false, down: false, x: 0, distance: 0 });
+  const [active, setActive] = useState(0);
+  const copies = Math.max(1, Math.ceil(20 / projects.length));
+  const tiles = Array.from({ length: copies }, () => projects).flat();
 
   useEffect(() => {
-    const viewport = viewportRef.current;
-    if (!viewport) return;
-
-    const update = () => {
-      const cards = Array.from(viewport.querySelectorAll<HTMLElement>("[data-project-card]"));
-      const edgeSpace = Math.max(0, (viewport.clientWidth - (cards[0]?.clientWidth ?? 0)) / 2);
-      const style = getComputedStyle(viewport);
-      // Include the viewport padding so the centered edge slides also reach
-      // the actual scroll limits, at every responsive card width.
-      if (cards[0]) cards[0].style.marginInlineStart = `${Math.max(0, edgeSpace - parseFloat(style.paddingInlineStart))}px`;
-      if (cards.length > 1) cards[cards.length - 1].style.marginInlineEnd = `${Math.max(0, edgeSpace - parseFloat(style.paddingInlineEnd))}px`;
-      if (!positionedInitialSlide.current && cards.length > 1) {
-        const featuredCard = cards[1];
-        viewport.scrollLeft = featuredCard.offsetLeft + featuredCard.clientWidth / 2 - viewport.clientWidth / 2;
-        positionedInitialSlide.current = true;
+    const element = stage.current;
+    if (!element) return;
+    const observer = new IntersectionObserver(([entry]) => { interaction.current.visible = entry.isIntersecting; }, { threshold: 0.1 });
+    observer.observe(element);
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const section = element.closest("section") ?? element;
+    const trackCursor = (event: PointerEvent) => {
+      if (event.pointerType !== "mouse") return;
+      const bounds = section.getBoundingClientRect();
+      camera.current.targetX = Math.max(-1, Math.min(1, (event.clientX - bounds.left) / bounds.width * 2 - 1));
+      camera.current.targetY = Math.max(-1, Math.min(1, (event.clientY - bounds.top) / bounds.height * 2 - 1));
+    };
+    const resetCursor = () => { camera.current.targetX = 0; camera.current.targetY = 0; };
+    section.addEventListener("pointermove", trackCursor, { passive: true });
+    section.addEventListener("pointerleave", resetCursor);
+    let frame = 0;
+    let previous = 0;
+    function tick(time: number) {
+      const state = interaction.current;
+      if (previous && !paused && !document.hidden && state.visible) {
+        const delta = Math.min(time - previous, 40);
+        const view = camera.current;
+        // Match the reference's camera parallax with frame-rate independent easing.
+        const smoothing = 1 - Math.exp(-delta / 180);
+        const targetX = reduce.matches || state.focus ? 0 : view.targetX;
+        const targetY = reduce.matches || state.focus ? 0 : view.targetY;
+        view.x += (targetX - view.x) * smoothing;
+        view.y += (targetY - view.y) * smoothing;
+        axis.current?.style.setProperty("transform", `translate3d(${-view.x * 32}px, ${-view.y * 20}px, 0) rotateX(${-10 + view.y * 16}deg) rotateY(${-view.x * 18}deg)`);
+        if (!reduce.matches && !state.focus && !state.down) angle.current -= delta * 0.006;
+        if (ring.current) ring.current.style.transform = `rotateY(${angle.current}deg)`;
+        // The rear arc dissolves into white; the near arc remains crisp.
+        tilesRef.current.forEach((tile, index) => {
+          const depth = Math.cos((index * 360 / tilesRef.current.length + angle.current - view.x * 18) * Math.PI / 180);
+          const fade = Math.max(0, Math.min(1, (0.18 - depth) / 0.85));
+          tile?.style.setProperty("--depth-opacity", String(1 - fade * 0.985));
+          tile?.style.setProperty("--depth-blur", `${fade * 12}px`);
+        });
       }
-      const viewportCenter = viewport.scrollLeft + viewport.clientWidth / 2;
-      const centers = cards.map((card) => card.offsetLeft + card.clientWidth / 2);
-      const index = centers.reduce((closest, center, current) =>
-        Math.abs(center - viewportCenter) < Math.abs(centers[closest] - viewportCenter) ? current : closest,
-        0,
-      );
-
-      setActiveIndex(index);
-      setEdges({
-        start: viewport.scrollLeft <= 2,
-        end: viewport.scrollLeft + viewport.clientWidth >= viewport.scrollWidth - 2,
-      });
-    };
-
-    const observer = new ResizeObserver(update);
-    observer.observe(viewport);
-    if (viewport.firstElementChild) observer.observe(viewport.firstElementChild);
-    viewport.addEventListener("scroll", update, { passive: true });
-    update();
-
+      previous = time;
+      frame = requestAnimationFrame(tick);
+    }
+    frame = requestAnimationFrame(tick);
     return () => {
-      observer.disconnect();
-      viewport.removeEventListener("scroll", update);
+      cancelAnimationFrame(frame); observer.disconnect();
+      section.removeEventListener("pointermove", trackCursor);
+      section.removeEventListener("pointerleave", resetCursor);
     };
-  }, []);
+  }, [paused]);
 
-  function scrollToIndex(index: number) {
-    const viewport = viewportRef.current;
-    if (!viewport) return;
-    const cards = Array.from(viewport.querySelectorAll<HTMLElement>("[data-project-card]"));
-    const card = cards[index];
-    if (!card) return;
-
-    viewport.scrollTo({
-      left: card.offsetLeft + card.clientWidth / 2 - viewport.clientWidth / 2,
-      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
-    });
-  }
-
-  function move(direction: -1 | 1) {
-    scrollToIndex(Math.max(0, Math.min(projects.length - 1, activeIndex + direction)));
+  function move(direction: number) {
+    angle.current -= direction * 360 / tiles.length;
+    ring.current?.style.setProperty("transform", `rotateY(${angle.current}deg)`);
+    setActive((index) => (index + direction + projects.length) % projects.length);
   }
 
   return (
-    <div className="project-carousel mx-auto mt-4 grid w-full max-w-[1420px] grid-cols-1 items-center gap-2 sm:mt-6 md:grid-cols-[48px_minmax(0,1fr)_48px] md:gap-2">
-      <button
-        type="button"
-        aria-controls={id}
-        aria-label={t("previous")}
-        disabled={edges.start}
-        onClick={() => move(-1)}
-        className="project-carousel-control group hidden size-11 items-center justify-center bg-transparent text-black/65 transition-colors duration-200 hover:text-[#A82811] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#A82811] disabled:cursor-default disabled:opacity-25 md:flex"
+    <div className="orbit-gallery">
+      <div ref={stage} id={id} className="orbit-stage" role="region" aria-label={t("eyebrow")} aria-roledescription={t("orbit.carousel")}
+        onFocusCapture={(event) => { interaction.current.focus = event.target.matches(":focus-visible"); }}
+        onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) interaction.current.focus = false; }}
+        onKeyDown={(event) => {
+          if (event.key === "ArrowRight" || event.key === "ArrowLeft") { event.preventDefault(); event.stopPropagation(); move(event.key === "ArrowRight" ? 1 : -1); }
+        }}
+        onPointerDown={(event) => {
+          if (event.button !== 0 || paused) return;
+          interaction.current.focus = false;
+          interaction.current.down = true;
+          interaction.current.x = event.clientX;
+          interaction.current.distance = 0;
+        }}
+        onPointerMove={(event) => {
+          const state = interaction.current;
+          if (!state.down) return;
+          const delta = event.clientX - state.x;
+          state.distance += Math.abs(delta);
+          state.x = event.clientX;
+          if (state.distance > 5) {
+            stage.current?.setPointerCapture(event.pointerId);
+            angle.current += delta * 0.22;
+            ring.current?.style.setProperty("transform", `rotateY(${angle.current}deg)`);
+          }
+        }}
+        onPointerUp={() => { interaction.current.down = false; }}
+        onPointerCancel={() => { interaction.current.down = false; interaction.current.distance = 20; }}
+        onLostPointerCapture={() => { interaction.current.down = false; }}
       >
-        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="size-5 transition-transform group-hover:-translate-x-0.5">
-          <path d="M19 12H5m0 0 6 6m-6-6 6-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </button>
-
-      <div
-        id={id}
-        ref={viewportRef}
-        data-native-scroll
-        role="region"
-        aria-label={t("eyebrow")}
-        tabIndex={0}
-        className="project-carousel-viewport scrollbar-hide relative min-w-0 overflow-x-auto overflow-y-hidden overscroll-x-contain px-1 snap-x snap-mandatory"
-      >
-        <div className="flex w-max flex-nowrap gap-3 py-3 md:gap-3 lg:gap-5">
-          {projects.map((project, index) => (
-            <div
-              key={project.id}
-              data-project-card
-              className="project-card shrink-0 snap-center"
-            >
-              <ProyectoCardChica
-                proyecto={project}
-                isActive={activeIndex === index}
-                onClick={() => {
-                  setActiveIndex(index);
-                  onSelect(project.id);
+        <div ref={axis} className="orbit-axis"><div ref={ring} className="orbit-ring">
+          {tiles.map((project, index) => (
+            <div key={`${project.id}-${index}`} ref={(element) => { tilesRef.current[index] = element; }} className="orbit-tile" data-project-card
+              style={{ "--tile-angle": `${index * 360 / tiles.length}deg` } as CSSProperties}>
+              <button type="button" tabIndex={index < projects.length ? 0 : -1} aria-hidden={index >= projects.length ? true : undefined}
+                aria-label={`${project.miniTitulo}: ${project.miniDescripcion}`} aria-haspopup="dialog"
+                onPointerEnter={() => setActive(index % projects.length)}
+                onFocus={(event) => {
+                  setActive(index % projects.length);
+                  if (!event.currentTarget.matches(":focus-visible")) return;
+                  angle.current = -index * 360 / tiles.length;
+                  ring.current?.style.setProperty("transform", `rotateY(${angle.current}deg)`);
                 }}
-              />
+                onClick={(event) => {
+                  if (interaction.current.distance > 5 || paused) return;
+                  const rect = event.currentTarget.getBoundingClientRect();
+                  onSelect({ id: project.id, rect: { x: rect.x, y: rect.y, width: rect.width, height: rect.height }, opener: event.currentTarget });
+                }}>
+                <Image className="orbit-image" src={project.imagen!.replace(".webp", "-thumb.webp")} alt="" fill sizes="(max-width: 640px) 100px, 170px" draggable={false} unoptimized />
+                <span className="orbit-tile-label" aria-hidden="true">{project.miniTitulo} ↗</span>
+              </button>
             </div>
           ))}
-        </div>
+        </div></div>
       </div>
-
-      <button
-        type="button"
-        aria-controls={id}
-        aria-label={t("next")}
-        disabled={edges.end}
-        onClick={() => move(1)}
-        className="project-carousel-control group hidden size-11 items-center justify-center bg-transparent text-black/65 transition-colors duration-200 hover:text-[#A82811] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#A82811] disabled:cursor-default disabled:opacity-25 md:flex"
-      >
-        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="size-5 transition-transform group-hover:translate-x-0.5">
-          <path d="M5 12h14m0 0-6-6m6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </button>
-
-      <div className="mt-3 flex items-center justify-center gap-2 md:col-span-3" role="group" aria-label={t("eyebrow")}>
-        {projects.map((project, index) => (
-          <button
-            key={project.id}
-            type="button"
-            aria-label={`${project.miniTitulo} ${index + 1} / ${projects.length}`}
-            aria-current={activeIndex === index ? "true" : undefined}
-            onClick={() => scrollToIndex(index)}
-            className={`project-carousel-indicator h-2 rounded-sm transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#A82811] ${activeIndex === index ? "w-12 bg-[#A82811] shadow-[0_0_12px_rgba(168,40,17,0.3)]" : "w-10 bg-black/15 hover:bg-black/35"}`}
-          />
-        ))}
-      </div>
+      <footer className="orbit-footer">
+        <p className="orbit-instructions">{t("orbit.drag")}<br /><span>{t("orbit.click")}</span></p>
+        <p className="orbit-caption"><span>{String(active + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}</span><strong>{projects[active].miniTitulo}</strong></p>
+      </footer>
     </div>
   );
 }

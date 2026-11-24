@@ -37,13 +37,13 @@ test("Space activates service cards; dialogs keep focus and restore it", async (
   await expect(page.locator(".snap-page")).not.toHaveCSS("overflow", "hidden");
 });
 
-test("project dialog closes from the backdrop and restores focus", async ({ page }) => {
+test("project detail closes with Escape and restores focus", async ({ page }) => {
   await page.goto("/es");
   const card = page.locator("#proyectos [data-project-card] button").first();
   await card.focus();
   await card.press("Enter");
   await expect(page.getByRole("dialog")).toBeVisible();
-  await page.mouse.click(2, 2);
+  await page.keyboard.press("Escape");
   await expect(page.getByRole("dialog")).toHaveCount(0);
   await expect(card).toBeFocused();
 });

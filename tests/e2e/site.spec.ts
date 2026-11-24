@@ -1,35 +1,16 @@
 import { expect, test } from "@playwright/test";
 
-test("carousel has unique projects and navigates to both ends", async ({ page, isMobile }) => {
+test("orbit exposes ten projects and wraps with the keyboard", async ({ page }) => {
   await page.goto("/es#proyectos");
-  const viewport = page.locator(".project-carousel-viewport");
-  await expect(viewport.locator("button")).toHaveCount(6);
-  const previous = page.getByRole("button", { name: "Proyecto anterior" });
-  const next = page.getByRole("button", { name: "Proyecto siguiente" });
-  const indicators = page.locator(".project-carousel-indicator");
-  await indicators.first().click();
-  // Desktop arrows are hidden on mobile; indicators reach the same slides.
-  if (isMobile) {
-    await indicators.last().click();
-    await expect.poll(() => viewport.evaluate((el) => el.scrollWidth - el.clientWidth - el.scrollLeft)).toBeLessThan(3);
-    await indicators.first().click();
-    await expect.poll(() => viewport.evaluate((el) => el.scrollLeft)).toBeLessThan(3);
-  } else {
-    await expect(previous).toBeDisabled();
-    await next.click();
-    await expect.poll(() => viewport.evaluate((el) => el.scrollLeft)).toBeGreaterThan(0);
-    await expect(previous).toBeEnabled();
-    for (let i = 2; i < 6; i++) {
-      await next.click();
-      await expect(indicators.nth(i)).toHaveAttribute("aria-current", "true");
-    }
-    await expect(next).toBeDisabled();
-    for (let i = 4; i >= 0; i--) {
-      await previous.click();
-      await expect(indicators.nth(i)).toHaveAttribute("aria-current", "true");
-    }
-    await expect(previous).toBeDisabled();
-  }
+  const orbit = page.locator(".orbit-stage");
+  await expect(orbit.getByRole("button")).toHaveCount(10);
+  const caption = page.locator(".orbit-caption");
+  await expect(caption).toContainText("Acrodata");
+  await orbit.getByRole("button").first().focus();
+  await page.keyboard.press("ArrowLeft");
+  await expect(caption).toContainText("Las Tortas de Pancho");
+  await page.keyboard.press("ArrowRight");
+  await expect(caption).toContainText("Acrodata");
   expect(await page.locator("[id]").evaluateAll((elements) => {
     const ids = elements.map((element) => element.id);
     return ids.filter((id, index) => ids.indexOf(id) !== index);
@@ -100,7 +81,7 @@ test("video readiness events cannot restart playback outside the hero", async ({
 
 test("responsive layouts retain their content", async ({ page }, testInfo) => {
   await page.goto("/es#servicios");
-  await expect(page.locator('#servicios button')).toHaveCount(5);
+  await expect(page.locator('#servicios button')).toHaveCount(3);
   await page.screenshot({ path: testInfo.outputPath("services.png") });
   await page.goto("/es/tarjeta");
   await expect(page.getByText("Hacemos webs que dan ganas de explorar.", { exact: true })).toBeVisible();

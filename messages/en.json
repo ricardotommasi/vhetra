@@ -81,7 +81,16 @@
     "hostingDominioFull": "The essential services that keep your website online.<br></br><ul><li>Domains are registered through NIC Argentina, starting at approximately $8,000 per year</li><li>Hosting costs vary by provider</li><li>Both are required for any website to function properly.</li></ul>",
     "automatizaciones": "AUTOMATION & INTEGRATIONS",
     "automatizacionesMini": "Smarter workflows, forms, and connected tools",
-    "automatizacionesFull": "Forms, appointment systems, automated replies, and integrations with external platforms. (Scope varies according to the complexity of the requested feature)"
+    "automatizacionesFull": "Forms, appointment systems, automated replies, and integrations with external platforms. (Scope varies according to the complexity of the requested feature)",
+    "grid": {
+      "title": "Services",
+      "automationTitle": "AUTOMATION",
+      "webTitle": "WEBSITES",
+      "systemTitle": "SYSTEMS",
+      "automationFull": "We connect the tools you use every day so repetitive tasks can run automatically. Fewer manual steps and more time for the work that needs your attention.<br></br><br></br>We can help with:<ul><li>Forms that organize inquiries and record data.</li><li>Automated notifications, reminders and replies.</li><li>App integrations and workflow tracking.</li></ul>Each workflow is shaped around the way your business operates.",
+      "webFull": "We design and build websites that present your brand clearly and help people find what they need and get in touch.<br></br><br></br>Depending on your project, we can create:<ul><li>Landing pages and business websites.</li><li>Catalogs, digital menus and online stores.</li><li>Websites with bookings, forms and manageable content.</li></ul>We focus on visual identity, intuitive navigation and a comfortable mobile experience.",
+      "systemFull": "We create custom digital tools to organize your business operations. A system brings the information and processes you manage into one place.<br></br><br></br>It can include:<ul><li>Dashboards for managing products, content or orders.</li><li>User accounts, permissions, appointments and bookings.</li><li>Task tracking, records and reports.</li></ul>We design features around your real workflows and define the scope together."
+    }
   },
   "tarjeta": {
     "tagline": "Design with a point of view.",
@@ -185,6 +194,22 @@
       "titulo": "A visual identity made for the digital world.",
       "descripcionP1": "For Fili Suites, we shaped the social media identity and Instagram content direction around the space itself—its colors, textures, and atmosphere.",
       "descripcionP2": "The result is a calm, warm, and professional presence that feels true to the guest experience."
+    },
+    "orbit": {
+      "eyebrow": "Selected work",
+      "title": "Projects",
+      "intro": "Ten projects. Different perspectives. One shared intention: shaping what comes next.",
+      "digitalProject": "Digital project",
+      "carousel": "Ring carousel",
+      "drag": "Drag to explore",
+      "click": "Choose a project to discover it ↗",
+      "pause": "Pause rotation",
+      "play": "Start rotation",
+      "back": "Back to projects",
+      "byVhetra": "Design & development / Vhetra",
+      "scroll": "Scroll to discover",
+      "about": "About the project",
+      "pending": "More about this project coming soon."
     }
   },
   "common": {

@@ -1,68 +1,65 @@
-"use client";
+﻿"use client";
 
-import { SectionHeading } from "../SectionHeading";
+import Image from "next/image";
 import dynamic from "next/dynamic";
-import { useMemo, useState } from "react";
+import { useMemo, useState, type CSSProperties } from "react";
 import { useTranslations } from "next-intl";
-import { SERVICE_KEYS } from "@/app/data/services";
-import CardChica from "@/app/components/CardChica";
-import { Servicio } from "@/app/model/servicio.type";
+import { SERVICE_KEYS, SERVICE_TEXTURES } from "@/app/data/services";
+import type { Servicio } from "@/app/model/servicio.type";
 
 const CardGrande = dynamic(
   () => import("@/app/components/CardGrande").then((mod) => mod.CardGrande),
   { ssr: false },
 );
 
+// Unequal endpoints keep the grid open rather than forming a rectangular frame.
+const horizontalEnds = [
+  ["8%", "-5%"], ["calc(50% - 50vw)", "14%"], ["-9%", "-18%"],
+  ["3%", "calc(50% - 50vw)"], ["calc(50% - 50vw)", "23%"], ["-15%", "-8%"],
+  ["12%", "calc(50% - 50vw)"], ["-6%", "9%"], ["calc(50% - 50vw)", "-12%"],
+  ["-12%", "calc(50% - 50vw)"], ["16%", "7%"], ["-8%", "18%"],
+];
+const verticalEnds = [
+  ["12%", "18%"], ["-10%", "-8%"], ["7%", "-17%"], ["-19%", "16%"],
+  ["-6%", "-11%"], ["14%", "9%"], ["-23%", "-14%"], ["4%", "-5%"],
+  ["-12%", "14%"], ["10%", "-18%"], ["-8%", "4%"], ["-16%", "-9%"],
+  ["8%", "17%"], ["-20%", "-6%"], ["-5%", "-16%"], ["6%", "11%"], ["18%", "4%"],
+];
+
 export function ServiciosSection() {
   const t = useTranslations("services");
   const [selectedId, setSelectedId] = useState<number | null>(null);
-
-  const servicios: Servicio[] = useMemo(
-    () =>
-      SERVICE_KEYS.map((s) => ({
-        id: s.id,
-        name: s.name,
-        displayName: t(s.displayKey),
-        descriptionKey: s.fullKey,
-        texture: s.texture,
-      })),
-    [t],
-  );
-
-  const selectedCard = servicios.find((service) => service.id === selectedId);
+  const servicios = useMemo<Servicio[]>(() => SERVICE_KEYS.map((service) => ({
+    id: service.id,
+    name: service.name,
+    displayName: t(service.displayKey),
+    descriptionKey: service.fullKey,
+    texture: service.texture,
+  })), [t]);
+  const selected = servicios.find((service) => service.id === selectedId);
 
   return (
-    <section
-      id="servicios"
-      className="snap-panel section-render-window relative bg-black px-4 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-14 xl:px-16"
-    >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(168,40,17,0.18),transparent_36%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),transparent_42%)]" />
-
-      <div className="section-panel-content relative z-10 mx-auto w-full max-w-[1420px]">
-        <SectionHeading eyebrow={t("eyebrow")} title={t("heading")} accent={t("headingAccent")} tone="dark" />
-
-        <div className="group/cards grid grid-cols-1 gap-3 min-[340px]:grid-cols-2 min-[650px]:grid-cols-5 min-[650px]:gap-3 min-[1400px]:gap-5 min-[1800px]:!gap-7">
-          {servicios.map((servicio) => (
-            <div
-              key={servicio.id}
-              className="relative z-0 transition-all duration-300 ease-out hover:z-30 hover:-translate-y-1 hover:drop-shadow-[0_16px_32px_rgba(0,0,0,0.28)]"
-            >
-              <CardChica
-                servicio={servicio}
-                onClick={() => setSelectedId(servicio.id)}
-              />
-            </div>
-          ))}
+    <section id="servicios" className="snap-panel services-grid-section" aria-labelledby="services-heading">
+      <div className="section-panel-content services-grid-content">
+        <header className="services-grid-header">
+          <h2 id="services-heading">{t("grid.title")}</h2>
+          <p>{t("eyebrow")}</p>
+        </header>
+        <div className="services-collage">
+          <div className="services-grid-lines" aria-hidden="true">
+            <div className="services-grid-horizontals">{horizontalEnds.map(([start, end], index) => <span key={index} style={{ "--line-index": index, "--line-start": start, "--line-end": end } as CSSProperties} />)}</div>
+            <div className="services-grid-verticals">{verticalEnds.map(([start, end], index) => <span key={index} style={{ "--line-index": index, "--line-start": start, "--line-end": end } as CSSProperties} />)}</div>
+          </div>
+          {SERVICE_TEXTURES.map((texture) => <div key={texture.name} className={`services-texture services-texture-${texture.name}`} aria-hidden="true">
+            <Image src={texture.src} alt="" fill sizes="(max-width: 767px) 30vw, 250px" className="object-cover" />
+          </div>)}
+          {servicios.map((service) => <button key={service.id} type="button" className={`services-word services-word-${service.name}`}
+            aria-haspopup="dialog" aria-label={service.displayName} onClick={() => setSelectedId(service.id)}>
+            <span>{service.displayName}</span><span className="services-word-arrow" aria-hidden="true">↗</span>
+          </button>)}
         </div>
       </div>
-
-      {selectedCard && (
-        <CardGrande
-          servicio={selectedCard}
-          onClose={() => setSelectedId(null)}
-        />
-      )}
+      {selected && <CardGrande servicio={selected} onClose={() => setSelectedId(null)} />}
     </section>
   );
 }

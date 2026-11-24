@@ -1,112 +1,65 @@
-import { SectionHeading } from "../SectionHeading";
-import { ContactLink } from "../ContactLink";
-import { whatsappUrl } from "@/app/config/site";
-import { getTranslations } from "next-intl/server";
+﻿"use client";
 
+import { useId, useRef, useState, type CSSProperties } from "react";
+import { useTranslations } from "next-intl";
+import { whatsappUrl } from "@/app/config/site";
 
 const STEPS = [
-  { num: "01", titleKey: "step1Title" as const, descKey: "step1Desc" as const },
-  { num: "02", titleKey: "step2Title" as const, descKey: "step2Desc" as const },
-  { num: "03", titleKey: "step3Title" as const, descKey: "step3Desc" as const },
-];
+  { num: "01", titleKey: "step1Title", descKey: "step1Desc" },
+  { num: "02", titleKey: "step2Title", descKey: "step2Desc" },
+  { num: "03", titleKey: "step3Title", descKey: "step3Desc" },
+] as const;
 
-export async function ComoTrabajamosSection() {
-  const t = await getTranslations("howWeWork");
-  const whatsappHref = whatsappUrl(t("whatsappMessage"));
+export function ComoTrabajamosSection() {
+  const t = useTranslations("howWeWork");
+  const id = useId();
+  const [active, setActive] = useState(0);
+  const buttons = useRef<(HTMLButtonElement | null)[]>([]);
+  const step = STEPS[active];
+
+  function select(index: number, focus = false) {
+    setActive(index);
+    if (focus) buttons.current[index]?.focus({ preventScroll: true });
+  }
 
   return (
-    <section
-      id="filosofia"
-      className="snap-panel section-render-window philosophy-section-background relative px-4 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-14 xl:px-16"
-    >
-      <div className="section-panel-content relative z-10 mx-auto w-full max-w-[1420px]">
-        <SectionHeading eyebrow={t("eyebrow")} title={t("title")} tone="dark" />
-
-        <div className="group/steps grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-3 lg:gap-6 min-[1800px]:!gap-12">
-          {STEPS.map(({ num, titleKey, descKey }) => (
-            <article
-              key={num}
-              className="
-    flex
-    flex-col
-    transition-all
-    duration-500
-    ease-out
-    hover:-translate-y-2
-  "
-            >
-              <span
-                className="
-      relative
-      mb-8
-      w-fit
-      font-khanda
-      text-6xl
-      font-light
-      leading-none
-      tracking-[-0.08em]
-      text-[#F9F9F9]
-      sm:text-7xl
-      lg:text-8xl
-      min-[1800px]:!text-[8.5rem]
-    "
-              >
-                {num}
-
-                <span
-                  className="
-        absolute
-        -bottom-4
-        left-1
-        h-[2px]
-        w-20
-        bg-[#A82811]
-        transition-all
-        duration-500
-        group-hover:w-28
-      "
-                />
-              </span>
-
-              <h3
-                className="
-      mb-3
-      font-khanda
-      text-3xl
-      font-light
-      uppercase
-      leading-[0.85]
-      tracking-[-0.06em]
-      text-[#F9F9F9]
-      sm:text-4xl
-      lg:text-5xl
-      min-[1800px]:!text-[4.3rem]
-    "
-              >
-                {t(titleKey)}
-              </h3>
-
-              <p
-                className="
-      max-w-[320px]
-      font-manrope
-      text-sm
-      leading-6
-      text-[#F9F9F9]/68
-      min-[1800px]:!max-w-[400px]
-      min-[1800px]:!text-lg
-      min-[1800px]:!leading-8
-    "
-              >
-                {t(descKey)}
-              </p>
-            </article>
-          ))}
+    <section id="filosofia" className="snap-panel approach-section" aria-labelledby={`${id}-heading`}>
+      <div className="section-panel-content approach-content">
+        <header className="approach-header">
+          <p>{t("eyebrow")}</p>
+          <h2 id={`${id}-heading`}>{t("title")}</h2>
+        </header>
+        <div className="approach-stage">
+          <div className="approach-dial" role="tablist" aria-label={t("title")} aria-orientation="vertical"
+            onKeyDown={(event) => {
+              let next: number;
+              if (event.key === "ArrowDown" || event.key === "ArrowRight") next = (active + 1) % STEPS.length;
+              else if (event.key === "ArrowUp" || event.key === "ArrowLeft") next = (active + STEPS.length - 1) % STEPS.length;
+              else if (event.key === "Home") next = 0;
+              else if (event.key === "End") next = STEPS.length - 1;
+              else return;
+              event.preventDefault(); event.stopPropagation(); select(next, true);
+            }}>
+            {STEPS.map((item, index) => <div className={`approach-marker${active === index ? " is-active" : ""}`} key={item.num}
+              style={{ "--step-offset": (index - active + 4) % 3 - 1 } as CSSProperties}>
+              <button ref={(element) => { buttons.current[index] = element; }} type="button" role="tab"
+                id={`${id}-step-${index}`} aria-selected={active === index} aria-controls={`${id}-panel`}
+                aria-label={`${item.num} ${t(item.titleKey)}`} tabIndex={active === index ? 0 : -1}
+                onClick={() => select(index)}>
+                <span aria-hidden="true">{item.num}</span>
+              </button>
+            </div>)}
+          </div>
+          <div className="approach-copy" id={`${id}-panel`} role="tabpanel" aria-labelledby={`${id}-step-${active}`} tabIndex={0}>
+            <div className="approach-copy-reveal" key={step.num}>
+              <h3>{t(step.titleKey)}</h3>
+              <p>{t(step.descKey)}</p>
+            </div>
+          </div>
         </div>
-
-        <div className="mt-16 flex justify-start sm:mt-20 md:justify-end lg:mt-24">
-          <ContactLink href={whatsappHref} light>{t("cta")}</ContactLink>
-        </div>
+        <footer className="approach-footer">
+          <a href={whatsappUrl(t("whatsappMessage"))} target="_blank" rel="noopener noreferrer">{t("cta")}<span aria-hidden="true">↗</span></a>
+        </footer>
       </div>
     </section>
   );

@@ -81,7 +81,16 @@
     "hostingDominioFull": "Servicios necesarios para que tu sitio web esté disponible en internet.<br></br><ul><li>El dominio se contrata en NIC Argentina desde aproximadamente $8.000 anuales</li><li>El servicio de hosting varía el precio dependiendo la empresa que preste el servicio</li><li>Ambos son obligatorios para el funcionamiento de cualquier sitio web.</li></ul>",
     "automatizaciones": "AUTOMATIZACIONES",
     "automatizacionesMini": "Formularios, turnos y conexiones externas",
-    "automatizacionesFull": "Integración de formularios, sistemas de turnos, respuestas automáticas o conexiones con plataformas externas. (Varía según la complejidad de la funcionalidad requerida)"
+    "automatizacionesFull": "Integración de formularios, sistemas de turnos, respuestas automáticas o conexiones con plataformas externas. (Varía según la complejidad de la funcionalidad requerida)",
+    "grid": {
+      "title": "Servicios",
+      "automationTitle": "AUTOMATIZACIONES",
+      "webTitle": "WEBS",
+      "systemTitle": "SISTEMAS",
+      "automationFull": "Conectamos las herramientas que usás todos los días para que las tareas repetitivas se resuelvan de forma automática. Menos pasos manuales y más tiempo para lo que necesita tu atención.<br></br><br></br>Podemos ayudarte con:<ul><li>Formularios que organizan consultas y registran datos.</li><li>Avisos, recordatorios y respuestas automáticas.</li><li>Integraciones entre aplicaciones y seguimiento de procesos.</li></ul>Definimos cada flujo según cómo trabaja tu negocio.",
+      "webFull": "Diseñamos y desarrollamos sitios web que presentan tu marca con claridad y ayudan a que las personas encuentren lo que buscan y se pongan en contacto.<br></br><br></br>Según tu proyecto, podemos crear:<ul><li>Landing pages y sitios institucionales.</li><li>Catálogos, menús digitales y tiendas online.</li><li>Webs con reservas, formularios y contenido administrable.</li></ul>Cuidamos la identidad visual, la navegación y la adaptación a celulares.",
+      "systemFull": "Creamos herramientas digitales a medida para organizar la operación de tu negocio. Un sistema reúne la información y los procesos que necesitás gestionar en un mismo lugar.<br></br><br></br>Puede incluir:<ul><li>Paneles para administrar productos, contenidos o pedidos.</li><li>Gestión de usuarios, permisos, turnos y reservas.</li><li>Seguimiento de tareas, registros y reportes.</li></ul>Diseñamos las funciones a partir de tus procesos reales y definimos el alcance juntos."
+    }
   },
   "tarjeta": {
     "tagline": "Hacemos webs que dan ganas de explorar.",
@@ -185,6 +194,22 @@
       "titulo": "Una identidad visual pensada para habitar lo digital",
       "descripcionP1": "En Fili Suites trabajamos en el diseño de la identidad visual para redes sociales y en la estrategia de contenido de Instagram, creando una estética coherente inspirada en los colores, texturas y atmósfera del espacio.",
       "descripcionP2": "La comunicación busca reflejar la tranquilidad y calidez del alojamiento, construyendo una presencia online clara, profesional y alineada con la experiencia que viven los huéspedes."
+    },
+    "orbit": {
+      "eyebrow": "Trabajo seleccionado",
+      "title": "Proyectos",
+      "intro": "Diez proyectos. Distintas miradas. Una misma intención: dar forma a lo que viene.",
+      "digitalProject": "Proyecto digital",
+      "carousel": "Carrusel en anillo",
+      "drag": "Arrastrá para explorar",
+      "click": "Elegí un proyecto para descubrirlo ↗",
+      "pause": "Pausar rotación",
+      "play": "Activar rotación",
+      "back": "Volver a proyectos",
+      "byVhetra": "Diseño y desarrollo / Vhetra",
+      "scroll": "Scroll para descubrir",
+      "about": "Sobre el proyecto",
+      "pending": "Pronto compartiremos más sobre este proyecto."
     }
   },
   "common": {
