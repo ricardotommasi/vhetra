@@ -22,6 +22,7 @@ export function SectionDeck({ children }: { children: ReactNode }) {
   const [introReady, setIntroReady] = useState(false);
   const [introLeaving, setIntroLeaving] = useState(false);
   const root = useRef<HTMLElement>(null);
+  const transferFocus = useRef(false);
   const panels = Children.toArray(children);
   const selectedIndex = sections.findIndex((item) => item.id === active);
 
@@ -34,21 +35,31 @@ export function SectionDeck({ children }: { children: ReactNode }) {
       const id = (event as CustomEvent<{ id: string }>).detail.id;
       if (sections.some((section) => section.id === id)) {
         event.preventDefault();
+        transferFocus.current = !!document.activeElement?.closest(".deck-sheet-content");
         setActive(id);
       }
     };
-    sync();
-    setIntroReady(true);
+    const initialFrame = window.requestAnimationFrame(() => { sync(); setIntroReady(true); });
     const element = root.current;
     element?.addEventListener("vhetra:section-navigate", navigate);
     window.addEventListener("hashchange", sync);
     window.addEventListener("popstate", sync);
     return () => {
+      window.cancelAnimationFrame(initialFrame);
       element?.removeEventListener("vhetra:section-navigate", navigate);
       window.removeEventListener("hashchange", sync);
       window.removeEventListener("popstate", sync);
     };
   }, []);
+
+  useEffect(() => {
+    if (!active || !transferFocus.current) return;
+    const timer = window.setTimeout(() => {
+      root.current?.querySelector<HTMLElement>(`#deck-panel-${active}`)?.focus({ preventScroll: true });
+      transferFocus.current = false;
+    }, window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 620);
+    return () => window.clearTimeout(timer);
+  }, [active]);
 
   useEffect(() => {
     if (!introReady || active !== null) return;
@@ -71,6 +82,7 @@ export function SectionDeck({ children }: { children: ReactNode }) {
   function open(id: string | null) {
     if (document.querySelector("dialog[open]")) return;
     setIntroLeaving(false);
+    transferFocus.current = false;
     setActive(id);
     window.history.pushState(null, "", id ? `#${id}` : window.location.pathname + window.location.search);
   }
@@ -88,11 +100,21 @@ export function SectionDeck({ children }: { children: ReactNode }) {
           return (
             <div key={section.id} className={`deck-sheet ${index % 2 ? "is-dark" : "is-light"} ${active === section.id ? "is-active" : ""}`} style={{ "--sheet-index": index, "--sheet-depth": depth } as CSSProperties}>
               <div className="deck-folder-surface">
-              {index === 0 && <div className="deck-hero-background" aria-hidden="true"><HeroMedia /><div className="deck-hero-wash" /></div>}
-              <button type="button" className="deck-tab" onClick={() => open(section.id)} aria-controls={`deck-panel-${section.id}`} aria-expanded={active === section.id} aria-current={active === section.id ? "location" : undefined}>
+              {index === 0 && <div className="deck-hero-background" aria-hidden="true"><HeroMedia enabled={active === null || active === "inicio"} /><div className="deck-hero-wash" /></div>}
+              <button type="button" id={`deck-tab-${section.id}`} className="deck-tab" onClick={() => open(section.id)} aria-controls={`deck-panel-${section.id}`} aria-expanded={active === section.id} aria-current={active === section.id ? "location" : undefined}
+                onKeyDown={(event) => {
+                  let next: number;
+                  if (event.key === "ArrowDown" || event.key === "ArrowRight") next = (index + 1) % sections.length;
+                  else if (event.key === "ArrowUp" || event.key === "ArrowLeft") next = (index + sections.length - 1) % sections.length;
+                  else if (event.key === "Home") next = 0;
+                  else if (event.key === "End") next = sections.length - 1;
+                  else return;
+                  event.preventDefault();
+                  root.current?.querySelector<HTMLElement>(`#deck-tab-${sections[next].id}`)?.focus({ preventScroll: true });
+                }}>
                 <span className="deck-tab-label">{t(section.key)}</span>
               </button>
-              <div id={`deck-panel-${section.id}`} className="deck-sheet-content" inert={active !== section.id} aria-hidden={active !== section.id} tabIndex={-1}>
+              <div id={`deck-panel-${section.id}`} className="deck-sheet-content" role="region" aria-labelledby={`deck-tab-${section.id}`} inert={active !== section.id} aria-hidden={active !== section.id} tabIndex={-1}>
                 {panels[index]}
               </div>
               </div>

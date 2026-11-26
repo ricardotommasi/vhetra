@@ -1,0 +1,85 @@
+const { chromium } = require('@playwright/test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+(async () => {
+  const browser = await chromium.launch();
+  const page = await browser.newPage({ reducedMotion: 'reduce' });
+  const errors = [];
+  page.on('pageerror', error => errors.push(error.message));
+  fs.mkdirSync('tmp/creative-review', { recursive: true });
+  for (const [width, height] of [[360,800],[390,844],[768,1024],[1280,800],[1440,900],[844,390],[1920,540]]) {
+    await page.setViewportSize({ width, height });
+    for (const locale of ['es','en']) {
+      await page.goto(`http://127.0.0.1:3108/${locale}#inicio`);
+      await page.locator('.is-active #inicio').waitFor({state:'visible'});
+      await page.evaluate(() => document.fonts.ready);
+      for (const id of ['inicio','servicios','proyectos','filosofia','contacto']) {
+        await page.locator(`#deck-tab-${id}`).click();
+        await page.locator(`.is-active #${id}`).waitFor({state:'visible'});
+        assert(await page.locator('.is-active .deck-sheet-content').evaluate(e => e.scrollWidth <= e.clientWidth + 1), `${locale}/${id}/${width}: horizontal overflow`);
+        if (locale === 'es' && ['proyectos','inicio'].includes(id)) await page.screenshot({path:`tmp/creative-review/${id}-${width}.png`});
+      }
+    }
+  }
+  await page.setViewportSize({width:1440,height:900});
+  await page.goto('http://127.0.0.1:3108/es#proyectos');
+  await page.locator('.is-active #proyectos').waitFor({state:'visible'});
+  const next = page.getByRole('button',{name:'Proyecto siguiente',exact:true});
+  const previous = page.getByRole('button',{name:'Proyecto anterior',exact:true});
+  await next.click();
+  assert.match(await page.locator('.orbit-caption').innerText(), /02/);
+  await previous.click();
+  assert.match(await page.locator('.orbit-caption').innerText(), /01/);
+  const first = page.locator('.orbit-tile button:not([aria-hidden])').first();
+  await first.focus();
+  await page.keyboard.press('ArrowLeft');
+  assert.match(await page.locator('.orbit-caption').innerText(), /10/);
+  assert(await page.locator('.orbit-tile button:not([aria-hidden])').last().evaluate(e=>e===document.activeElement));
+  await page.keyboard.press('ArrowRight');
+  await page.keyboard.press('Enter');
+  await page.getByRole('dialog').waitFor();
+  await page.keyboard.press('Escape');
+  await page.getByRole('dialog').waitFor({state:'detached'});
+  assert(await first.evaluate(e=>e===document.activeElement));
+  await page.locator('#deck-tab-inicio').focus();
+  await page.keyboard.press('ArrowDown');
+  assert(await page.locator('#deck-tab-servicios').evaluate(e=>e===document.activeElement));
+  await page.keyboard.press('Enter');
+  await page.locator('.is-active #servicios').waitFor({state:'visible'});
+  await page.locator('#deck-tab-contacto').click();
+  await page.goBack();
+  await page.locator('.is-active #servicios').waitFor({state:'visible'});
+  await page.emulateMedia({reducedMotion:'no-preference'});
+  await page.locator('#deck-tab-proyectos').click();
+  await page.waitForTimeout(850);
+  await page.mouse.move(10,10);
+  await page.evaluate(()=>document.activeElement?.blur());
+  const rotation = () => page.locator('.orbit-ring').evaluate(e=>e.style.transform);
+  const before = await rotation();
+  await page.waitForTimeout(180);
+  assert.notEqual(await rotation(), before, 'autoplay rotates');
+  await page.getByRole('button',{name:'Pausar rotación'}).click();
+  await page.evaluate(()=>document.activeElement?.blur());
+  await page.mouse.move(10,10);
+  await page.waitForTimeout(1200);
+  const stopped = await rotation();
+  await page.waitForTimeout(180);
+  assert.equal(await rotation(), stopped, 'pause settles and stops');
+  await page.getByRole('button',{name:'Activar rotación'}).click();
+  await page.locator('#deck-tab-contacto').click();
+  await page.waitForTimeout(850);
+  const hidden = await rotation();
+  await page.waitForTimeout(180);
+  assert.equal(await rotation(), hidden, 'hidden gallery stops');
+  const video = page.locator('video');
+  if (await video.count()) assert(await video.evaluate(e=>e.paused), 'hidden hero video pauses');
+  await page.emulateMedia({reducedMotion:'reduce'});
+  await page.locator('#deck-tab-proyectos').click();
+  await page.waitForTimeout(150);
+  const reduced = await rotation();
+  await page.waitForTimeout(180);
+  assert.equal(await rotation(), reduced, 'reduced motion stays still');
+  assert.deepEqual(errors, []);
+  console.log('PASS: 70 section layouts; controls, keyboard wrap/open, focus restore, folder keys, history, autoplay, pause, hidden video/gallery, runtime reduced motion; no page errors.');
+  await browser.close();
+})().catch(error => { console.error(error); process.exit(1); });

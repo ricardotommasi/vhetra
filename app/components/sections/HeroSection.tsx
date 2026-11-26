@@ -19,7 +19,7 @@ export async function HeroSection() {
 
 
             <p className="font-khanda text-6xl font-light leading-[0.78] tracking-[-0.085em] text-black sm:text-7xl md:text-8xl lg:text-[7.5rem] xl:text-[8.5rem] min-[1800px]:text-[10.5rem]">
-              <span className="brand-desktop">VHETRA</span><span className="brand-mobile">VH</span><span className="ml-[0.005em] text-[#a33224]">.</span>
+              <span className="brand-desktop">VHETRA</span><span className="brand-mobile">VHETRA</span><span className="ml-[0.005em] text-[#a33224]">.</span>
             </p>
           </div>
 

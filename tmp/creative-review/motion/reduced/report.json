@@ -1,0 +1,40 @@
+{
+  "reduced": true,
+  "viewport": {
+    "width": 1000,
+    "height": 760
+  },
+  "method": "Chromium screenshots sampled in wall time after native click; elapsed values include screenshot overhead. No GPU/FPS or scrubbed timeline claim.",
+  "toolFailure": "Impeccable capture rejected newly started animations in reduced mode; equivalent interaction captured directly.",
+  "samples": [
+    {
+      "elapsedMs": 44,
+      "animations": []
+    },
+    {
+      "elapsedMs": 477,
+      "animations": []
+    },
+    {
+      "elapsedMs": 1045,
+      "animations": []
+    },
+    {
+      "elapsedMs": 1511,
+      "animations": []
+    },
+    {
+      "elapsedMs": 1959,
+      "animations": []
+    },
+    {
+      "elapsedMs": 2413,
+      "animations": []
+    }
+  ],
+  "limitations": [
+    "Not physical devices",
+    "Samples include ongoing gallery autoplay under normal motion",
+    "No field performance metrics"
+  ]
+}

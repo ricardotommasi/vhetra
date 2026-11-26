@@ -1,0 +1,124 @@
+{
+  "reduced": false,
+  "viewport": {
+    "width": 1000,
+    "height": 760
+  },
+  "method": "Chromium screenshots sampled in wall time after native click; elapsed values include screenshot overhead. No GPU/FPS or scrubbed timeline claim.",
+  "toolFailure": "Impeccable capture rejected newly started animations in reduced mode; equivalent interaction captured directly.",
+  "samples": [
+    {
+      "elapsedMs": 66,
+      "animations": [
+        {
+          "state": "finished",
+          "timing": {
+            "delay": 0,
+            "direction": "normal",
+            "duration": 600,
+            "easing": "linear",
+            "endDelay": 0,
+            "fill": "both",
+            "iterationStart": 0,
+            "iterations": 1
+          }
+        }
+      ]
+    },
+    {
+      "elapsedMs": 497,
+      "animations": [
+        {
+          "state": "finished",
+          "timing": {
+            "delay": 0,
+            "direction": "normal",
+            "duration": 600,
+            "easing": "linear",
+            "endDelay": 0,
+            "fill": "both",
+            "iterationStart": 0,
+            "iterations": 1
+          }
+        }
+      ]
+    },
+    {
+      "elapsedMs": 1244,
+      "animations": [
+        {
+          "state": "finished",
+          "timing": {
+            "delay": 0,
+            "direction": "normal",
+            "duration": 600,
+            "easing": "linear",
+            "endDelay": 0,
+            "fill": "both",
+            "iterationStart": 0,
+            "iterations": 1
+          }
+        }
+      ]
+    },
+    {
+      "elapsedMs": 1689,
+      "animations": [
+        {
+          "state": "finished",
+          "timing": {
+            "delay": 0,
+            "direction": "normal",
+            "duration": 600,
+            "easing": "linear",
+            "endDelay": 0,
+            "fill": "both",
+            "iterationStart": 0,
+            "iterations": 1
+          }
+        }
+      ]
+    },
+    {
+      "elapsedMs": 2124,
+      "animations": [
+        {
+          "state": "finished",
+          "timing": {
+            "delay": 0,
+            "direction": "normal",
+            "duration": 600,
+            "easing": "linear",
+            "endDelay": 0,
+            "fill": "both",
+            "iterationStart": 0,
+            "iterations": 1
+          }
+        }
+      ]
+    },
+    {
+      "elapsedMs": 2556,
+      "animations": [
+        {
+          "state": "finished",
+          "timing": {
+            "delay": 0,
+            "direction": "normal",
+            "duration": 600,
+            "easing": "linear",
+            "endDelay": 0,
+            "fill": "both",
+            "iterationStart": 0,
+            "iterations": 1
+          }
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Not physical devices",
+    "Samples include ongoing gallery autoplay under normal motion",
+    "No field performance metrics"
+  ]
+}

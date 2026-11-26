@@ -10,7 +10,7 @@ function subscribeMotion(callback: () => void) {
   return () => query.removeEventListener("change", callback);
 }
 
-export function HeroMedia() {
+export function HeroMedia({ enabled = true }: { enabled?: boolean }) {
   const rootRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -21,12 +21,12 @@ export function HeroMedia() {
   const syncPlayback = useCallback(() => {
     const video = videoRef.current;
     if (!video) return;
-    if (!isVisible || !isPageVisible || reducedMotion || videoFailed || document.visibilityState !== "visible") {
+    if (!enabled || !isVisible || !isPageVisible || reducedMotion || videoFailed || document.visibilityState !== "visible") {
       video.pause();
       return;
     }
     void video.play().catch(() => { /* Keep the poster if autoplay is unavailable. */ });
-  }, [isVisible, isPageVisible, reducedMotion, videoFailed]);
+  }, [enabled, isVisible, isPageVisible, reducedMotion, videoFailed]);
 
   useEffect(() => {
     const section = rootRef.current?.closest(".deck-sheet, section");

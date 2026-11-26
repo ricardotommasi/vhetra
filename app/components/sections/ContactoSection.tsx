@@ -12,7 +12,6 @@ export async function ContactoSection() {
       <div className="section-panel-content contact-editorial-content">
         <header className="contact-editorial-header">
           <div>
-            <p className="contact-eyebrow">{t("eyebrow")}</p>
             <h2 id="contact-heading">{t("letsTalk")}<span aria-hidden="true">.</span></h2>
           </div>
         </header>

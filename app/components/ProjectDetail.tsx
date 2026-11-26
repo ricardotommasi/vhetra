@@ -12,7 +12,6 @@ const ease = [0.76, 0, 0.24, 1] as const;
 
 export default function ProjectDetail({ project, selection, onClose }: { project: Proyecto; selection: ProjectSelection; onClose: () => void }) {
   const t = useTranslations("projects");
-  const common = useTranslations("common");
   const titleId = useId();
   const dialog = useRef<HTMLDialogElement>(null);
   const scroll = useRef<HTMLDivElement>(null);
@@ -50,8 +49,8 @@ export default function ProjectDetail({ project, selection, onClose }: { project
     <dialog ref={dialog} className="project-detail-dialog" aria-labelledby={titleId} aria-modal="true"
       onCancel={(event) => { event.preventDefault(); onClose(); }}>
       <div className="project-detail-toolbar">
-        <span>VHETRA<span className="orbit-dot">®</span> / {t("orbit.eyebrow")}</span>
-        <button type="button" autoFocus onClick={onClose} aria-label={common("close")}>{t("orbit.back")} <span aria-hidden="true">↗</span></button>
+        <span>VHETRA</span>
+        <button type="button" autoFocus onClick={onClose}>{t("orbit.back")} <span aria-hidden="true">↗</span></button>
       </div>
       <div ref={scroll} className="project-detail-scroll" data-native-scroll style={{ overflowY: ready ? "auto" : "hidden" }}>
         <article className={ready ? "project-detail is-ready" : "project-detail"}>

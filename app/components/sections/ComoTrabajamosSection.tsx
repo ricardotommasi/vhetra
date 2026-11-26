@@ -26,7 +26,6 @@ export function ComoTrabajamosSection() {
     <section id="filosofia" className="snap-panel approach-section" aria-labelledby={`${id}-heading`}>
       <div className="section-panel-content approach-content">
         <header className="approach-header">
-          <p>{t("eyebrow")}</p>
           <h2 id={`${id}-heading`}>{t("title")}</h2>
         </header>
         <div className="approach-stage">
