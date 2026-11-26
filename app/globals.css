@@ -907,3 +907,46 @@ html, body { max-width: 100%; overflow-x: clip; }
 @media (max-width: 767px) {
   .orbit-stage { --orbit-radius: clamp(170px, 54cqw, 290px); --tile-width: clamp(78px, 25cqw, 120px); perspective: 1200px; }
 }
+
+/* Wide, shallow folders: budget vertical space from the viewport as well as width.
+   Keep natural overflow for longer translations and browser text zoom. */
+@media (min-width: 768px) and (max-height: 800px) and (orientation: landscape) {
+  .section-deck .deck-sheet-content > .snap-panel {
+    padding-top: 4.5rem;
+    padding-bottom: 1.25rem !important;
+  }
+  .deck-overlay-wordmark { font-size: min(36vw, 72dvh); }
+
+  #inicio .section-panel-content { padding-block: .5rem !important; }
+  #inicio .section-panel-content > div { max-width: min(80%, 64rem) !important; gap: 1rem !important; }
+  #inicio .section-panel-content > div > div > p { font-size: clamp(3.5rem, 13dvh, 7rem) !important; }
+  #inicio h1 { font-size: clamp(2rem, min(5.5cqw, 8dvh), 4rem) !important; }
+  #inicio .section-panel-content > div > p { font-size: 1rem !important; line-height: 1.5 !important; }
+  #inicio .vhetra-cta { min-height: 44px; padding-block: .55rem; font-size: 1.2rem; }
+  #inicio .vhetra-cta-arrow { font-size: 2.25rem; }
+
+  #servicios .services-grid-header h2,
+  #proyectos .orbit-heading h2,
+  #filosofia .approach-header h2 { font-size: clamp(2rem, min(6cqw, 8dvh), 4rem); }
+  .services-grid-header { margin-bottom: 1.25rem; }
+  .services-collage { aspect-ratio: auto; height: clamp(220px, 58dvh, 460px); }
+  .services-word { font-size: clamp(1.4rem, min(7.7cqw, 9dvh), 4.5rem); }
+
+  .orbit-stage { height: clamp(220px, 48dvh, 380px); --tile-width: clamp(76px, 18dvh, 130px); }
+  .orbit-footer { padding-top: .75rem; gap: 1rem; }
+
+  #filosofia.approach-section { --dial-size: clamp(280px, 68dvh, 520px); }
+  .approach-header > p { margin-bottom: .5rem; }
+  .approach-stage { height: max(240px, calc(var(--dial-size) * .72)); }
+  .approach-copy { left: 0; right: auto; width: min(56cqw, 640px); }
+  .approach-copy h3 { font-size: clamp(1.75rem, 5dvh, 2.5rem); margin-bottom: .75rem; }
+  .approach-copy p { font-size: .9rem; line-height: 1.65; }
+  .approach-marker button { font-size: clamp(2.5rem, 8dvh, 4rem); min-height: 48px; }
+
+  #contacto .contact-editorial-header h2 { font-size: clamp(3.2rem, min(12cqw, 15dvh), 7rem); }
+  .contact-editorial-header { margin-bottom: 1.25rem; }
+  .contact-eyebrow { margin-bottom: .5rem; }
+  .contact-editorial-link { min-height: 72px; padding-block: .75rem; }
+  .contact-editorial-name { font-size: clamp(1.7rem, 5dvh, 2.75rem); }
+  .contact-editorial-footer { margin-top: 1.25rem; }
+}
