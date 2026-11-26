@@ -31,17 +31,17 @@ export default async function TarjetaPage({ params }: Props) {
 
   return (
     <main className="relative flex min-h-svh items-center bg-[#EAE6DF] px-4 py-4 sm:px-8 sm:py-8">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(120,46,36,0.08),transparent_60%)]" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(163,50,36,0.08),transparent_60%)]" />
 
       <div className="tarjeta-card relative mx-auto grid w-full max-w-5xl overflow-hidden rounded-sm border border-black/10 bg-[#F8F5EF] shadow-[0_24px_80px_-24px_rgba(40,30,20,0.25)] lg:grid-cols-[1.15fr_1fr]">
         <div className="relative flex flex-col items-start p-7 sm:p-12 lg:p-14">
           <div aria-hidden="true" className="mb-9 flex items-center gap-2 sm:mb-12">
-            <span className="h-2 w-2 rounded-full bg-[#782e24]" />
-            <span className="h-px w-12 bg-[#782e24]/30" />
+            <span className="h-2 w-2 rounded-full bg-[#a33224]" />
+            <span className="h-px w-12 bg-[#a33224]/30" />
           </div>
 
           <h1 className="font-khanda text-[4.5rem] font-medium uppercase leading-[0.82] tracking-[-0.065em] text-[#191919] sm:text-[6rem]">
-            VHETRA<span className="text-[#782e24]">.</span>
+            VHETRA<span className="text-[#a33224]">.</span>
           </h1>
 
           <p className="mt-8 max-w-sm text-balance font-khanda text-4xl font-medium leading-[1.05] tracking-[-0.025em] text-[#26231F] sm:mt-10 sm:text-[2.75rem]">
@@ -54,7 +54,7 @@ export default async function TarjetaPage({ params }: Props) {
 
           <Link
             href={SITE_URL}
-            className="group mt-8 inline-flex min-h-11 items-center gap-5 border-b border-[#782e24]/30 pb-1 font-manrope text-sm font-semibold text-[#782e24] transition-colors hover:border-[#782e24] focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-[#782e24] sm:mt-10"
+            className="group mt-8 inline-flex min-h-11 items-center gap-5 border-b border-[#a33224]/30 pb-1 font-manrope text-sm font-semibold text-[#a33224] transition-colors hover:border-[#a33224] focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-[#a33224] sm:mt-10"
           >
             {t("website")}
             <span aria-hidden="true" className="text-xl motion-safe:transition-transform motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5">↗</span>
@@ -62,9 +62,9 @@ export default async function TarjetaPage({ params }: Props) {
         </div>
 
         <div className="relative flex flex-col justify-center bg-[#1D1D1B] p-6 sm:p-10 lg:p-12">
-          <div aria-hidden="true" className="pointer-events-none absolute right-0 top-0 h-56 w-56 bg-[radial-gradient(ellipse_at_top_right,rgba(120,46,36,0.22),transparent_70%)]" />
+          <div aria-hidden="true" className="pointer-events-none absolute right-0 top-0 h-56 w-56 bg-[radial-gradient(ellipse_at_top_right,rgba(163,50,36,0.22),transparent_70%)]" />
           <p className="relative mb-6 flex items-center gap-3 font-manrope text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-[#C7BFB4]">
-            <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#984e40]" />
+            <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#bc5140]" />
             {tContact("eyebrow")}
           </p>
           <div className="relative flex flex-col gap-3">
@@ -72,7 +72,7 @@ export default async function TarjetaPage({ params }: Props) {
               <Link
                 key={contacto.titleKey}
                 href={contacto.href}
-                className="group flex w-full items-center gap-3 rounded-sm border border-white/10 bg-white/[0.035] p-4 text-[#F5F0EA] transition-colors duration-200 hover:border-[#984e40]/60 hover:bg-white/[0.075] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#984e40] sm:gap-4 sm:p-5"
+                className="group flex w-full items-center gap-3 rounded-sm border border-white/10 bg-white/[0.035] p-4 text-[#F5F0EA] transition-colors duration-200 hover:border-[#bc5140]/60 hover:bg-white/[0.075] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#bc5140] sm:gap-4 sm:p-5"
               >
                 <Image
                   src={contacto.img}

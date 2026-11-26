@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :where(a, button):focus-visible {
-  outline: 2px solid #984e40;
+  outline: 2px solid #bc5140;
   outline-offset: 4px;
 }
 
@@ -31,8 +31,8 @@
 }
 
 .vhetra-modal-close:hover {
-  border-color: #782e24;
-  background: #782e24;
+  border-color: #a33224;
+  background: #a33224;
   color: #fff;
 }
 
@@ -55,8 +55,8 @@
 }
 
 .vhetra-modal-cta:hover {
-  border-color: #782e24;
-  background: #782e24;
+  border-color: #a33224;
+  background: #a33224;
   color: #fff;
 }
 
@@ -84,10 +84,10 @@
   --color-tiza: #f5f0ea;
   --color-card: rgba(1, 1, 1, 0.8);
   --color-azulo: #010101;
-  --color-card-destacada: rgba(120, 46, 36, 0.7);
+  --color-card-destacada: rgba(163, 50, 36, 0.7);
   --color-card-grande: rgba(1, 1, 1);
   --color-card-grande-transparente: rgba(1, 1, 1, 0.93);
-  --color-accent: rgba(120, 46, 36, 1);
+  --color-accent: rgba(163, 50, 36, 1);
 }
 
 html {
@@ -160,7 +160,7 @@ body {
 .philosophy-section-background {
   background-color: #171717;
   background-image:
-    radial-gradient(circle at top right, rgba(120, 46, 36, 0.18), transparent 35%),
+    radial-gradient(circle at top right, rgba(163, 50, 36, 0.18), transparent 35%),
     linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent 38%),
     linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
 }
@@ -712,9 +712,9 @@ body {
 .contact-editorial-name { width: fit-content; font: 300 clamp(2.2rem, 4.1vw, 4rem)/.95 var(--font-khand), "Arial Narrow", sans-serif; letter-spacing: -.035em; transition: transform 300ms ease, color 300ms ease; }
 .contact-editorial-description { color: #888; font: 400 .8rem/1.65 var(--font-manrope-local), sans-serif; transition: color 300ms ease; }
 .contact-editorial-arrow { justify-self: end; color: #aaa; font: 300 clamp(1.5rem, 2.5vw, 2.2rem)/1 var(--font-manrope-local), sans-serif; transition: transform 300ms ease, color 300ms ease; }
-.contact-editorial-link:hover .contact-editorial-name { transform: translateX(8px); color: #782e24; }
+.contact-editorial-link:hover .contact-editorial-name { transform: translateX(8px); color: #a33224; }
 .contact-editorial-link:hover .contact-editorial-description { color: #444; }
-.contact-editorial-link:hover .contact-editorial-arrow { transform: translate(3px, -3px); color: #782e24; }
+.contact-editorial-link:hover .contact-editorial-arrow { transform: translate(3px, -3px); color: #a33224; }
 .contact-editorial-link:focus-visible { outline: 1px solid #aaa; outline-offset: -3px; }
 .contact-editorial-footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: clamp(2rem, 5vh, 4rem); color: #717171; }
 .contact-editorial-footer > span:first-child { font: 300 clamp(1.5rem, 2.5vw, 2.25rem)/1 var(--font-khand), "Arial Narrow", sans-serif; letter-spacing: -.035em; }
@@ -731,7 +731,7 @@ body {
 }
 
 .contact-watermark { position: absolute; z-index: 2; right: clamp(1.25rem, 5vw, 6rem); bottom: 2rem; pointer-events: none; user-select: none; font-family: var(--font-khand), "Arial Narrow", sans-serif; font-size: clamp(13rem, 24vw, 24rem); font-weight: 300; line-height: 1; letter-spacing: -.12em; color: #000; opacity: .56; }
-.contact-watermark > span { color: #782e24; }
+.contact-watermark > span { color: #a33224; }
 @media (max-width: 1023px) { .contact-watermark { display: none; } }
 /* Each section is a physical sheet with its own projecting index tab. */
 .section-deck.snap-page { --ear: 60px; --nav-clearance: 0rem; height: 100dvh; overflow: hidden; background: #d8d8d4; isolation: isolate; }
@@ -762,10 +762,10 @@ body {
 .deck-sheet-content > .snap-panel { background-color: var(--paper) !important; min-height: calc(100dvh - 20px); padding-top: 5rem; }
 .deck-tab { position: absolute; z-index: 2; top: var(--tab-top); right: 0; width: var(--ear); height: var(--tab-height); border: 0; padding: 0; background: transparent; color: inherit; cursor: pointer; }
 .deck-tab-label { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); writing-mode: vertical-rl; text-transform: uppercase; font: 400 clamp(.65rem, 2.4dvh, 1.4rem)/1 var(--font-khand), sans-serif; letter-spacing: .02em; }
-.deck-tab:hover .deck-tab-label { color: #873b30; }
-.deck-tab[aria-current] .deck-tab-label { text-decoration: underline; text-decoration-color: #782e24; text-underline-offset: 6px; }
+.deck-tab:hover .deck-tab-label { color: #b33e2e; }
+.deck-tab[aria-current] .deck-tab-label { text-decoration: underline; text-decoration-color: #a33224; text-underline-offset: 6px; }
 .deck-tab:focus-visible { outline: none; }
-.deck-tab:focus-visible .deck-tab-label { outline: 2px solid #782e24; outline-offset: 5px; }
+.deck-tab:focus-visible .deck-tab-label { outline: 2px solid #a33224; outline-offset: 5px; }
 .deck-tab { container-type: size; }
 .deck-tab .deck-tab-label {
   right: 50%;
@@ -901,7 +901,7 @@ html, body { max-width: 100%; overflow-x: clip; }
 .service-grid-modal-scroll {
   direction: rtl;
   scrollbar-width: thin;
-  scrollbar-color: #782e24 var(--scroll-track, var(--paper, #101010));
+  scrollbar-color: #a33224 var(--scroll-track, var(--paper, #101010));
 }
 .deck-sheet-content > *,
 .project-detail-scroll > *,
@@ -910,8 +910,8 @@ html, body { max-width: 100%; overflow-x: clip; }
 .service-grid-modal-scroll { --scroll-track: #101010; }
 :is(.deck-sheet-content, .project-detail-scroll, .service-grid-modal-scroll)::-webkit-scrollbar { width: 8px; }
 :is(.deck-sheet-content, .project-detail-scroll, .service-grid-modal-scroll)::-webkit-scrollbar-track { background: var(--scroll-track, var(--paper, #101010)); }
-:is(.deck-sheet-content, .project-detail-scroll, .service-grid-modal-scroll)::-webkit-scrollbar-thumb { background: #782e24; border-radius: 8px; border: 2px solid var(--scroll-track, var(--paper, #101010)); }
-:is(.deck-sheet-content, .project-detail-scroll, .service-grid-modal-scroll)::-webkit-scrollbar-thumb:hover { background: #984e40; }
+:is(.deck-sheet-content, .project-detail-scroll, .service-grid-modal-scroll)::-webkit-scrollbar-thumb { background: #a33224; border-radius: 8px; border: 2px solid var(--scroll-track, var(--paper, #101010)); }
+:is(.deck-sheet-content, .project-detail-scroll, .service-grid-modal-scroll)::-webkit-scrollbar-thumb:hover { background: #bc5140; }
 
 /* Give mobile project cards more space along the same circular orbit. */
 @media (max-width: 767px) {
