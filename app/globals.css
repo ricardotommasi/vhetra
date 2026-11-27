@@ -750,9 +750,11 @@ body {
 .deck-sheet { pointer-events: none; --paper: #fff; --ink: #171717; --tab-height: 18.5%; --tab-top: calc(1.5% + var(--sheet-index) * 19.5%); position: absolute; top: 10px; bottom: 10px; left: calc(var(--sheet-index) * 18%); right: 14px; color: var(--ink); z-index: calc(10 - var(--sheet-depth)); filter: drop-shadow(2px 0 3px #00000024); transition: left 800ms cubic-bezier(.76,0,.24,1), right 800ms cubic-bezier(.76,0,.24,1); }
 .deck-sheet.is-dark { --paper: #101010; --ink: #fafaf8; }
 .is-open .deck-sheet { left: 8px; right: calc(14px + (4 - var(--sheet-depth)) * 6px); }
-.deck-folder-surface { pointer-events: auto; position: absolute; inset: 0; --body-edge: calc(100% - var(--ear)); background: var(--paper); border-radius: 8px; overflow: hidden; clip-path: shape(
+.deck-folder-surface { pointer-events: auto; position: absolute; inset: 0; --corner-radius: 4px; --body-edge: calc(100% - var(--ear)); background: var(--paper); border-radius: 8px; overflow: hidden; clip-path: shape(
     from 0 0,
-    line to var(--body-edge) 0,
+    line to calc(var(--body-edge) - var(--corner-radius)) 0,
+    curve to var(--body-edge) var(--corner-radius)
+      with var(--body-edge) 0,
     line to var(--body-edge) var(--tab-top),
     line to calc(100% - 6px) var(--tab-top),
     curve to 100% calc(var(--tab-top) + 6px)
@@ -761,8 +763,11 @@ body {
     curve to calc(100% - 4px) calc(var(--tab-top) + var(--tab-height) * .72 + 2px)
       with 100% calc(var(--tab-top) + var(--tab-height) * .72),
     line to var(--body-edge) calc(var(--tab-top) + var(--tab-height)),
-    line to var(--body-edge) 100%,
+    line to var(--body-edge) calc(100% - var(--corner-radius)),
+    curve to calc(var(--body-edge) - var(--corner-radius)) 100%
+      with var(--body-edge) 100%,
     line to 0 100%, close); }
+.is-overview .deck-folder-surface { --corner-radius: 0px; border-radius: 0; }
 .deck-folder-surface::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .018; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23888' filter='url(%23n)' d='M0 0h180v180H0z'/%3E%3C/svg%3E"); }
 .deck-sheet-content { position: relative; width: calc(100% - var(--ear)); height: 100%; overflow-y: auto; overflow-x: hidden; opacity: 0; visibility: hidden; transition: opacity 220ms, visibility 220ms; scrollbar-width: thin; }
 .is-open .is-active .deck-sheet-content { opacity: 1; visibility: visible; transition: opacity 400ms 300ms, visibility 0ms; }
@@ -811,26 +816,27 @@ body {
   place-items: center;
   width: 44px;
   height: 44px;
-  border: 1px solid #d6d6d6;
-  border-radius: 50%;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   color: #171717;
   cursor: pointer;
-  transition: color 160ms ease, border-color 160ms ease, background-color 160ms ease;
+  transition: color 160ms ease;
 }
 .orbit-controls svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
-.orbit-controls button[aria-pressed="true"] { color: #a33224; border-color: currentColor; }
 .orbit-controls button:disabled { opacity: .35; cursor: default; }
 .orbit-caption > span { font-variant-numeric: tabular-nums; }
 @media (hover: hover) and (pointer: fine) {
-  .orbit-controls button:hover:not(:disabled) { background: #a33224; border-color: #a33224; color: #fff; }
+  .orbit-controls button:hover:not(:disabled) { color: #a33224; }
   .deck-tab:hover::before { transform: scaleY(1); }
   .services-word:hover .services-word-arrow { color: #bc5140; }
 }
 @media (max-width: 767px) {
   .orbit-heading > p { max-width: 30rem; font-size: .75rem; }
-  .orbit-footer { grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
-  .orbit-instructions { grid-column: 1 / -1; }
-  .orbit-caption { text-align: left; }
+  .orbit-footer { grid-template-columns: minmax(0, 1fr); align-items: center; text-align: center; }
+  .orbit-controls { grid-column: 1; grid-row: 1; justify-self: center; gap: .75rem; }
+  .orbit-caption { grid-column: 1; grid-row: 2; text-align: center; }
+  .orbit-instructions { grid-column: 1; grid-row: 3; }
 }
 @media (prefers-reduced-motion: reduce) {
   .deck-tab::before { transition: none; }
@@ -959,6 +965,7 @@ html, body { max-width: 100%; overflow-x: clip; }
 .deck-sheet-content,
 .project-detail-scroll,
 .service-grid-modal-scroll {
+  scrollbar-gutter: stable;
   direction: rtl;
   scrollbar-width: thin;
   scrollbar-color: #a33224 var(--scroll-track, var(--paper, #101010));
@@ -973,9 +980,33 @@ html, body { max-width: 100%; overflow-x: clip; }
 :is(.deck-sheet-content, .project-detail-scroll, .service-grid-modal-scroll)::-webkit-scrollbar-thumb { background: #a33224; border-radius: 8px; border: 2px solid var(--scroll-track, var(--paper, #101010)); }
 :is(.deck-sheet-content, .project-detail-scroll, .service-grid-modal-scroll)::-webkit-scrollbar-thumb:hover { background: #bc5140; }
 
-/* Give mobile project cards more space along the same circular orbit. */
+/* Raise the original orbit to leave room below the foreground images. */
+.orbit-axis { top: 36%; }
 @media (max-width: 767px) {
   .orbit-stage { --orbit-radius: clamp(170px, 54cqw, 290px); --tile-width: clamp(78px, 25cqw, 120px); perspective: 1200px; }
+}
+
+/* Services keep their collage proportions within the folder's available height. */
+.section-deck .deck-sheet-content > #servicios {
+  --services-top: clamp(4.5rem, 8dvh, 6rem);
+  --services-bottom: clamp(1rem, 4dvh, 2.5rem);
+  --services-title: clamp(2rem, min(8cqw, 11dvh), 7rem);
+  --services-gap: clamp(.75rem, 2.5dvh, 1.75rem);
+  --services-collage-height: calc(100dvh - 20px - var(--services-top) - var(--services-bottom) - var(--services-title) * .9 - var(--services-gap));
+  padding-top: var(--services-top);
+  padding-bottom: var(--services-bottom) !important;
+}
+#servicios .services-grid-content {
+  max-width: min(1200px, calc(var(--services-collage-height) * 1.6));
+}
+#servicios .services-grid-header { margin-bottom: var(--services-gap); }
+#servicios .services-grid-header h2 { font-size: var(--services-title); }
+#servicios .services-collage { width: 100%; height: auto; aspect-ratio: 16 / 10; }
+#servicios .services-word { font-size: clamp(1rem, 7.7cqw, 6rem); }
+@media (max-width: 767px) {
+  #servicios .services-grid-content { max-width: min(100%, calc(var(--services-collage-height) * 8 / 11)); }
+  #servicios .services-collage { aspect-ratio: 8 / 11; }
+  #servicios .services-word { font-size: clamp(.85rem, 9cqw, 3.25rem); }
 }
 
 /* Wide, shallow folders: budget vertical space from the viewport as well as width.
