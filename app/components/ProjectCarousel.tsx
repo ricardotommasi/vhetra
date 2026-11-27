@@ -179,7 +179,13 @@ export function ProjectCarousel({ projects, onSelect, paused }: { projects: Proy
           redraw.current();
         }}
         onPointerCancel={() => { interaction.current.down = false; interaction.current.distance = 20; targetAngle.current = interaction.current.originAngle; redraw.current(); }}
-        onLostPointerCapture={() => { interaction.current.down = false; redraw.current(); }}
+        onLostPointerCapture={(event) => {
+          // A card loses its implicit touch capture when the stage takes over.
+          // Ignore that bubbling event so the active drag can continue.
+          if (event.target !== event.currentTarget || event.pointerId !== interaction.current.pointer) return;
+          interaction.current.down = false;
+          redraw.current();
+        }}
       >
         <div ref={axis} className="orbit-axis"><div ref={ring} className="orbit-ring">
           {tiles.map((project, index) => (
