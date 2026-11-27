@@ -131,4 +131,4 @@ ejecuta las verificaciones en pushes y pull requests.
 
 ## Licencia
 
-Proyecto privado de Vhetra..
+Proyecto privado de Vhetra...

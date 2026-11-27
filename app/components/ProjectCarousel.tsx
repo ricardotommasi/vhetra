@@ -27,7 +27,6 @@ export function ProjectCarousel({ projects, onSelect, paused }: { projects: Proy
   const camera = useRef({ x: 0, y: 0, targetX: 0, targetY: 0 });
   const interaction = useRef({ focus: false, hover: false, visible: false, down: false, pointer: -1, x: 0, y: 0, originX: 0, originAngle: 0, distance: 0 });
   const [active, setActive] = useState(0);
-  const [stopped, setStopped] = useState(false);
   const [announcement, setAnnouncement] = useState("");
   const mobile = useSyncExternalStore(subscribeMobile, () => window.matchMedia(mobileQuery).matches, () => false);
   const copies = mobile || !projects.length ? 1 : Math.max(1, Math.ceil(20 / projects.length));
@@ -67,12 +66,12 @@ export function ProjectCarousel({ projects, onSelect, paused }: { projects: Proy
         const view = camera.current;
         // Match the reference's camera parallax with frame-rate independent easing.
         const smoothing = 1 - Math.exp(-delta / 180);
-        const targetX = reduce.matches || state.focus || stopped ? 0 : view.targetX;
-        const targetY = reduce.matches || state.focus || stopped ? 0 : view.targetY;
+        const targetX = reduce.matches || state.focus ? 0 : view.targetX;
+        const targetY = reduce.matches || state.focus ? 0 : view.targetY;
         view.x += (targetX - view.x) * smoothing;
         view.y += (targetY - view.y) * smoothing;
         axis.current?.style.setProperty("transform", `translate3d(${-view.x * 32}px, ${-view.y * 20}px, 0) rotateX(${-10 + view.y * 16}deg) rotateY(${-view.x * 18}deg)`);
-        const rotating = !reduce.matches && !stopped && !state.focus && !state.hover && !state.down;
+        const rotating = !reduce.matches && !state.focus && !state.hover && !state.down;
         if (rotating) targetAngle.current -= delta * 0.006;
         angle.current = reduce.matches || state.down ? targetAngle.current : angle.current + (targetAngle.current - angle.current) * (1 - Math.exp(-delta / 110));
         if (ring.current) ring.current.style.transform = `rotateY(${angle.current}deg)`;
@@ -104,7 +103,7 @@ export function ProjectCarousel({ projects, onSelect, paused }: { projects: Proy
       section.removeEventListener("pointermove", trackCursor);
       section.removeEventListener("pointerleave", resetCursor);
     };
-  }, [paused, stopped, tiles.length]);
+  }, [paused, tiles.length]);
 
   function move(direction: number) {
     if (projects.length < 2) return;
@@ -216,7 +215,6 @@ export function ProjectCarousel({ projects, onSelect, paused }: { projects: Proy
         <p className="orbit-caption"><strong>{projects[active].miniTitulo}</strong></p>
         <div className="orbit-controls">
           <button type="button" aria-label={t("previous")} aria-controls={id} onClick={() => move(-1)} disabled={projects.length < 2}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6M8 12h13" /></svg></button>
-          <button type="button" aria-label={t(stopped ? "orbit.play" : "orbit.pause")} aria-pressed={stopped} onClick={() => setStopped(!stopped)}><svg viewBox="0 0 24 24" aria-hidden="true">{stopped ? <path d="m9 5 10 7-10 7Z" /> : <path d="M8 5v14M16 5v14" />}</svg></button>
           <button type="button" aria-label={t("next")} aria-controls={id} onClick={() => move(1)} disabled={projects.length < 2}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6 6 6-6 6M3 12h13" /></svg></button>
         </div>
       </footer>
