@@ -49,8 +49,8 @@ export default function ProjectDetail({ project, selection, onClose }: { project
     <dialog ref={dialog} className="project-detail-dialog" aria-labelledby={titleId} aria-modal="true"
       onCancel={(event) => { event.preventDefault(); onClose(); }}>
       <div className="project-detail-toolbar">
+        <button type="button" autoFocus onClick={onClose}><span aria-hidden="true">←</span> {t("orbit.back")}</button>
         <span>VHETRA</span>
-        <button type="button" autoFocus onClick={onClose}>{t("orbit.back")} <span aria-hidden="true">↗</span></button>
       </div>
       <div ref={scroll} className="project-detail-scroll" data-native-scroll style={{ overflowY: ready ? "auto" : "hidden" }}>
         <article className={ready ? "project-detail is-ready" : "project-detail"}>
@@ -69,7 +69,7 @@ export default function ProjectDetail({ project, selection, onClose }: { project
             </div>
           </div>
           <div className="project-detail-story">
-            <span className="orbit-eyebrow">01 / {t("orbit.about")}</span>
+            <span className="orbit-eyebrow">{t("orbit.about")}</span>
             <div>
               {project.descripcionCompleta.length > 0 ? <>
                 <motion.h3 initial={{ opacity: 0, y: 35 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ root: scroll, once: true, amount: 0.25 }} transition={{ duration: reduce ? 0 : 0.8 }}>{project.titulo}</motion.h3>
@@ -79,7 +79,7 @@ export default function ProjectDetail({ project, selection, onClose }: { project
               {project.webUrl && <a className="project-detail-visit" href={project.webUrl} target="_blank" rel="noopener noreferrer">{t("visitWeb")} <span aria-hidden="true">↗</span></a>}
             </div>
           </div>
-          <footer className="project-detail-end"><span>VHETRA®</span><button type="button" onClick={onClose}>{t("orbit.back")} ↗</button></footer>
+          <footer className="project-detail-end"><button type="button" onClick={onClose}><span aria-hidden="true">←</span> {t("orbit.back")}</button><span>VHETRA®</span></footer>
         </article>
       </div>
       <div ref={flyingImage} className="project-flying-image" aria-hidden="true" style={{ left: selection.rect.x, top: selection.rect.y, width: selection.rect.width, height: selection.rect.height, visibility: ready ? "hidden" : "visible" }}>

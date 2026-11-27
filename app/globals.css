@@ -509,8 +509,8 @@ body {
 .project-detail-dialog { position: fixed; inset: 0; width: 100%; height: 100dvh; max-width: none; max-height: none; margin: 0; border: 0; padding: 0; color: #161616; background: transparent; overflow: hidden; font-family: var(--font-manrope-local), sans-serif; }
 .project-detail-dialog::backdrop { background: transparent; }
 .project-detail-toolbar { position: absolute; z-index: 3; left: 0; top: 0; width: 100%; min-height: 72px; padding: 1.5rem clamp(1.25rem, 3vw, 4rem); display: flex; align-items: center; justify-content: space-between; font-size: .65rem; text-transform: uppercase; background: #fff; border-bottom: 1px solid #eee; }
-.project-detail-toolbar button, .project-detail-end button { cursor: pointer; padding: .5rem 0 .5rem 1rem; }
-.project-detail-toolbar button > span { margin-left: 1rem; font-size: 1rem; }
+.project-detail-toolbar button, .project-detail-end button { cursor: pointer; padding: .5rem 1rem .5rem 0; }
+.project-detail-toolbar button > span, .project-detail-end button > span { margin-right: 1rem; font-size: 1rem; }
 .orbit-dot { font-size: .6em; vertical-align: super; }
 .project-detail-scroll { height: 100%; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #aaa #fff; padding-top: 80px; }
 .project-detail { padding: 0 clamp(1.25rem, 3vw, 4rem); }

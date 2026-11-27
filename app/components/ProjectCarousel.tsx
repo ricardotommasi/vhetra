@@ -207,7 +207,7 @@ export function ProjectCarousel({ projects, onSelect, paused }: { projects: Proy
       </div>
       <footer className="orbit-footer">
         <p className="orbit-instructions">{t("orbit.drag")}<br /><span>{t("orbit.click")}</span></p>
-        <p className="orbit-caption"><span>{String(active + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}</span><strong>{projects[active].miniTitulo}</strong></p>
+        <p className="orbit-caption"><strong>{projects[active].miniTitulo}</strong></p>
         <div className="orbit-controls">
           <button type="button" aria-label={t("previous")} aria-controls={id} onClick={() => move(-1)} disabled={projects.length < 2}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6M8 12h13" /></svg></button>
           <button type="button" aria-label={t(stopped ? "orbit.play" : "orbit.pause")} aria-pressed={stopped} onClick={() => setStopped(!stopped)}><svg viewBox="0 0 24 24" aria-hidden="true">{stopped ? <path d="m9 5 10 7-10 7Z" /> : <path d="M8 5v14M16 5v14" />}</svg></button>
