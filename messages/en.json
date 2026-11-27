@@ -131,6 +131,15 @@
     "visitInstagram": "View Instagram",
     "technologiesLabel": "Built with",
     "whatsappMessage": "Hi! I’d like to talk about a project with Vhetra.",
+    "pancho": {
+      "miniTitulo": "Las Tortas de Pancho",
+      "miniDescripcion": "Online menu + admin panel",
+      "titulo": "An online menu full of Las Tortas de Pancho’s personality.",
+      "descripcionP1": "We developed an online menu for Las Tortas de Pancho, a torta sandwich shop in Puerto Escondido, Mexico.",
+      "descripcionP2": "We aimed for a cartoon aesthetic with a playful visual identity that reflects the shop’s style and personality.",
+      "descripcionP3": "Animation takes center stage, adding movement and a playful rhythm to the browsing experience and bringing the shop’s energy online.",
+      "descripcionP4": "The result pairs menu browsing with an expressive visual experience designed to convey the character of Las Tortas de Pancho at first glance. The project also includes an admin panel to manage the online menu content."
+    },
     "acrodata": {
       "miniTitulo": "Acrodata",
       "titulo": "A digital experience designed for movement.",
@@ -143,12 +152,12 @@
     },
     "estacionAlemania": {
       "miniTitulo": "Estación Alemania",
-      "miniDescripcion": "Digital menu and destination guide",
+      "miniDescripcion": "Online menu + admin panel",
       "titulo": "A digital experience for discovering the history and flavors of Estación Alemania.",
       "descripcionP1": "We developed a digital menu that allows visitors to explore the venue's food and drink offering quickly, clearly, and intuitively from any device.",
       "descripcionP2": "The site was structured around a seamless user experience, making the full menu easy to browse in both Spanish and English—especially helpful for tourists and local visitors alike. Direct links to social media, contact information, and directions make it easy to connect with and find the venue.",
       "descripcionP3": "Alongside the digital menu, the platform shares the story of the former railway station and the Interpretation Center housed in the same space. The content is organized clearly and accessibly without getting in the way of the browsing experience.",
-      "descripcionP4": "The result is an easy-to-manage digital tool, optimized for mobile and designed to make every visit to the venue smoother.",
+      "descripcionP4": "The result is an easy-to-manage digital tool, optimized for mobile and designed to make every visit to the venue smoother. The project also includes an admin panel to manage the online menu content.",
       "technologies": ""
     },
     "laboragro": {
@@ -171,12 +180,12 @@
     },
     "flavia": {
       "miniTitulo": "Flavia",
-      "miniDescripcion": "Digital menu experience",
-      "titulo": "A modern digital menu built for simplicity and quick access.",
-      "descripcionP1": "We developed a modern digital menu focused on simplicity, quick access, and a clean browsing experience from any device.",
-      "descripcionP2": "The project was designed around a clear client requirement: remove unnecessary elements and prioritize only the essential information. The interface uses a minimalist, intuitive structure that lets users explore the menu naturally, without distractions or visual overload, making it comfortable to read on both mobile and desktop devices.",
-      "descripcionP3": "To add identity without compromising the overall simplicity, we incorporated a 3D animation created in Blender and integrated it subtly into the experience. This element brings personality to the site while preserving the clean, elegant aesthetic that guided the entire project.",
-      "descripcionP4": "The result is a responsive, fast, and visually balanced platform where design and functionality work together to highlight the food offering clearly and directly."
+      "miniDescripcion": "Online menu + admin panel",
+      "titulo": "An online menu full of Flavia’s personality and visual identity.",
+      "descripcionP1": "We developed an online menu for Flavia, a pizzeria in Mexico with a distinctive vibe and a visual identity of its own.",
+      "descripcionP2": "The concept brings the venue’s style online: a menu that presents its food while conveying the brand’s personality at first glance.",
+      "descripcionP3": "The design puts visual identity at the forefront, creating a menu browsing experience that reflects the pizzeria’s character.",
+      "descripcionP4": "The result is an online menu that connects the food with Flavia’s visual world, making the menu an extension of the venue. The project also includes an admin panel to manage the online menu content."
     },
     "loza": {
       "miniTitulo": "Loza",
@@ -187,6 +196,42 @@
       "descripcionP3": "Beyond the public-facing experience, we developed an admin dashboard that allows products, orders, content, and users to be managed without technical knowledge, giving the studio autonomy and flexibility to keep the platform up to date.",
       "descripcionP4": "The online store is integrated with Mercado Pago to process payments securely, while user authentication and the database support advanced features and efficient management of all site information.",
       "technologies": ""
+    },
+    "pascal": {
+      "miniTitulo": "Pascal",
+      "miniDescripcion": "Online menu + admin panel",
+      "titulo": "An online menu that reflects Pascal’s understated, minimalist character.",
+      "descripcionP1": "We developed an online menu for Pascal, a bar in Mexico whose understated, minimalist identity carries through to its digital presence.",
+      "descripcionP2": "The visual concept draws on that personality: a clean, restrained composition that puts the menu at the center of the experience and gives every element a purpose.",
+      "descripcionP3": "The design prioritizes readability and an organized presentation of the bar’s offering. Visual simplicity supports menu browsing while conveying Pascal’s style.",
+      "descripcionP4": "The result is an online menu that acts as an extension of the venue: understated, clear and consistent with its identity. The project also includes an admin panel to manage the online menu content."
+    },
+    "flaviaPascal": {
+      "miniTitulo": "Flavia & Pascal",
+      "miniDescripcion": "Online menu + admin panel",
+      "titulo": "Two bars, two identities, one shared digital starting point.",
+      "descripcionP1": "We developed an online menu project for Flavia and Pascal that brings both bars together on one home screen. From this shared space, visitors can choose which menu to explore.",
+      "descripcionP2": "The concept starts with one idea: every place has its own rhythm. A record player and two vinyl records, one for each bar, turn menu selection into a playful interaction: tap a record or drag it onto the turntable to open its menu.",
+      "descripcionP3": "Illustration, animation and sound give the home screen its personality. Music provides a common thread between the two bars while preserving each one’s identity.",
+      "descripcionP4": "The result is a shared entry point that organizes access to both menus and turns an everyday action, browsing a menu, into an experience with the character of Flavia and Pascal. The project also includes an admin panel to manage the online menu content."
+    },
+    "kim": {
+      "miniTitulo": "KIM",
+      "miniDescripcion": "Landing page + admin panel",
+      "titulo": "A website to discover how KIM builds and take the first step toward your project.",
+      "descripcionP1": "We developed a landing page with an admin panel for KIM, a construction company in Cafayate, to showcase its work and make it easier for prospective clients to get in touch.",
+      "descripcionP2": "The site organizes information about the company’s construction processes so visitors can understand how the team works and the stages involved in developing a project.",
+      "descripcionP3": "A showcase of previous work lets visitors explore completed projects and discover the company’s experience. Contact links support this journey and make it easy to start a conversation with the team.",
+      "descripcionP4": "The admin panel allows the team to manage site content and keep its digital presence up to date. The result brings information, past projects and contact options together on one landing page."
+    },
+    "kiwe": {
+      "miniTitulo": "KIWÉ",
+      "miniDescripcion": "Architecture, landscape and interior design landing page",
+      "titulo": "A digital presence that expresses an organic, respectful approach to design.",
+      "descripcionP1": "We developed a landing page for KIWÉ showcasing architecture, landscape and interior design projects. The site lets visitors explore previous work and discover the architect’s creative world.",
+      "descripcionP2": "Beyond presenting projects, the website introduces the professional behind them, sharing her design vision and working process before visitors start a conversation.",
+      "descripcionP3": "The visual direction aims to express that organic, respectful perspective: an approach to design in dialogue with its surroundings, spaces and the people who inhabit them. The presentation supports the projects and gives them room to tell their own stories.",
+      "descripcionP4": "The result brings portfolio, identity and contact together in one digital space, helping visitors who connect with her approach reach out to the architect and take the first step toward a shared project."
     },
     "filiSuites": {
       "miniTitulo": "Fili Suites",

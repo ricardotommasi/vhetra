@@ -131,6 +131,15 @@
     "visitInstagram": "Visitar instagram",
     "technologiesLabel": "Tecnologias utilizadas",
     "whatsappMessage": "Hola! Me gustaría empezar mi proyecto con Vhetra.",
+    "pancho": {
+      "miniTitulo": "Las Tortas de Pancho",
+      "miniDescripcion": "Menú online + panel de administración",
+      "titulo": "Un menú online con toda la personalidad de Las Tortas de Pancho.",
+      "descripcionP1": "Desarrollamos un menú online para Las Tortas de Pancho, una tienda de tortas en Puerto Escondido, México.",
+      "descripcionP2": "Buscamos una estética caricaturesca, con una identidad visual divertida que reflejara el estilo y la personalidad del local.",
+      "descripcionP3": "Las animaciones tienen un papel protagonista: aportan movimiento y un tono lúdico al recorrido, llevando la energía del local a la experiencia digital.",
+      "descripcionP4": "La propuesta combina la consulta del menú con una experiencia visual expresiva, pensada para transmitir el carácter de Las Tortas de Pancho desde el primer vistazo. El proyecto también incluye un panel de administración para gestionar el contenido del menú online."
+    },
     "acrodata": {
       "miniTitulo": "Acrodata web",
       "titulo": "Una experiencia digital pensada para acompañar el movimiento.",
@@ -143,12 +152,12 @@
     },
     "estacionAlemania": {
       "miniTitulo": "Estación Alemania",
-      "miniDescripcion": "Carta online + web informativa",
+      "miniDescripcion": "Menú online + panel de administración",
       "titulo": "Una experiencia digital para descubrir la historia y los sabores de Estación Alemania.",
       "descripcionP1": "Desarrollamos un menú digital diseñado para que los visitantes puedan explorar la propuesta gastronómica del lugar de forma rápida, clara e intuitiva desde cualquier dispositivo.",
       "descripcionP2": "La estructura del sitio fue pensada para optimizar la experiencia de usuario, permitiendo acceder fácilmente al menú completo en español e inglés, una funcionalidad especialmente útil para recibir tanto a turistas como a visitantes locales. Además, se incorporaron accesos directos a redes sociales, opciones de contacto y ubicación para facilitar la interacción y la llegada al establecimiento.",
       "descripcionP3": "Como complemento al menú digital, la plataforma integra contenido informativo sobre la historia de la antigua estación ferroviaria y el Centro de Interpretación que funciona en el mismo espacio, organizando la información de manera clara y accesible sin afectar la experiencia de navegación.",
-      "descripcionP4": "El resultado es una herramienta digital simple de administrar, optimizada para dispositivos móviles y pensada para mejorar la experiencia de quienes visitan el lugar.",
+      "descripcionP4": "El resultado es una herramienta digital simple de administrar, optimizada para dispositivos móviles y pensada para mejorar la experiencia de quienes visitan el lugar. El proyecto también incluye un panel de administración para gestionar el contenido del menú online.",
       "technologies": ""
     },
     "laboragro": {
@@ -171,12 +180,12 @@
     },
     "flavia": {
       "miniTitulo": "Flavia",
-      "miniDescripcion": "Menú digital",
-      "titulo": "Un menú digital moderno, simple y rápido de consultar.",
-      "descripcionP1": "Desarrollamos un menú digital moderno enfocado en la simplicidad, la rapidez de acceso y una experiencia de navegación limpia desde cualquier dispositivo.",
-      "descripcionP2": "El proyecto fue diseñado siguiendo una premisa clara del cliente: eliminar elementos innecesarios y priorizar únicamente la información esencial. La interfaz presenta una estructura minimalista e intuitiva que permite explorar la carta de forma natural, sin distracciones ni sobrecarga visual, facilitando una lectura cómoda tanto en dispositivos móviles como en computadoras.",
-      "descripcionP3": "Para aportar identidad sin comprometer la simplicidad del conjunto, se incorporó una animación 3D desarrollada en Blender, integrada de manera sutil dentro de la experiencia. Este recurso aporta personalidad al sitio manteniendo la estética limpia y elegante que guiaba todo el proyecto.",
-      "descripcionP4": "El resultado es una plataforma responsive, rápida y visualmente equilibrada, donde diseño y funcionalidad trabajan juntos para destacar la propuesta gastronómica de forma clara y directa."
+      "miniDescripcion": "Menú online + panel de administración",
+      "titulo": "Un menú online con toda la onda y la identidad de Flavia.",
+      "descripcionP1": "Desarrollamos un menú online para Flavia, una pizzería de México con mucha onda y una identidad visual propia.",
+      "descripcionP2": "La propuesta busca llevar el estilo del local a lo digital: una carta que, además de presentar su oferta gastronómica, transmita la personalidad de la marca desde el primer vistazo.",
+      "descripcionP3": "El diseño pone la identidad visual en primer plano y acompaña la consulta del menú con una experiencia que refleja el carácter de la pizzería.",
+      "descripcionP4": "El resultado es un menú online que conecta la propuesta gastronómica con el universo visual de Flavia y convierte la carta en una extensión del local. El proyecto también incluye un panel de administración para gestionar el contenido del menú online."
     },
     "loza": {
       "miniTitulo": "Loza",
@@ -187,6 +196,42 @@
       "descripcionP3": "Además de la experiencia pública, se desarrolló un panel de administración que permite gestionar productos, pedidos, contenidos y usuarios sin necesidad de conocimientos técnicos, brindando autonomía y flexibilidad para mantener la plataforma actualizada.",
       "descripcionP4": "La tienda online se encuentra integrada con Mercado Pago para procesar pagos de forma segura, mientras que la autenticación de usuarios y la base de datos permiten ofrecer funcionalidades avanzadas y una gestión eficiente de toda la información del sitio.",
       "technologies": ""
+    },
+    "pascal": {
+      "miniTitulo": "Pascal",
+      "miniDescripcion": "Menú online + panel de administración",
+      "titulo": "Un menú online que refleja el carácter sobrio y minimalista de Pascal.",
+      "descripcionP1": "Desarrollamos un menú online para Pascal, un bar de México con una identidad sobria y minimalista que se traslada a su presencia digital.",
+      "descripcionP2": "La propuesta visual parte de esa personalidad: una composición limpia y contenida, donde la carta ocupa el centro de la experiencia y cada elemento tiene un propósito.",
+      "descripcionP3": "El diseño prioriza la lectura y una presentación ordenada de la oferta del bar. La sencillez visual acompaña la consulta del menú y transmite el estilo de Pascal.",
+      "descripcionP4": "El resultado es una carta online que funciona como una extensión del local: discreta, clara y coherente con su identidad. El proyecto también incluye un panel de administración para gestionar el contenido del menú online."
+    },
+    "flaviaPascal": {
+      "miniTitulo": "Flavia & Pascal",
+      "miniDescripcion": "Menú online + panel de administración",
+      "titulo": "Dos bares, dos identidades y un mismo punto de encuentro digital.",
+      "descripcionP1": "Desarrollamos un proyecto de menús online para Flavia y Pascal que integra ambos bares en una misma pantalla de inicio. Desde ese espacio compartido, cada visitante puede elegir qué carta quiere consultar.",
+      "descripcionP2": "La propuesta parte de una idea: cada lugar tiene su propio ritmo. Un tocadiscos y dos vinilos, uno por bar, transforman la elección del menú en una interacción lúdica: basta con tocar un disco o arrastrarlo al plato para abrir su carta.",
+      "descripcionP3": "La estética ilustrada, las animaciones y el sonido acompañan esa experiencia y dan personalidad al inicio. La música funciona como hilo conductor para conectar las dos propuestas sin perder la identidad de cada una.",
+      "descripcionP4": "El resultado es una entrada común que organiza el acceso a ambos menús y convierte una acción cotidiana, consultar la carta, en una experiencia con el carácter de Flavia y Pascal. El proyecto también incluye un panel de administración para gestionar el contenido del menú online."
+    },
+    "kim": {
+      "miniTitulo": "KIM",
+      "miniDescripcion": "Landing + panel de administración",
+      "titulo": "Una web para conocer cómo construye KIM y dar el primer paso hacia tu obra.",
+      "descripcionP1": "Desarrollamos una landing con panel de administración para KIM, una constructora de Cafayate, pensada para presentar su trabajo y facilitar el contacto con quienes buscan llevar adelante una obra.",
+      "descripcionP2": "El sitio organiza la información sobre sus procesos de construcción para que cada visitante pueda conocer cómo trabaja la empresa y qué etapas forman parte del desarrollo de un proyecto.",
+      "descripcionP3": "La presentación de obras previas permite explorar trabajos realizados y conocer la experiencia de la constructora a través de sus propios proyectos. Los accesos de contacto acompañan ese recorrido y facilitan iniciar una conversación con el equipo.",
+      "descripcionP4": "El panel de administración permite gestionar el contenido del sitio y mantener actualizada su presencia digital. El resultado reúne información, obras y contacto en una misma landing."
+    },
+    "kiwe": {
+      "miniTitulo": "KIWÉ",
+      "miniDescripcion": "Landing de arquitectura, paisajismo e interiores",
+      "titulo": "Una presencia digital que expresa una mirada orgánica y respetuosa del diseño.",
+      "descripcionP1": "Desarrollamos una landing para KIWÉ que reúne proyectos de arquitectura, paisajismo y diseño de interiores. El sitio permite explorar trabajos previos y acercarse al universo creativo de la arquitecta.",
+      "descripcionP2": "Además de presentar sus proyectos, la web invita a conocer a la profesional detrás de cada propuesta, comprender su visión del diseño y descubrir su proceso de trabajo antes de iniciar una conversación.",
+      "descripcionP3": "La dirección visual busca expresar esa mirada orgánica y respetuosa: una forma de entender el diseño en diálogo con el entorno, los espacios y las personas que los habitan. La presentación acompaña los proyectos y les da lugar para contar su propia historia.",
+      "descripcionP4": "El resultado es un espacio digital que conecta portfolio, identidad y contacto, facilitando que quienes se identifican con su enfoque puedan acercarse a la arquitecta y dar el primer paso hacia un proyecto compartido."
     },
     "filiSuites": {
       "miniTitulo": "Fili Suites",
@@ -205,7 +250,7 @@
       "click": "Elegí un proyecto para descubrirlo ↗",
       "pause": "Pausar rotación",
       "play": "Activar rotación",
-      "back": "Volver a proyectos",
+      "back": "Volver",
       "byVhetra": "Diseño y desarrollo / Vhetra",
       "scroll": "Scroll para descubrir",
       "about": "Sobre el proyecto",
